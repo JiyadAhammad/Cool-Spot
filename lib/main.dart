@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'domain/config/app_router.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -10,10 +12,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Food Delivery',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      onGenerateRoute: AppRouter.onGenerateRoute,
+      initialRoute: '/',
+      // home: const SplashScreen(),
     );
   }
 }
