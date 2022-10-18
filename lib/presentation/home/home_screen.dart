@@ -64,6 +64,7 @@ class HomeScreen extends StatelessWidget {
             const HomeSectionwidget(
               sectionTitle: 'MOST POPULAR',
             ),
+            kheight,
             ProductCarousel(
               products: Product.products
                   .where((Product item) => item.ispopular)

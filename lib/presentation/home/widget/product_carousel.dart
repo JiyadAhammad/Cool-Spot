@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../domain/home/product_model/product_model.dart';
 import '../../widget/product_card_widget.dart';
-import '../home_screen.dart';
 
 class ProductCarousel extends StatelessWidget {
   const ProductCarousel({
