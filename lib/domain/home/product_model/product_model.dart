@@ -64,7 +64,7 @@ class Product extends Equatable {
       ispopular: false,
     ),
     const Product(
-      imageUrl: '',
+      imageUrl: 'https://loveincorporated.blob.core.windows.net/contentimages/main/1249b51f-4258-44f6-8414-221954ae6a79-waterbottlefacts.jpg',
       productName: 'Bisleri',
       productPrice: 10.0,
       category: 'Water',

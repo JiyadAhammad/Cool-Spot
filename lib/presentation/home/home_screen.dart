@@ -70,7 +70,7 @@ class HomeScreen extends StatelessWidget {
                   .where((Product item) => item.ispopular)
                   .toList(),
             ),
-            kheight20
+            kheight20,
           ],
         ),
       ),
