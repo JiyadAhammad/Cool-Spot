@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../constant/color/colors.dart';
+import '../constant/sizedbox/sizedbox.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -15,14 +18,33 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Timer(
+      const Duration(seconds: 3),
+      () => Navigator.pushNamed(context, '/home'),
+    );
     return Scaffold(
       backgroundColor: bgColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Image.asset('assets/images/splashImage.png'),
-          const Center(
-            child: Text('Drink Socially'),
+        children: const <Widget>[
+          Center(
+            child: Image(
+              image: AssetImage(
+                'assets/images/splashImage.png',
+              ),
+            ),
+          ),
+          kheight,
+          Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Text(
+              'Drink Socially',
+              style: TextStyle(
+                color: kblackText,
+                fontSize: 30,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
           ),
         ],
       ),
