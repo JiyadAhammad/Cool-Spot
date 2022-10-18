@@ -2,10 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
-import '../../presentation/cart_screen/cart_screen.dart';
-import '../../presentation/home_screen/home_screen.dart';
-import '../../presentation/profile_screen/profile_screen.dart';
-import '../../presentation/splash_screen/splash_screen.dart';
+import '../../presentation/cart/cart_screen.dart';
+import '../../presentation/home/home_screen.dart';
+import '../../presentation/profile/profile_screen.dart';
+import '../../presentation/splash/splash_screen.dart';
 
 class AppRouter {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
