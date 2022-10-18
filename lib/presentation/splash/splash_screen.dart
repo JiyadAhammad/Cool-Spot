@@ -1,10 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 import '../constant/color/colors.dart';
 import '../constant/sizedbox/sizedbox.dart';
-import 'widget/route_to.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

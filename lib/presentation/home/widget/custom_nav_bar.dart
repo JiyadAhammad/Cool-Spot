@@ -11,41 +11,89 @@ class CustomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomAppBar(
       color: kblack,
-      child: Container(
-        height: 70,
+      child: SizedBox(
+        height: 50,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            IconButton(
+            TextButton.icon(
               onPressed: () {
                 Navigator.pushNamed(context, '/home');
               },
               icon: const Icon(
                 Icons.home,
                 color: kwhite,
-                size: 40,
+                size: 35,
+              ),
+              label: const Text(
+                'Home',
+                style: TextStyle(
+                  color: kwhiteText,
+                ),
               ),
             ),
-            IconButton(
+            TextButton.icon(
               onPressed: () {
                 Navigator.pushNamed(context, '/cart');
               },
               icon: const Icon(
                 Icons.shopping_cart,
                 color: kwhite,
-                size: 40,
+                size: 35,
+              ),
+              label: const Text(
+                'Cart',
+                style: TextStyle(
+                  color: kwhiteText,
+                ),
               ),
             ),
-            IconButton(
+            TextButton.icon(
               onPressed: () {
                 Navigator.pushNamed(context, '/profile');
               },
               icon: const Icon(
                 Icons.person,
                 color: kwhite,
-                size: 40,
+                size: 35,
+              ),
+              label: const Text(
+                'Profile',
+                style: TextStyle(
+                  color: kwhiteText,
+                ),
               ),
             ),
+            // IconButton(
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, '/home');
+            //   },
+            //   icon: const Icon(
+            //     Icons.home,
+            //     color: kwhite,
+            //     size: 35,
+            //   ),
+            // ),
+            // IconButton(
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, '/cart');
+            //   },
+            //   icon: const Icon(
+            //     Icons.shopping_cart,
+            //     color: kwhite,
+            //     size: 35,
+            //   ),
+            // ),
+            // IconButton(
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, '/profile');
+            //   },
+            //   icon: const Icon(
+            //     Icons.person,
+            //     color: kwhite,
+            //     size: 35,
+            //   ),
+            // ),
           ],
         ),
       ),

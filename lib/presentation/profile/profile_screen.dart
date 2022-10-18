@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constant/color/colors.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
@@ -13,6 +15,11 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      backgroundColor: bgColor,
+      body: Center(
+        child: Text('profile'),
+      ),
+    );
   }
 }

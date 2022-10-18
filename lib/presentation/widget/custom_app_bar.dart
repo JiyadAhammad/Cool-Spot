@@ -20,7 +20,10 @@ class CustomAppBar extends StatelessWidget {
       title: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: Container(
-          color: kblack,
+          decoration: const BoxDecoration(
+            color: kblack,
+            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          ),
           child: Padding(
             padding: const EdgeInsets.symmetric(
               vertical: 10,
@@ -47,7 +50,7 @@ class CustomAppBar extends StatelessWidget {
             icon: Icon(
               appBarIcon,
               color: kblackIcon,
-              size: 40,
+              size: 35,
             ),
           ),
         ),
