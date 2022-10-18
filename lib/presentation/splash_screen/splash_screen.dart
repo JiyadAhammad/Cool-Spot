@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../constant/color/colors.dart';
 import '../constant/sizedbox/sizedbox.dart';
+import 'widget/route_to.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -18,10 +19,10 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Timer(
-      const Duration(seconds: 3),
-      () => Navigator.pushNamed(context, '/home'),
-    );
+    // Timer(
+    //   const Duration(seconds: 3),
+    //   () => Navigator.pushNamed(context, '/home'),
+    // );
     return Scaffold(
       backgroundColor: bgColor,
       body: Column(
