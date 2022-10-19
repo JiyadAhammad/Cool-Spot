@@ -32,11 +32,12 @@ class CustomAppBar extends StatelessWidget {
             child: Text(
               appBarTitle,
               style: const TextStyle(
-                  color: kwhiteText,
-                  fontSize: 24,
-                  fontFamily: 'Varela Round',
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 15.0),
+                color: kwhiteText,
+                fontSize: 24,
+                fontFamily: 'Varela Round',
+                fontWeight: FontWeight.w500,
+                letterSpacing: 5,
+              ),
             ),
           ),
         ),
@@ -46,7 +47,9 @@ class CustomAppBar extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/whish');
+            },
             icon: Icon(
               appBarIcon,
               color: kblackIcon,

@@ -8,10 +8,12 @@ class ProductCardWidget extends StatelessWidget {
     super.key,
     required this.productItem,
     this.widthFactor = 2.5,
+    this.isWhisList = false,
   });
 
   final Product productItem;
   final double widthFactor;
+  final bool isWhisList;
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +91,20 @@ class ProductCardWidget extends StatelessWidget {
                       ),
                     ),
                   ),
+                  if (isWhisList)
+                    Expanded(
+                      child: IconButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.delete,
+                          size: 25,
+                          color: kwhiteIcon,
+                        ),
+                      ),
+                    )
+                  else
+                    const SizedBox(),
                 ],
               ),
             ),

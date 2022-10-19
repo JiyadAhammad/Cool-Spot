@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/home/product_model/product_model.dart';
+import '../constant/color/colors.dart';
 import '../home/widget/custom_nav_bar.dart';
 import '../widget/custom_app_bar.dart';
+import '../widget/elevated_button_widget.dart';
 import '../widget/stack_contaien.dart';
 import 'widget/expanded_tile_widget.dart';
 
@@ -58,18 +60,47 @@ class ProductInformation extends StatelessWidget {
               const ExpandedTileWidget(
                 title: 'PRODUCT INFORMATION',
                 subTitle:
-                    '''when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.''',
+                    '''when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages''',
               ),
               const ExpandedTileWidget(
-                title: 'PRODUCT INFORMATION',
+                initiallyExpanded: false,
+                title: 'DELIVERY INFORMATION',
                 subTitle:
-                    '''when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.''',
+                    '''when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages''',
               ),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: const CustomNavBar(),
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          height: MediaQuery.of(context).size.width / 6,
+          width: MediaQuery.of(context).size.width,
+          color: kblack,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.share,
+                  color: kwhiteIcon,
+                  size: 30,
+                ),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.favorite,
+                  color: kwhiteIcon,
+                  size: 30,
+                ),
+              ),
+              const ElevatedButtonWidget(content: 'Add to Cart'),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

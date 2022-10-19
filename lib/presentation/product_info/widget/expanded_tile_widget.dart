@@ -5,10 +5,12 @@ class ExpandedTileWidget extends StatelessWidget {
     super.key,
     required this.title,
     required this.subTitle,
+    this.initiallyExpanded = true,
   });
 
   final String title;
   final String subTitle;
+  final bool initiallyExpanded;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class ExpandedTileWidget extends StatelessWidget {
         horizontal: 15,
       ),
       child: ExpansionTile(
-        initiallyExpanded: true,
+        initiallyExpanded: initiallyExpanded,
         title: Text(
           title,
           style: const TextStyle(
