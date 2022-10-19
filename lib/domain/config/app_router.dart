@@ -9,6 +9,7 @@ import '../../presentation/product_list/product_list.dart';
 import '../../presentation/profile/profile_screen.dart';
 import '../../presentation/splash/splash_screen.dart';
 import '../home/category_model/category_model.dart';
+import '../home/product_model/product_model.dart';
 
 class AppRouter {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -26,7 +27,8 @@ class AppRouter {
       case ProductList.routeName:
         return ProductList.route(category: settings.arguments! as Category);
       case ProductInformation.routeName:
-        return ProductInformation.route();
+        return ProductInformation.route(
+            product: settings.arguments! as Product);
       default:
         return _errorRoute();
     }

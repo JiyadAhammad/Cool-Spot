@@ -69,7 +69,7 @@ class ProductCardWidget extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          (productItem.productPrice).toString(),
+                          '₹ ${productItem.productPrice}',
                           style: const TextStyle(
                             fontSize: 18,
                             color: kwhiteText,
