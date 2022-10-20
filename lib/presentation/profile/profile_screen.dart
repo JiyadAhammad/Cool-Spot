@@ -18,9 +18,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      body: Stack(
-        children: [],
-      ),
+      body: Stack(),
       bottomNavigationBar: const CustomNavBar(),
     );
   }

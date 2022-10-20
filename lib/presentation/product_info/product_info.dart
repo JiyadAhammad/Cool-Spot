@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../domain/home/product_model/product_model.dart';
 import '../constant/color/colors.dart';
-import '../home/widget/custom_nav_bar.dart';
 import '../widget/custom_app_bar.dart';
 import '../widget/elevated_button_widget.dart';
 import '../widget/stack_contaien.dart';
