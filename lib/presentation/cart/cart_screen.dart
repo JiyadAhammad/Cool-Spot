@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/cart/cart_model/cart_model.dart';
-import '../../infrastructure/cart/cart.dart';
 import '../constant/color/colors.dart';
 import '../widget/custom_app_bar.dart';
 import '../widget/custom_bootom_bar_widget.dart';
@@ -75,7 +74,7 @@ class CartScreen extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: const CutomeBottomBarWidget(),
+      bottomNavigationBar: const CutomeBottomBarWidget(text: 'Checkout'),
     );
   }
 }

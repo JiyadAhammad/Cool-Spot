@@ -6,21 +6,26 @@ import 'elevated_button_widget.dart';
 class CutomeBottomBarWidget extends StatelessWidget {
   const CutomeBottomBarWidget({
     super.key,
+    required this.text,
   });
+  final String text;
 
   @override
   Widget build(BuildContext context) {
-    return const BottomAppBar(
+    return BottomAppBar(
       color: kblack,
       child: SizedBox(
         height: 50,
         child: Padding(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             horizontal: 90,
             vertical: 5,
           ),
           child: ElevatedButtonWidget(
-            content: 'Checkout',
+            content: text,
+            onPressed: () {
+              Navigator.pushNamed(context, '/checkout');
+            },
           ),
         ),
       ),

@@ -6,8 +6,10 @@ class ElevatedButtonWidget extends StatelessWidget {
   const ElevatedButtonWidget({
     required this.content,
     super.key,
+    required this.onPressed,
   });
   final String content;
+  final Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class ElevatedButtonWidget extends StatelessWidget {
           const Size(200, 40),
         ),
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       child: Text(
         content,
         style: const TextStyle(

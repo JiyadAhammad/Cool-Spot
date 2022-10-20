@@ -96,7 +96,12 @@ class ProductInformation extends StatelessWidget {
                   size: 30,
                 ),
               ),
-              const ElevatedButtonWidget(content: 'Add to Cart'),
+              ElevatedButtonWidget(
+                content: 'Add to Cart',
+                onPressed: () {
+                  Navigator.pushNamed(context, '/cart');
+                },
+              ),
             ],
           ),
         ),

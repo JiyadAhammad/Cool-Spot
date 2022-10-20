@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/cart/cart_model/cart_model.dart';
-import '../../infrastructure/cart/cart.dart';
 import '../cart/widget/stack_price_container.dart';
 import '../constant/sizedbox/sizedbox.dart';
 

@@ -2,7 +2,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 
 import '../../presentation/cart/cart_screen.dart';
+import '../../presentation/checkout/checkout_screen.dart';
 import '../../presentation/home/home_screen.dart';
+import '../../presentation/payment/payment_screen.dart';
 import '../../presentation/product_info/product_info.dart';
 import '../../presentation/product_list/product_list.dart';
 import '../../presentation/profile/profile_screen.dart';
@@ -31,6 +33,10 @@ class AppRouter {
             product: settings.arguments! as Product);
       case WhishListScreen.routeName:
         return WhishListScreen.route();
+      case CheckoutScreen.routeName:
+        return CheckoutScreen.route();
+      case PaymentScreen.routeName:
+        return PaymentScreen.route();
       default:
         return _errorRoute();
     }
