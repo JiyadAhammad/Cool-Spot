@@ -31,17 +31,36 @@ class CartScreen extends StatelessWidget {
         ),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          CartContainerWidget(
-            product: Product.products[0],
+          Column(
+            children: <Widget>[
+              SizedBox(
+                height: 521,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: 6,
+                  itemBuilder: (BuildContext context, int index) {
+                    return CartContainerWidget(
+                      product: Product.products[0],
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Divider(
-              thickness: 2,
-            ),
+          Column(
+            children: const <Widget>[
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Divider(
+                  thickness: 2,
+                ),
+              ),
+              PriceDetailsWidget(),
+            ],
           ),
-          const PriceDetailsWidget()
         ],
       ),
       bottomNavigationBar: const CutomeBottomBarWidget(),
