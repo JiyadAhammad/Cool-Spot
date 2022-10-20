@@ -4,8 +4,38 @@ import '../../home/product_model/product_model.dart';
 
 class Cart extends Equatable {
   Cart();
+  double deliveryFee(double subTotals) {
+    if (subTotal >= 500) {
+      return 0;
+    } else {
+      return 20;
+    }
+  }
 
-  List<Product> products = <Product>[
+  String freedelivery(double subTotal) {
+    if (subTotal >= 500) {
+      return 'you have free delivery';
+    } else {
+      final double balance = 500.0 - subTotal;
+      return 'Add ₹ ${balance.toString()} for FreeDelivery';
+    }
+  }
+
+  double totalPrice(double amount, double delivery) {
+    return amount + delivery;
+  }
+
+  String get freeDelivey => freedelivery(subTotal);
+
+  String get subTotalString => subTotal.toString();
+
+  String get deliveryFees => deliveryFee(subTotal).toString();
+
+  String get totalPrices =>
+      totalPrice(subTotal, double.parse(deliveryFees)).toString();
+  double get subTotal => items.fold(
+      0, (double total, Product current) => total + current.productPrice);
+  final List<Product> items = <Product>[
     const Product(
       imageUrl:
           'https://img.taste.com.au/RemyDecY/w720-h480-cfill-q80/taste/2020/01/jan20_easy-berry-smoothie-taste-156331-1.jpg',
@@ -33,34 +63,7 @@ class Cart extends Equatable {
       isrecommended: false,
       ispopular: true,
     ),
-    const Product(
-      imageUrl:
-          'https://loveincorporated.blob.core.windows.net/contentimages/main/1249b51f-4258-44f6-8414-221954ae6a79-waterbottlefacts.jpg',
-      productName: 'Mango Juice',
-      productPrice: 60.0,
-      category: 'Smoothies',
-      isrecommended: true,
-      ispopular: false,
-    ),
-    const Product(
-      imageUrl:
-          'https://loveincorporated.blob.core.windows.net/contentimages/main/1249b51f-4258-44f6-8414-221954ae6a79-waterbottlefacts.jpg',
-      productName: 'Bisleri',
-      productPrice: 10.0,
-      category: 'Water',
-      isrecommended: false,
-      ispopular: false,
-    ),
-    const Product(
-      imageUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrTpIC4f7ooBZV6-A_Cpslt9IRRpGbVdoV8A&usqp=CAU',
-      productName: 'Kinley',
-      productPrice: 12.0,
-      category: 'Water',
-      isrecommended: false,
-      ispopular: true,
-    ),
   ];
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => <Object?>[];
 }
