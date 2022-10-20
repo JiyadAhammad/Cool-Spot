@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../constant/color/colors.dart';
@@ -16,10 +18,10 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Timer(
-    //   const Duration(seconds: 3),
-    //   () => Navigator.pushNamed(context, '/home'),
-    // );
+    Timer(
+      const Duration(seconds: 3),
+      () => Navigator.pushReplacementNamed(context, '/home'),
+    );
     return Scaffold(
       backgroundColor: bgColor,
       body: Column(

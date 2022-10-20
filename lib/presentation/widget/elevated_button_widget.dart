@@ -19,8 +19,8 @@ class ElevatedButtonWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
           ),
         ),
-        minimumSize: MaterialStateProperty.all(
-          const Size(180, 40),
+        maximumSize: MaterialStateProperty.all(
+          const Size(200, 40),
         ),
       ),
       onPressed: () {},

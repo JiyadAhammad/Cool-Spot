@@ -7,9 +7,11 @@ class CustomAppBar extends StatelessWidget {
     super.key,
     required this.appBarTitle,
     required this.appBarIcon,
+    required this.onPressed,
   });
   final String appBarTitle;
   final IconData appBarIcon;
+  final Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,9 @@ class CustomAppBar extends StatelessWidget {
         child: Container(
           decoration: const BoxDecoration(
             color: kblack,
-            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+            borderRadius: BorderRadius.all(
+              Radius.circular(8.0),
+            ),
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(
@@ -47,9 +51,7 @@ class CustomAppBar extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/whish');
-            },
+            onPressed: onPressed,
             icon: Icon(
               appBarIcon,
               color: kblackIcon,

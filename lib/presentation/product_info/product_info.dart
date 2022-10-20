@@ -34,6 +34,7 @@ class ProductInformation extends StatelessWidget {
         child: CustomAppBar(
           appBarTitle: product.productName,
           appBarIcon: Icons.favorite,
+          onPressed: () => Navigator.pushNamed(context, '/whish'),
         ),
       ),
       body: SingleChildScrollView(

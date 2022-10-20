@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Food Delivery',
       theme: theme(),
       onGenerateRoute: AppRouter.onGenerateRoute,
-      initialRoute: '/home',
+      initialRoute: '/',
       // home: const SplashScreen(),
     );
   }

@@ -26,11 +26,12 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(60),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
         child: CustomAppBar(
           appBarTitle: 'Coolspot',
           appBarIcon: Icons.favorite,
+          onPressed: () => Navigator.pushNamed(context, '/whish'),
         ),
       ),
       body: SingleChildScrollView(

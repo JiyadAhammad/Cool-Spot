@@ -32,6 +32,7 @@ class ProductList extends StatelessWidget {
         child: CustomAppBar(
           appBarIcon: Icons.search,
           appBarTitle: category.name,
+          onPressed: (){},
         ),
       ),
       body: GridView.builder(
