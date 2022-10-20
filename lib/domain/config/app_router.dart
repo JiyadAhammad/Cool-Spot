@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../presentation/cart/cart_screen.dart';
 import '../../presentation/checkout/checkout_screen.dart';
 import '../../presentation/home/home_screen.dart';
+import '../../presentation/map/map.dart';
 import '../../presentation/payment/payment_screen.dart';
 import '../../presentation/product_info/product_info.dart';
 import '../../presentation/product_list/product_list.dart';
@@ -37,6 +38,8 @@ class AppRouter {
         return CheckoutScreen.route();
       case PaymentScreen.routeName:
         return PaymentScreen.route();
+      case LocationScreen.routeName:
+        return LocationScreen.route();
       default:
         return _errorRoute();
     }

@@ -5,6 +5,7 @@ import '../widget/custom_app_bar.dart';
 
 class PaymentScreen extends StatelessWidget {
   const PaymentScreen({super.key});
+
   static const String routeName = '/payment';
   static Route<PaymentScreen> route() {
     return MaterialPageRoute<PaymentScreen>(
