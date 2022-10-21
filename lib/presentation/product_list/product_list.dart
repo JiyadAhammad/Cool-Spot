@@ -30,9 +30,10 @@ class ProductList extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
         child: CustomAppBar(
+          leadingOnPressed: () => Navigator.pop(context),
           appBarIcon: Icons.search,
           appBarTitle: category.name,
-          onPressed: (){},
+          onPressed: () {},
         ),
       ),
       body: GridView.builder(

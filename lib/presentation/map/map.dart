@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../checkout/checkout_screen.dart';
-import 'widget/texta_form_widget.dart';
 
 class LocationScreen extends StatelessWidget {
   const LocationScreen({super.key});

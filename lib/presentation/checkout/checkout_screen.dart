@@ -24,6 +24,7 @@ class CheckoutScreen extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
         child: CustomAppBar(
+          leadingOnPressed: () => Navigator.pop(context),
           appBarTitle: 'Checkout',
           appBarIcon: Icons.map,
           onPressed: () {
@@ -67,10 +68,10 @@ class CheckoutScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: CutomeBottomBarWidget(
-        text: 'Order Now',
-        onPressed: () {},
-      ),
+      // bottomNavigationBar: CutomeBottomBarWidget(
+      //   text: 'Order Now',
+      //   onPressed: () {},
+      // ),
     );
   }
 }

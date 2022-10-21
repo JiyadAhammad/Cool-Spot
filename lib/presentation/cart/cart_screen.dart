@@ -25,6 +25,9 @@ class CartScreen extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
         child: CustomAppBar(
+          leadingOnPressed: () {
+            Navigator.pop(context);
+          },
           appBarTitle: 'Cool Cart',
           appBarIcon: Icons.add_circle,
           onPressed: () => Navigator.pushNamed(context, '/whish'),

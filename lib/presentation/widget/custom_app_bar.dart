@@ -8,17 +8,28 @@ class CustomAppBar extends StatelessWidget {
     required this.appBarTitle,
     required this.appBarIcon,
     required this.onPressed,
+    this.icon = Icons.arrow_back_ios,
+    required this.leadingOnPressed,
   });
   final String appBarTitle;
   final IconData appBarIcon;
   final Function() onPressed;
+  final IconData icon;
+  final Function() leadingOnPressed;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: ktransparent,
+      leading: IconButton(
+        onPressed: leadingOnPressed,
+        icon: Icon(
+          icon,
+          color: kblackIcon,
+          size: 30,
+        ),
+      ),
       elevation: 0,
-      automaticallyImplyLeading: false,
       title: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: Container(

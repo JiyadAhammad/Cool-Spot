@@ -31,6 +31,7 @@ class ProductInformation extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
         child: CustomAppBar(
+          leadingOnPressed: () => Navigator.pop(context),
           appBarTitle: product.productName,
           appBarIcon: Icons.favorite,
           onPressed: () => Navigator.pushNamed(context, '/whish'),

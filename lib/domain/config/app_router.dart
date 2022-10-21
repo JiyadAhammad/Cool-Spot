@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 
+import '../../presentation/Confirm/order_confirm_screen.dart';
 import '../../presentation/cart/cart_screen.dart';
 import '../../presentation/checkout/checkout_screen.dart';
 import '../../presentation/home/home_screen.dart';
@@ -40,6 +41,8 @@ class AppRouter {
         return PaymentScreen.route();
       case LocationScreen.routeName:
         return LocationScreen.route();
+      case OrderConfirmationScreen.routeName:
+        return OrderConfirmationScreen.route();
       default:
         return _errorRoute();
     }

@@ -6,6 +6,7 @@ import '../../domain/home/product_model/product_model.dart';
 import '../constant/color/colors.dart';
 import '../constant/sizedbox/sizedbox.dart';
 import '../widget/custom_app_bar.dart';
+import 'navigation_drawer/drawer.dart';
 import 'widget/caurosel_card.dart';
 import 'widget/custom_nav_bar.dart';
 import 'widget/home_section_widget.dart';
@@ -25,10 +26,13 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const Navdrawer(),
       backgroundColor: bgColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: CustomAppBar(
+          leadingOnPressed: () => const Navdrawer(),
+          icon: Icons.density_medium,
           appBarTitle: 'Coolspot',
           appBarIcon: Icons.favorite,
           onPressed: () => Navigator.pushNamed(context, '/whish'),
