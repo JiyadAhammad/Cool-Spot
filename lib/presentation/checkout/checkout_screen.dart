@@ -26,7 +26,9 @@ class CheckoutScreen extends StatelessWidget {
         child: CustomAppBar(
           appBarTitle: 'Checkout',
           appBarIcon: Icons.map,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, '/map');
+          },
         ),
       ),
       body: SingleChildScrollView(
@@ -38,100 +40,19 @@ class CheckoutScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              TextFormField(
-                style: const TextStyle(
-                  fontSize: 24,
-                  color: kblackText,
-                  fontWeight: FontWeight.w600,
-                ),
-                // onChanged: (String value) {
-                //   // setState(() {
-                //   //   userInput.text = value.toString();
-                //   // });
-                // },
-                decoration: InputDecoration(
-                  focusColor: Colors.white,
-
-                  //add suffix icon
-                  suffixIcon: GestureDetector(
-                    onTap: () {},
-                    child: const Icon(
-                      Icons.my_location_outlined,
-                      color: Colors.grey,
-                    ),
-                  ),
-
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  fillColor: Colors.grey,
-
-                  hintText: 'Select Delivery Location',
-
-                  //make hint text
-                  hintStyle: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 16,
-                    fontFamily: 'verdana_regular',
-                    fontWeight: FontWeight.w400,
-                  ),
-
-                  //create lable
-                  labelText: 'Select Delivery Location',
-                  //lable style
-                  labelStyle: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 16,
-                    fontFamily: 'verdana_regular',
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ),
+              TextFiledWidget(
+                  suffixIcon: Icons.my_location,
+                  hintText: 'click icon to search Location',
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/map');
+                  }),
               kheight20,
-              GestureDetector(
-                onTap: () {
+              ContainerWidget(
+                date: 'Select Payment Method',
+                iconData: Icons.arrow_forward_ios,
+                onPressed: () {
                   Navigator.pushNamed(context, '/payment');
                 },
-                child: Container(
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.width / 5,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: kblack,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 10,
-                    ),
-                    child: Row(
-                      children: <Widget>[
-                        const Expanded(
-                          child: Text(
-                            'Select Payment Method',
-                            style: TextStyle(
-                              color: kwhiteText,
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        // Spacer(),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.arrow_forward_ios,
-                          ),
-                          color: kwhiteIcon,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
               ),
               kheight20,
               const Text(
@@ -146,7 +67,109 @@ class CheckoutScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: const CutomeBottomBarWidget(text: 'Order Now'),
+      bottomNavigationBar: CutomeBottomBarWidget(
+        text: 'Order Now',
+        onPressed: () {},
+      ),
+    );
+  }
+}
+
+class TextFiledWidget extends StatelessWidget {
+  const TextFiledWidget({
+    super.key,
+    required this.suffixIcon,
+    required this.onPressed,
+    required this.hintText,
+  });
+  final IconData suffixIcon;
+  final Function() onPressed;
+  final String hintText;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 80,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        color: kblack,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        child: TextField(
+          decoration: InputDecoration(
+            hintText: hintText,
+            suffixIcon: GestureDetector(
+              onTap: onPressed,
+              child: Icon(
+                suffixIcon,
+                color: kblack,
+              ),
+            ),
+            fillColor: kwhite,
+            filled: true,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ContainerWidget extends StatelessWidget {
+  const ContainerWidget({
+    super.key,
+    required this.date,
+    required this.iconData,
+    required this.onPressed,
+  });
+  final String date;
+  final IconData iconData;
+  final Function() onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, '/payment');
+      },
+      child: Container(
+        width: double.infinity,
+        height: MediaQuery.of(context).size.width / 5,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: kblack,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 10,
+          ),
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: Text(
+                  date,
+                  style: const TextStyle(
+                    color: kwhiteText,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              // Spacer(),
+              IconButton(
+                onPressed: onPressed,
+                icon: Icon(iconData),
+                color: kwhiteIcon,
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

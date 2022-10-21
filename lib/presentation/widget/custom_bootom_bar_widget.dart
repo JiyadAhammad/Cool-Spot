@@ -7,8 +7,10 @@ class CutomeBottomBarWidget extends StatelessWidget {
   const CutomeBottomBarWidget({
     super.key,
     required this.text,
+    required this.onPressed,
   });
   final String text;
+  final Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +25,7 @@ class CutomeBottomBarWidget extends StatelessWidget {
           ),
           child: ElevatedButtonWidget(
             content: text,
-            onPressed: () {
-              Navigator.pushNamed(context, '/checkout');
-            },
+            onPressed: onPressed,
           ),
         ),
       ),

@@ -74,7 +74,11 @@ class CartScreen extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: const CutomeBottomBarWidget(text: 'Checkout'),
+      bottomNavigationBar: CutomeBottomBarWidget(
+          text: 'Checkout',
+          onPressed: () {
+            Navigator.pushNamed(context, '/checkout');
+          }),
     );
   }
 }
