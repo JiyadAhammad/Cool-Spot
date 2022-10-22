@@ -21,7 +21,7 @@ class EditProfileScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: bgColor,
       body: ListView(
-        children: [
+        children: <Widget>[
           SizedBox(
             height: MediaQuery.of(context).size.width / 1.5,
             child: Stack(

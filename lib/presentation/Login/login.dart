@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../constant/color/colors.dart';
-import '../constant/sizedbox/sizedbox.dart';
-import '../widget/login_text_feild.dart';
 import 'widget/login_page_widget.dart';
 
 class LoginScreen extends StatelessWidget {
