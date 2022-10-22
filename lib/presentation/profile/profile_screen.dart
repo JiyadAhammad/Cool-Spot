@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../checkout/checkout_screen.dart';
 import '../constant/color/colors.dart';
 import '../home/widget/custom_nav_bar.dart';
-import '../map/widget/texta_form_widget.dart';
-import '../widget/login_text_feild.dart';
+import '../widget/custom_app_bar.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   static const String routeName = '/profile';
-  static Route<dynamic> route() {
-    return MaterialPageRoute<dynamic>(
+  static Route<ProfileScreen> route() {
+    return MaterialPageRoute<ProfileScreen>(
       settings: const RouteSettings(name: routeName),
       builder: (_) => const ProfileScreen(),
     );
@@ -20,37 +20,86 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      body: ListView(
-        children: [
-          LoginTextFormField(
-            prefixIcon: Icons.person,
-            hintText: 'Name',
-          ),
-          LoginTextFormField(
-            prefixIcon: Icons.person,
-            hintText: 'Name',
-          ),
-          LoginTextFormField(
-            prefixIcon: Icons.person,
-            hintText: 'Name',
-          ),
-          LoginTextFormField(
-            prefixIcon: Icons.person,
-            hintText: 'Name',
-          ),
-          LoginTextFormField(
-            prefixIcon: Icons.person,
-            hintText: 'Name',
-          ),
-          LoginTextFormField(
-            prefixIcon: Icons.person,
-            hintText: 'Name',
-          ),
-          LoginTextFormField(
-            prefixIcon: Icons.person,
-            hintText: 'Name',
-          ),
-        ],
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(50),
+        child: CustomAppBar(
+          appBarTitle: 'Profile',
+          appBarIcon: Icons.edit,
+          onPressed: () {
+            Navigator.pushNamed(context, '/pedit');
+          },
+          leadingOnPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          // vertical: 20,
+          horizontal: 30,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            const Center(
+              child: CircleAvatar(
+                radius: 150,
+                backgroundImage: AssetImage(
+                  'assets/images/google.png',
+                ),
+              ),
+            ),
+
+            ContainerWidget(
+              color: kwhite,
+              date: 'Name',
+              textwhite: kblackText,
+              iconData: Icons.edit,
+              whiteicon: kblackIcon,
+              onPressed: () {},
+            ),
+            ContainerWidget(
+              color: kwhite,
+              date: 'Email',
+              textwhite: kblackText,
+              iconData: Icons.edit,
+              whiteicon: kblackIcon,
+              onPressed: () {},
+            ),
+            ContainerWidget(
+              color: kwhite,
+              date: 'Number',
+              textwhite: kblackText,
+              iconData: Icons.edit,
+              whiteicon: kblackIcon,
+              onPressed: () {},
+            )
+            // Text(
+            //   'Jiyad',
+            //   style: TextStyle(
+            //     color: kblack,
+            //     fontSize: 30,
+            //     fontWeight: FontWeight.bold,
+            //   ),
+            // ),
+            // Text(
+            //   'jiyadahammad@gmail.com',
+            //   style: TextStyle(
+            //     color: kblack,
+            //     fontSize: 25,
+            //     fontWeight: FontWeight.bold,
+            //   ),
+            // ),
+            // Text(
+            //   '8520741963',
+            //   style: TextStyle(
+            //     color: kblack,
+            //     fontSize: 25,
+            //     fontWeight: FontWeight.bold,
+            //   ),
+            // ),
+          ],
+        ),
       ),
       bottomNavigationBar: const CustomNavBar(),
     );

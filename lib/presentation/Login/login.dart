@@ -21,6 +21,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: bgColor,
       body: LoginPageWidget(
+        fText: 'ForgetPasword ?',
         buttonText: 'Login',
         bottomText: "Don't Have an Account?",
         page: 'Signup',

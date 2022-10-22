@@ -11,6 +11,7 @@ import '../../presentation/payment/payment_screen.dart';
 import '../../presentation/product_info/product_info.dart';
 import '../../presentation/product_list/product_list.dart';
 import '../../presentation/profile/profile_screen.dart';
+import '../../presentation/profile/widget/edit_profile.dart';
 import '../../presentation/signup/singup.dart';
 import '../../presentation/splash/splash_screen.dart';
 import '../../presentation/whishlist/whish_list_screen.dart';
@@ -30,6 +31,8 @@ class AppRouter {
         return CartScreen.route();
       case ProfileScreen.routeName:
         return ProfileScreen.route();
+      case EditProfileScreen.routeName:
+        return EditProfileScreen.route();
       case ProductList.routeName:
         return ProductList.route(category: settings.arguments! as Category);
       case ProductInformation.routeName:

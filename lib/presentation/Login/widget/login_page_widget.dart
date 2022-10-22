@@ -12,10 +12,12 @@ class LoginPageWidget extends StatelessWidget {
     required this.bottomText,
     required this.page,
     required this.onPressed,
+    this.fText = '',
   });
   final String buttonText;
   final String bottomText;
   final String page;
+  final String fText;
   final Function() onPressed;
 
   @override
@@ -38,12 +40,19 @@ class LoginPageWidget extends StatelessWidget {
               prefixIcon: Icons.person,
               hintText: 'Email/Mobile',
             ),
-            kheight5,
             const LoginTextFormField(
               prefixIcon: Icons.https,
               hintText: 'Password',
             ),
-            kheight,
+            TextButton(
+              child: Text(
+                fText,
+                style: const TextStyle(
+                  color: kgreen,
+                ),
+              ),
+              onPressed: () {},
+            ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: kblack,
@@ -60,6 +69,10 @@ class LoginPageWidget extends StatelessWidget {
               },
               child: Text(
                 buttonText,
+                style: const TextStyle(
+                  color: kwhiteText,
+                  fontSize: 20,
+                ),
               ),
             ),
             kheight20,

@@ -67,7 +67,6 @@ class CheckoutScreen extends StatelessWidget {
           ),
         ),
       ),
-     
     );
   }
 }
@@ -122,10 +121,16 @@ class ContainerWidget extends StatelessWidget {
     required this.date,
     required this.iconData,
     required this.onPressed,
+    this.color = kblack,
+    this.whiteicon = kwhiteIcon,
+    this.textwhite = kwhiteText,
   });
   final String date;
   final IconData iconData;
   final Function() onPressed;
+  final Color color;
+  final Color whiteicon;
+  final Color textwhite;
 
   @override
   Widget build(BuildContext context) {
@@ -138,7 +143,7 @@ class ContainerWidget extends StatelessWidget {
         height: MediaQuery.of(context).size.width / 5,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: kblack,
+          color: color,
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -150,8 +155,8 @@ class ContainerWidget extends StatelessWidget {
               Expanded(
                 child: Text(
                   date,
-                  style: const TextStyle(
-                    color: kwhiteText,
+                  style: TextStyle(
+                    color: textwhite,
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                   ),
@@ -160,8 +165,10 @@ class ContainerWidget extends StatelessWidget {
               // Spacer(),
               IconButton(
                 onPressed: onPressed,
-                icon: Icon(iconData),
-                color: kwhiteIcon,
+                icon: Icon(
+                  iconData,
+                ),
+                color: whiteicon,
               )
             ],
           ),

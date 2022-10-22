@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Food Delivery',
-      theme: ThemeData(primarySwatch: Colors.green),
+      theme: ThemeData(primarySwatch: Colors.cyan),
       onGenerateRoute: AppRouter.onGenerateRoute,
       initialRoute: '/',
       // home: const SplashScreen(),
