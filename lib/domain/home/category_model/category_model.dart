@@ -26,5 +26,10 @@ class Category extends Equatable {
       imageUrl:
           'https://loveincorporated.blob.core.windows.net/contentimages/main/1249b51f-4258-44f6-8414-221954ae6a79-waterbottlefacts.jpg',
     ),
+    const Category(
+      name: 'IceCream',
+      imageUrl:
+          'https://res.cloudinary.com/swiggy/image/upload/f_auto,q_auto,fl_lossy/ae3qqfev6j7hzhxw6if3',
+    ),
   ];
 }

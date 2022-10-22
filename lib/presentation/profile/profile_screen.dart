@@ -29,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
             Navigator.pushNamed(context, '/pedit');
           },
           leadingOnPressed: () {
-            Navigator.pop(context);
+            Navigator.pushNamed(context, '/home');
           },
         ),
       ),
@@ -49,7 +49,6 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
             ),
-
             ContainerWidget(
               color: kwhite,
               date: 'Name',
@@ -74,30 +73,6 @@ class ProfileScreen extends StatelessWidget {
               whiteicon: kblackIcon,
               onPressed: () {},
             )
-            // Text(
-            //   'Jiyad',
-            //   style: TextStyle(
-            //     color: kblack,
-            //     fontSize: 30,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
-            // Text(
-            //   'jiyadahammad@gmail.com',
-            //   style: TextStyle(
-            //     color: kblack,
-            //     fontSize: 25,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
-            // Text(
-            //   '8520741963',
-            //   style: TextStyle(
-            //     color: kblack,
-            //     fontSize: 25,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
           ],
         ),
       ),

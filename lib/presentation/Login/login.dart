@@ -20,6 +20,7 @@ class LoginScreen extends StatelessWidget {
       backgroundColor: bgColor,
       body: LoginPageWidget(
         fText: 'ForgetPasword ?',
+        ftextOnpressed: () => Navigator.pushNamed(context, '/forget'),
         buttonText: 'Login',
         bottomText: "Don't Have an Account?",
         page: 'Signup',

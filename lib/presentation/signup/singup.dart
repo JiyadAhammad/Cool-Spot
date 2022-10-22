@@ -19,6 +19,7 @@ class SignupScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: bgColor,
       body: LoginPageWidget(
+        ftextOnpressed: () {},
         buttonText: 'Signup',
         bottomText: 'Alredy Have an Account?',
         page: 'Login',

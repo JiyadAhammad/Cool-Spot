@@ -55,6 +55,42 @@ class EditProfileScreen extends StatelessWidget {
             prefixIcon: Icons.person,
             hintText: 'Name',
           ),
+          const LoginTextFormField(
+            prefixIcon: Icons.mail,
+            hintText: 'Email',
+          ),
+          const LoginTextFormField(
+            prefixIcon: Icons.mobile_friendly,
+            hintText: 'Number',
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 50,
+              vertical: 10,
+            ),
+            child: ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.0),
+                ),
+                minimumSize: const Size(0, 50),
+                backgroundColor: kblack,
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/profile');
+              },
+              label: const Text(
+                'Save',
+                style: TextStyle(
+                  color: kwhiteText,
+                ),
+              ),
+              icon: const Icon(
+                Icons.check,
+                color: kwhiteIcon,
+              ),
+            ),
+          ),
         ],
       ),
       bottomNavigationBar: const CustomNavBar(),

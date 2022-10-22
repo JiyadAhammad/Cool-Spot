@@ -12,9 +12,11 @@ class LoginPageWidget extends StatelessWidget {
     required this.page,
     required this.onPressed,
     this.fText = '',
+    required this.ftextOnpressed,
   });
   final String buttonText;
   final String bottomText;
+  final Function() ftextOnpressed;
   final String page;
   final String fText;
   final Function() onPressed;
@@ -44,13 +46,13 @@ class LoginPageWidget extends StatelessWidget {
               hintText: 'Password',
             ),
             TextButton(
+              onPressed: ftextOnpressed,
               child: Text(
                 fText,
                 style: const TextStyle(
                   color: kgreen,
                 ),
               ),
-              onPressed: () {},
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(

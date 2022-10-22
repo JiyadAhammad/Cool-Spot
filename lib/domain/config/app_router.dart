@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 
 import '../../presentation/Confirm/order_confirm_screen.dart';
+import '../../presentation/Login/forgetpassword/forget_password.dart';
 import '../../presentation/Login/login.dart';
 import '../../presentation/cart/cart_screen.dart';
 import '../../presentation/checkout/checkout_screen.dart';
@@ -50,6 +51,8 @@ class AppRouter {
         return OrderConfirmationScreen.route();
       case LoginScreen.routeName:
         return LoginScreen.route();
+      case ForgetPassword.routeName:
+        return ForgetPassword.route();
       case SignupScreen.routeName:
         return SignupScreen.route();
       default:
