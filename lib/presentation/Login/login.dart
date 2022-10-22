@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../constant/color/colors.dart';
+import '../constant/sizedbox/sizedbox.dart';
+import '../widget/login_text_feild.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -17,80 +19,96 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Image.asset('assets/images/login.png'),
-            const LoginTextFormField(),
-            const LoginTextFormField(),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text(
-                'Login',
-              ),
-            ),
-            const Text('data'),
-            TextButton(
-              onPressed: () {},
-              child: const Text(
-                'Signup',
-              ),
-            ),
-          ],
-        ),
+      body: LoginPageWidget(
+        buttonText: 'Login',
+        bottomText: "Don't Have an Account?",
+        page: 'Signup',
+        onPressed: () {
+          Navigator.pushNamed(context, '/signup');
+        },
       ),
     );
   }
 }
 
-class LoginTextFormField extends StatelessWidget {
-  const LoginTextFormField({
-    Key? key,
-  }) : super(key: key);
+class LoginPageWidget extends StatelessWidget {
+  const LoginPageWidget({
+    super.key,
+    required this.buttonText,
+    required this.bottomText,
+    required this.page,
+    required this.onPressed,
+  });
+  final String buttonText;
+  final String bottomText;
+  final String page;
+  final Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 20,
-      ),
-      child: TextFormField(
-        // controller: userInput,
-        style: const TextStyle(
-          fontSize: 24,
-          color: Colors.blue,
-          fontWeight: FontWeight.w600,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.only(
+          top: MediaQuery.of(context).size.width / 3,
+          left: 5,
+          right: 5,
         ),
-        decoration: InputDecoration(
-          focusColor: Colors.white,
-          //add prefix icon
-          prefixIcon: const Icon(
-            Icons.person_outline_rounded,
-            color: Colors.grey,
-          ),
-
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
-            borderSide: const BorderSide(
-              width: 3,
+        child: Column(
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                Image.asset('assets/images/login.png'),
+              ],
             ),
-          ),
-
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          fillColor: Colors.grey,
-
-          hintText: 'Email/Mobile',
-
-          //make hint text
-          hintStyle: const TextStyle(
-            color: Colors.grey,
-            fontSize: 16,
-            fontFamily: 'verdana_regular',
-            fontWeight: FontWeight.w400,
-          ),
+            Column(
+              children: <Widget>[
+                const LoginTextFormField(
+                  prefixIcon: Icons.person,
+                  hintText: 'Email/Mobile',
+                ),
+                kheight5,
+                const LoginTextFormField(
+                  prefixIcon: Icons.https,
+                  hintText: 'Password',
+                ),
+                kheight,
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, '/home');
+                  },
+                  child: Text(
+                    buttonText,
+                  ),
+                ),
+                kheight20,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    GestureDetector(
+                      onTap: () {},
+                      child: Image.asset('assets/images/facebook.png'),
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Image.asset('assets/images/google.png'),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(bottomText),
+                    TextButton(
+                      onPressed: onPressed,
+                      child: Text(
+                        page,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

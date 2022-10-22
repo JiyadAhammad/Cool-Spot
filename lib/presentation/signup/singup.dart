@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../Login/login.dart';
 import '../constant/color/colors.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
 
-  static const String routeName = '/singup';
+  static const String routeName = '/signup';
   static Route<SignupScreen> route() {
     return MaterialPageRoute<SignupScreen>(
       settings: const RouteSettings(name: routeName),
@@ -17,8 +18,13 @@ class SignupScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      body: SafeArea(
-        child: Column(),
+      body: LoginPageWidget(
+        buttonText: 'Signup',
+        bottomText: 'Alredy Have an Account?',
+        page: 'Login',
+        onPressed: () {
+          Navigator.pushNamed(context, '/login');
+        },
       ),
     );
   }

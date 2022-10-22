@@ -4,6 +4,7 @@ import '../constant/color/colors.dart';
 import '../constant/sizedbox/sizedbox.dart';
 import '../widget/custom_app_bar.dart';
 import '../widget/custom_bootom_bar_widget.dart';
+import 'widget/payment_method.dart';
 
 class PaymentScreen extends StatelessWidget {
   const PaymentScreen({super.key});
@@ -53,42 +54,21 @@ class CashOnDeliveryContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: MediaQuery.of(context).size.height / 12,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: kwhite,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 10,
+    return Column(
+      children: const <Widget>[
+        PaymentMethod(
+          image: 'assets/images/money.png',
+          text: 'Cash on Delivery',
         ),
-        child: Row(
-          children: const <Widget>[
-            SizedBox(
-              width: 30,
-              child: Image(
-                image: AssetImage('assets/images/money.jpg'),
-                fit: BoxFit.fitHeight,
-              ),
-            ),
-            kwidth,
-            Expanded(
-              child: Text(
-                'Cash on Delivery',
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-            ),
-            Icon(
-              Icons.arrow_forward_ios,
-            ),
-          ],
+        PaymentMethod(
+          image: 'assets/images/googlepay.png',
+          text: 'Google Pay',
         ),
-      ),
+        PaymentMethod(
+          image: 'assets/images/paypal.png',
+          text: 'RazorPay',
+        ),
+      ],
     );
   }
 }
