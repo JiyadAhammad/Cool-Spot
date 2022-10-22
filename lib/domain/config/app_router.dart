@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 
 import '../../presentation/Confirm/order_confirm_screen.dart';
+import '../../presentation/Login/login.dart';
 import '../../presentation/cart/cart_screen.dart';
 import '../../presentation/checkout/checkout_screen.dart';
 import '../../presentation/home/home_screen.dart';
@@ -10,6 +11,7 @@ import '../../presentation/payment/payment_screen.dart';
 import '../../presentation/product_info/product_info.dart';
 import '../../presentation/product_list/product_list.dart';
 import '../../presentation/profile/profile_screen.dart';
+import '../../presentation/signup/singup.dart';
 import '../../presentation/splash/splash_screen.dart';
 import '../../presentation/whishlist/whish_list_screen.dart';
 import '../home/category_model/category_model.dart';
@@ -43,6 +45,10 @@ class AppRouter {
         return LocationScreen.route();
       case OrderConfirmationScreen.routeName:
         return OrderConfirmationScreen.route();
+      case LoginScreen.routeName:
+        return LoginScreen.route();
+      case SignupScreen.routeName:
+        return SignupScreen.route();
       default:
         return _errorRoute();
     }

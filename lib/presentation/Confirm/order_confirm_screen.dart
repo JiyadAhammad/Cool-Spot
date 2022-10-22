@@ -4,8 +4,10 @@ import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 
 import '../constant/color/colors.dart';
+import '../constant/sizedbox/sizedbox.dart';
 import '../widget/custom_app_bar.dart';
 import '../widget/custom_bootom_bar_widget.dart';
+import '../widget/price_details_widget.dart';
 
 class OrderConfirmationScreen extends StatefulWidget {
   const OrderConfirmationScreen({super.key});
@@ -48,7 +50,7 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
         preferredSize: const Size.fromHeight(50),
         child: CustomAppBar(
           appBarTitle: 'OrderConfirm',
-          appBarIcon: Icons.widgets_sharp,
+          appBarIcon: Icons.check,
           onPressed: () {},
           leadingOnPressed: () {
             Navigator.pushReplacementNamed(context, '/home');
@@ -70,6 +72,49 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
               ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 30,
+              horizontal: 30,
+            ),
+            child: Column(
+              // mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const <Widget>[
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Text(
+                    'order Completed Succesfully',
+                    style: TextStyle(
+                      color: kblackText,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                kheight50,
+                Text(
+                  'Hi Jiyad',
+                  style: TextStyle(
+                    color: kblackText,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                kheight,
+                Text(
+                  'Thank you purchsing on Cool Spot ',
+                  style: TextStyle(
+                    color: kblackText,
+                    fontSize: 25,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                kheight50,
+                PriceDetailsWidget(),
+              ],
+            ),
+          )
         ],
       ),
       bottomNavigationBar: CutomeBottomBarWidget(

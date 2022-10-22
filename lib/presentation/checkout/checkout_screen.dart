@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../constant/color/colors.dart';
 import '../constant/sizedbox/sizedbox.dart';
 import '../widget/custom_app_bar.dart';
-import '../widget/custom_bootom_bar_widget.dart';
 import '../widget/price_details_widget.dart';
 
 class CheckoutScreen extends StatelessWidget {
@@ -68,10 +67,7 @@ class CheckoutScreen extends StatelessWidget {
           ),
         ),
       ),
-      // bottomNavigationBar: CutomeBottomBarWidget(
-      //   text: 'Order Now',
-      //   onPressed: () {},
-      // ),
+     
     );
   }
 }

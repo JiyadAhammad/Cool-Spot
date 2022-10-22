@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'domain/config/app_router.dart';
-import 'domain/theme/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Food Delivery',
-      theme: theme(),
+      theme: ThemeData(primarySwatch: Colors.green),
       onGenerateRoute: AppRouter.onGenerateRoute,
       initialRoute: '/',
       // home: const SplashScreen(),
