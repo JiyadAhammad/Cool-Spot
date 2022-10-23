@@ -7,6 +7,7 @@ import '../../presentation/Login/login.dart';
 import '../../presentation/cart/cart_screen.dart';
 import '../../presentation/checkout/checkout_screen.dart';
 import '../../presentation/home/home_screen.dart';
+import '../../presentation/introduction/introduction_screen.dart';
 import '../../presentation/map/map.dart';
 import '../../presentation/payment/payment_screen.dart';
 import '../../presentation/product_info/product_info.dart';
@@ -26,6 +27,8 @@ class AppRouter {
     switch (settings.name) {
       case '/':
         return SplashScreen.route();
+      case IntroductionScreen.routeName:
+        return IntroductionScreen.route();
       case HomeScreen.routeName:
         return HomeScreen.route();
       case CartScreen.routeName:
