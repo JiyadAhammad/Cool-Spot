@@ -17,7 +17,6 @@ class LoginTextFormField extends StatelessWidget {
         vertical: 10,
       ),
       child: TextFormField(
-        // controller: userInput,
         style: const TextStyle(
           fontSize: 24,
           color: Colors.blue,
@@ -26,7 +25,6 @@ class LoginTextFormField extends StatelessWidget {
         decoration: InputDecoration(
           focusColor: Colors.white,
           prefixIcon: Icon(
-            // Icons.person_outline_rounded,
             prefixIcon,
             color: Colors.grey,
           ),
@@ -40,7 +38,6 @@ class LoginTextFormField extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.0),
           ),
           fillColor: Colors.grey,
-          // hintText: 'Email/Mobile',
           hintText: hintText,
           hintStyle: const TextStyle(
             color: Colors.grey,

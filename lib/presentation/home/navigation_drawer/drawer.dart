@@ -39,8 +39,8 @@ class Navdrawer extends StatelessWidget {
             onTap: () {},
           ),
           DrawerListTile(
-            text: 'Rate us',
-            leadingIcon: Icons.star_border_rounded,
+            text: 'Order History',
+            leadingIcon: Icons.medication_rounded,
             onTap: () {},
           ),
           ListTile(

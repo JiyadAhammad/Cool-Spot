@@ -17,13 +17,13 @@ class IntroductionScreen extends StatelessWidget {
   final List<Introduction> list = <Introduction>[
     Introduction(
       title: 'Buy & Sell',
-      titleTextStyle: TextStyle(
+      titleTextStyle:const TextStyle(
         color: kwhiteText,
         fontSize: 30,
         fontWeight: FontWeight.bold,
       ),
       subTitle: 'Browse the menu and order directly from the application',
-      subTitleTextStyle: TextStyle(
+      subTitleTextStyle:const TextStyle(
         color: kwhiteText,
         fontSize: 22,
         fontWeight: FontWeight.w300,
@@ -32,13 +32,13 @@ class IntroductionScreen extends StatelessWidget {
     ),
     Introduction(
       title: 'Delivery',
-      titleTextStyle: TextStyle(
+      titleTextStyle:const TextStyle(
         color: kwhiteText,
         fontSize: 30,
         fontWeight: FontWeight.bold,
       ),
       subTitle: 'Your order will be immediately collected and',
-      subTitleTextStyle: TextStyle(
+      subTitleTextStyle:const TextStyle(
         color: kwhiteText,
         fontSize: 22,
         fontWeight: FontWeight.w300,
@@ -47,13 +47,13 @@ class IntroductionScreen extends StatelessWidget {
     ),
     Introduction(
       title: 'Receive Money',
-      titleTextStyle: TextStyle(
+      titleTextStyle:const TextStyle(
         color: kwhiteText,
         fontSize: 30,
         fontWeight: FontWeight.bold,
       ),
       subTitle: 'Pick up delivery at your door and enjoy groceries',
-      subTitleTextStyle: TextStyle(
+      subTitleTextStyle:const TextStyle(
         color: kwhiteText,
         fontSize: 22,
         fontWeight: FontWeight.w300,
@@ -62,13 +62,13 @@ class IntroductionScreen extends StatelessWidget {
     ),
     Introduction(
       title: 'Finish',
-      titleTextStyle: TextStyle(
+      titleTextStyle:const TextStyle(
         color: kwhiteText,
         fontSize: 30,
         fontWeight: FontWeight.bold,
       ),
       subTitle: 'Browse the menu and order directly from the application',
-      subTitleTextStyle: TextStyle(
+      subTitleTextStyle:const TextStyle(
         color: kwhiteText,
         fontSize: 22,
         fontWeight: FontWeight.w300,
