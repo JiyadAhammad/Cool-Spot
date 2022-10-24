@@ -10,7 +10,7 @@ class Navdrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: ktransparent,
+      backgroundColor: kblack,
       child: ListView(
         children: <Widget>[
           const DrawerHeader(
@@ -26,21 +26,20 @@ class Navdrawer extends StatelessWidget {
             ),
           ),
           DrawerListTile(
+            text: 'Order History',
+            leadingIcon: Icons.medication_rounded,
+            onTap: () {
+              Navigator.pushNamed(context, '/orderhistory');
+            },
+          ),
+          DrawerListTile(
             text: 'Share',
             leadingIcon: Icons.share,
-            onTap: () {
-              // Share.share(
-              //     'https://play.google.com/store/apps/details?id=in.brototype.music');
-            },
+            onTap: () {},
           ),
           DrawerListTile(
             text: 'Terms And Condition',
             leadingIcon: Icons.text_format_sharp,
-            onTap: () {},
-          ),
-          DrawerListTile(
-            text: 'Order History',
-            leadingIcon: Icons.medication_rounded,
             onTap: () {},
           ),
           ListTile(
@@ -132,14 +131,14 @@ class Navdrawer extends StatelessWidget {
                   radius: 25,
                   backgroundColor: kwhite,
                   backgroundImage: AssetImage(
-                    'assets/img/lunchericon.png',
+                    'assets/images/splashImage.png',
                   ),
                 ),
                 applicationName: 'ΜΟΥΣΙΚΗ',
                 applicationVersion: '1.0.0+1',
                 children: <Widget>[
                   const Text(
-                    'CoolSpot is an eCommerce Platform Where you can buy goods, created by JIYAD AHAMMAD',
+                    'CoolSpot is an Delivey App Where you can buy Smoothies & Drinks, created by JIYAD AHAMMAD',
                     style: TextStyle(fontSize: 18),
                   ),
                 ],

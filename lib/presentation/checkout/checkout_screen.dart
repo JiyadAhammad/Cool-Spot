@@ -20,16 +20,13 @@ class CheckoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(50),
-        child: CustomAppBar(
-          leadingOnPressed: () => Navigator.pop(context),
-          appBarTitle: 'Checkout',
-          appBarIcon: Icons.map,
-          onPressed: () {
-            Navigator.pushNamed(context, '/map');
-          },
-        ),
+      appBar: CustomAppBar(
+        leadingOnPressed: () => Navigator.pop(context),
+        appBarTitle: 'Checkout',
+        appBarIcon: Icons.map,
+        onPressed: () {
+          Navigator.pushNamed(context, '/map');
+        },
       ),
       body: SingleChildScrollView(
         child: Padding(

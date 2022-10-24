@@ -14,8 +14,8 @@ class ProductInformation extends StatelessWidget {
   });
 
   static const String routeName = '/pinfo';
-  static Route<dynamic> route({required Product product}) {
-    return MaterialPageRoute<dynamic>(
+  static Route<ProductInformation> route({required Product product}) {
+    return MaterialPageRoute<ProductInformation>(
       settings: const RouteSettings(name: routeName),
       builder: (_) => ProductInformation(
         product: product,
@@ -28,14 +28,11 @@ class ProductInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(50),
-        child: CustomAppBar(
-          leadingOnPressed: () => Navigator.pop(context),
-          appBarTitle: product.productName,
-          appBarIcon: Icons.favorite,
-          onPressed: () => Navigator.pushNamed(context, '/whish'),
-        ),
+      appBar: CustomAppBar(
+        leadingOnPressed: () => Navigator.pop(context),
+        appBarTitle: product.productName,
+        appBarIcon: Icons.favorite,
+        onPressed: () => Navigator.pushNamed(context, '/whish'),
       ),
       body: SingleChildScrollView(
         child: Padding(

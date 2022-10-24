@@ -22,14 +22,11 @@ class WhishListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(50),
-        child: CustomAppBar(
-          leadingOnPressed: () => Navigator.pop(context),
-          appBarTitle: 'WhishList',
-          appBarIcon: Icons.search,
-          onPressed: () => Navigator.pushNamed(context, '/whish'),
-        ),
+      appBar: CustomAppBar(
+        leadingOnPressed: () => Navigator.pop(context),
+        appBarTitle: 'WhishList',
+        appBarIcon: Icons.search,
+        onPressed: () => Navigator.pushNamed(context, '/whish'),
       ),
       body: GridView.builder(
         padding: const EdgeInsets.symmetric(

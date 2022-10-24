@@ -20,18 +20,15 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(50),
-        child: CustomAppBar(
-          appBarTitle: 'Profile',
-          appBarIcon: Icons.edit,
-          onPressed: () {
-            Navigator.pushNamed(context, '/pedit');
-          },
-          leadingOnPressed: () {
-            Navigator.pushNamed(context, '/home');
-          },
-        ),
+      appBar: CustomAppBar(
+        appBarTitle: 'Profile',
+        appBarIcon: Icons.edit,
+        onPressed: () {
+          Navigator.pushNamed(context, '/pedit');
+        },
+        leadingOnPressed: () {
+          Navigator.pushNamed(context, '/home');
+        },
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(

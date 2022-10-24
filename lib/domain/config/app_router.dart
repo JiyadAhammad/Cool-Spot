@@ -9,6 +9,7 @@ import '../../presentation/checkout/checkout_screen.dart';
 import '../../presentation/home/home_screen.dart';
 import '../../presentation/introduction/introduction_screen.dart';
 import '../../presentation/map/map.dart';
+import '../../presentation/orderhistory/order_history.dart';
 import '../../presentation/payment/payment_screen.dart';
 import '../../presentation/product_info/product_info.dart';
 import '../../presentation/product_list/product_list.dart';
@@ -58,6 +59,8 @@ class AppRouter {
         return ForgetPassword.route();
       case SignupScreen.routeName:
         return SignupScreen.route();
+      case OrderHistory.routeName:
+        return OrderHistory.route();
       default:
         return _errorRoute();
     }

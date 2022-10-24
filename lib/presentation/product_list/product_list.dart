@@ -14,8 +14,8 @@ class ProductList extends StatelessWidget {
   final Category category;
 
   static const String routeName = '/product';
-  static Route<dynamic> route({required Category category}) {
-    return MaterialPageRoute<dynamic>(
+  static Route<ProductList> route({required Category category}) {
+    return MaterialPageRoute<ProductList>(
       settings: const RouteSettings(name: routeName),
       builder: (_) => ProductList(category: category),
     );
@@ -27,14 +27,11 @@ class ProductList extends StatelessWidget {
         .where((Product item) => item.category == category.name)
         .toList();
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(50),
-        child: CustomAppBar(
-          leadingOnPressed: () => Navigator.pop(context),
-          appBarIcon: Icons.search,
-          appBarTitle: category.name,
-          onPressed: () {},
-        ),
+      appBar: CustomAppBar(
+        leadingOnPressed: () => Navigator.pop(context),
+        appBarIcon: Icons.search,
+        appBarTitle: category.name,
+        onPressed: () {},
       ),
       body: GridView.builder(
         padding: const EdgeInsets.symmetric(

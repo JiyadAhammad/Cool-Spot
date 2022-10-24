@@ -20,14 +20,11 @@ class PaymentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(50),
-        child: CustomAppBar(
-          leadingOnPressed: () => Navigator.pop(context),
-          appBarTitle: 'Payment',
-          appBarIcon: Icons.money,
-          onPressed: () {},
-        ),
+      appBar: CustomAppBar(
+        leadingOnPressed: () => Navigator.pop(context),
+        appBarTitle: 'Payment',
+        appBarIcon: Icons.money,
+        onPressed: () {},
       ),
       body: const Padding(
         padding: EdgeInsets.symmetric(

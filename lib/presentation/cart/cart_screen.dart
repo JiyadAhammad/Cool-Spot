@@ -11,8 +11,8 @@ class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
 
   static const String routeName = '/cart';
-  static Route<dynamic> route() {
-    return MaterialPageRoute<dynamic>(
+  static Route<CartScreen> route() {
+    return MaterialPageRoute<CartScreen>(
       settings: const RouteSettings(name: routeName),
       builder: (_) => const CartScreen(),
     );
@@ -22,16 +22,13 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(50),
-        child: CustomAppBar(
-          leadingOnPressed: () {
-            Navigator.pop(context);
-          },
-          appBarTitle: 'Cool Cart',
-          appBarIcon: Icons.add_circle,
-          onPressed: () => Navigator.pushNamed(context, '/whish'),
-        ),
+      appBar: CustomAppBar(
+        leadingOnPressed: () {
+          Navigator.pop(context);
+        },
+        appBarTitle: 'Cool Cart',
+        appBarIcon: Icons.add_circle,
+        onPressed: () => Navigator.pushNamed(context, '/whish'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -46,16 +46,13 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(50),
-        child: CustomAppBar(
-          appBarTitle: 'OrderConfirm',
-          appBarIcon: Icons.check,
-          onPressed: () {},
-          leadingOnPressed: () {
-            Navigator.pushReplacementNamed(context, '/home');
-          },
-        ),
+      appBar: CustomAppBar(
+        appBarTitle: 'OrderConfirm',
+        appBarIcon: Icons.check,
+        onPressed: () {},
+        leadingOnPressed: () {
+          Navigator.pushReplacementNamed(context, '/home');
+        },
       ),
       body: Stack(
         children: <Widget>[

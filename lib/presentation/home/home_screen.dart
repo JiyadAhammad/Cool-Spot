@@ -28,15 +28,12 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       drawer: const Navdrawer(),
       backgroundColor: bgColor,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60),
-        child: CustomAppBar(
-          leadingOnPressed: () => const Navdrawer(),
-          icon: Icons.density_medium,
-          appBarTitle: 'Coolspot',
-          appBarIcon: Icons.favorite,
-          onPressed: () => Navigator.pushNamed(context, '/whish'),
-        ),
+      appBar: CustomAppBar(
+        leadingOnPressed: () => const Navdrawer(),
+        icon: Icons.density_medium,
+        appBarTitle: 'Coolspot',
+        appBarIcon: Icons.favorite,
+        onPressed: () => Navigator.pushNamed(context, '/whish'),
       ),
       body: SingleChildScrollView(
         child: Column(
