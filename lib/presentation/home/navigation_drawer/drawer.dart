@@ -26,10 +26,10 @@ class Navdrawer extends StatelessWidget {
             ),
           ),
           DrawerListTile(
-            text: 'Order History',
+            text: 'My Orders',
             leadingIcon: Icons.medication_rounded,
             onTap: () {
-              Navigator.pushNamed(context, '/orderhistory');
+              Navigator.pushNamed(context, '/myorders');
             },
           ),
           DrawerListTile(
