@@ -1,5 +1,10 @@
-import 'package:flutter/material.dart';
+import 'dart:developer';
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../application/cart/cart_bloc.dart';
 import '../../domain/product_model/product_model.dart';
 import '../constant/color/colors.dart';
 
@@ -82,16 +87,35 @@ class ProductCardWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Expanded(
-                    child: IconButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.add_circle_outline,
-                        size: 25,
-                        color: kwhiteIcon,
-                      ),
-                    ),
+                  BlocBuilder<CartBloc, CartState>(
+                    builder: (BuildContext context, CartState state) {
+                      if (state is CartLoading) {
+                        return const Center(
+                          child: CupertinoActivityIndicator(),
+                        );
+                      } else if (state is CartError) {
+                        return const Center(
+                          child: Text('Something Error'),
+                        );
+                      } else {
+                        return Expanded(
+                          child: IconButton(
+                            padding: EdgeInsets.zero,
+                            onPressed: () {
+                              context.read<CartBloc>().add(
+                                    CartProductAdded(productItem),
+                                  );
+                              log('$productItem');
+                            },
+                            icon: const Icon(
+                              Icons.add_circle_outline,
+                              size: 25,
+                              color: kwhiteIcon,
+                            ),
+                          ),
+                        );
+                      }
+                    },
                   ),
                   if (isWhisList)
                     Expanded(

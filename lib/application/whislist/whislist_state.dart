@@ -3,12 +3,11 @@ part of 'whislist_bloc.dart';
 abstract class WhislistState extends Equatable {
   const WhislistState();
 
-  @override
-  List<Object> get props => <Object>[];
+  
 }
 
-class WhislistLoding extends WhislistState {
-  const WhislistLoding({
+class WhislistLoded extends WhislistState {
+  const WhislistLoded({
     this.whishList = const WhishList(),
   });
 
@@ -18,6 +17,12 @@ class WhislistLoding extends WhislistState {
   List<Object> get props => <Object>[whishList];
 }
 
-class WhislistLoded extends WhislistState {}
+class WhislistLoding extends WhislistState {
+  @override
+  List<Object> get props => <Object>[];
+}
 
-class WhislistError extends WhislistState {}
+class WhislistError extends WhislistState {
+  @override
+  List<Object> get props => <Object>[];
+}

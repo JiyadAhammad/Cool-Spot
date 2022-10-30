@@ -8,7 +8,7 @@ part 'whislist_event.dart';
 part 'whislist_state.dart';
 
 class WhislistBloc extends Bloc<WhislistEvent, WhislistState> {
-  WhislistBloc() : super(const WhislistLoding()) {
+  WhislistBloc() : super(WhislistLoding()) {
     on<WhislistEvent>(
         (WhislistEvent event, Emitter<WhislistState> emit) async {});
   }

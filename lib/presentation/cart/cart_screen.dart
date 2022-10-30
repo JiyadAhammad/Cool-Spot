@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../application/cart/cart_bloc.dart';
 import '../../domain/cart/cart_model/cart_model.dart';
 import '../constant/color/colors.dart';
 import '../widget/custom_app_bar.dart';
@@ -30,55 +33,73 @@ class CartScreen extends StatelessWidget {
         appBarIcon: Icons.add_circle,
         onPressed: () => Navigator.pushNamed(context, '/whish'),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-              SizedBox(
-                height: MediaQuery.of(context).size.width / .90,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: Cart().items.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return CartContainerWidget(
-                      product: Cart().items[index],
-                    );
-                  },
-                ),
+      body: BlocBuilder<CartBloc, CartState>(
+        builder: (BuildContext context, CartState state) {
+          if (state is CartLoading) {
+            return const Center(
+              child: CupertinoActivityIndicator(
+                color: kwhite,
               ),
-            ],
-          ),
-          Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Text(
-                  Cart().freeDelivey,
-                  style: const TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w500,
-                  ),
+            );
+          }
+          if (state is CartLoaded) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: MediaQuery.of(context).size.width / .90,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: state.cart.product.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return CartContainerWidget(
+                            product: state.cart.product[index],
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Divider(
-                  thickness: 2,
-                ),
-              ),
-              const PriceDetailsWidget(),
-            ],
-          ),
-        ],
+                Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: Text(
+                        const Cart().freeDelivey,
+                        style: const TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: Divider(
+                        thickness: 2,
+                      ),
+                    ),
+                    const PriceDetailsWidget(),
+                  ],
+                )
+              ],
+            );
+          } else {
+            return const Center(
+              child: Text('Something Error'),
+            );
+          }
+        },
       ),
       bottomNavigationBar: CutomeBottomBarWidget(
-          text: 'Checkout',
-          onPressed: () {
-            Navigator.pushNamed(context, '/checkout');
-          }),
+        text: 'Checkout',
+        onPressed: () {
+          Navigator.pushNamed(context, '/checkout');
+        },
+      ),
     );
   }
 }
