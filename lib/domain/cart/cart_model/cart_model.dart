@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../home/product_model/product_model.dart';
+import '../../product_model/product_model.dart';
 
 class Cart extends Equatable {
   Cart();
@@ -38,21 +38,21 @@ class Cart extends Equatable {
   final List<Product> items = <Product>[
     const Product(
       imageUrl:
-          'https://img.taste.com.au/RemyDecY/w720-h480-cfill-q80/taste/2020/01/jan20_easy-berry-smoothie-taste-156331-1.jpg',
-      productName: 'Coca cola',
-      productPrice: 40.0,
-      category: 'Cool Drinks',
+          'https://traditionallymodernfood.com/wp-content/uploads/2020/05/vanilla-ice-cream-3-ingredients-eggless-11.jpeg',
+      productName: 'Vanila',
+      productPrice: 30,
+      category: 'IceCream',
       isrecommended: true,
-      ispopular: true,
+      ispopular: false,
     ),
     const Product(
       imageUrl:
-          'https://3.imimg.com/data3/DS/UB/MY-14503484/soft-drink-500x500.png',
-      productName: 'Dew',
-      productPrice: 40.0,
-      category: 'Cool Drinks',
-      isrecommended: true,
-      ispopular: false,
+          'https://static.toiimg.com/thumb/83913875.cms?width=1200&height=900',
+      productName: 'Chocolate',
+      productPrice: 35,
+      category: 'IceCream',
+      isrecommended: false,
+      ispopular: true,
     ),
     const Product(
       imageUrl:

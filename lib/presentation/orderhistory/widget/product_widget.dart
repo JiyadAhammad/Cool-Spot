@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/home/product_model/product_model.dart';
+import '../../../domain/product_model/product_model.dart';
 import '../../constant/color/colors.dart';
 
 class ProductDetailsWidget extends StatelessWidget {

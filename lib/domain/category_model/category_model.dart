@@ -12,9 +12,9 @@ class Category extends Equatable {
   List<Object?> get props => <Object?>[name, imageUrl];
   static List<Category> categories = <Category>[
     const Category(
-      name: 'Smoothies',
+      name: 'Fresh Jucie',
       imageUrl:
-          'https://img.taste.com.au/RemyDecY/w720-h480-cfill-q80/taste/2020/01/jan20_easy-berry-smoothie-taste-156331-1.jpg',
+          'https://sf.ezoiccdn.com/ezoimgfmt/www.caribbeangreenliving.com/wp-content/uploads/2015/08/Fruit-Juices.jpg?ezimgfmt=ng%3Awebp%2Fngcb82%2Frs%3Adevice%2Frscb82-2',
     ),
     const Category(
       name: 'Cool Drinks',

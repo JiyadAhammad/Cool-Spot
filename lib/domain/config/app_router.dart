@@ -18,8 +18,8 @@ import '../../presentation/profile/widget/edit_profile.dart';
 import '../../presentation/signup/singup.dart';
 import '../../presentation/splash/splash_screen.dart';
 import '../../presentation/whishlist/whish_list_screen.dart';
-import '../home/category_model/category_model.dart';
-import '../home/product_model/product_model.dart';
+import '../category_model/category_model.dart';
+import '../product_model/product_model.dart';
 
 class AppRouter {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../domain/home/category_model/category_model.dart';
-import '../../domain/home/product_model/product_model.dart';
+import '../../domain/category_model/category_model.dart';
+import '../../domain/product_model/product_model.dart';
 import '../home/widget/custom_nav_bar.dart';
 import '../widget/custom_app_bar.dart';
 import '../widget/product_card_widget.dart';

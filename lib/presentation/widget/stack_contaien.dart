@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../domain/home/product_model/product_model.dart';
+import '../../domain/product_model/product_model.dart';
 import '../constant/color/colors.dart';
 
 class StackContainerWidget extends StatelessWidget {
@@ -43,15 +43,21 @@ class StackContainerWidget extends StatelessWidget {
                 horizontal: 10,
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   Text(
                     product.productName,
-                    style: const TextStyle(color: kwhiteText),
+                    style: const TextStyle(
+                      color: kwhiteText,
+                      fontSize: 22,
+                    ),
                   ),
                   Text(
                     '₹ ${product.productPrice}',
-                    style: const TextStyle(color: kwhiteText),
+                    style: const TextStyle(
+                      color: kwhiteText,
+                      fontSize: 18,
+                    ),
                   ),
                 ],
               ),

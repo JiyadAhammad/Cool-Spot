@@ -1,8 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-import '../../domain/home/category_model/category_model.dart';
-import '../../domain/home/product_model/product_model.dart';
+import '../../domain/category_model/category_model.dart';
+import '../../domain/product_model/product_model.dart';
 import '../constant/color/colors.dart';
 import '../constant/sizedbox/sizedbox.dart';
 import '../widget/custom_app_bar.dart';
@@ -29,7 +29,11 @@ class HomeScreen extends StatelessWidget {
       drawer: const Navdrawer(),
       backgroundColor: bgColor,
       appBar: CustomAppBar(
-        leadingOnPressed: () => const Navdrawer(),
+        leadingOnPressed: () => Navigator.of(context).push(
+          MaterialPageRoute<Navdrawer>(
+            builder: (_) => const Navdrawer(),
+          ),
+         ),
         icon: Icons.density_medium,
         appBarTitle: 'Coolspot',
         appBarIcon: Icons.favorite,

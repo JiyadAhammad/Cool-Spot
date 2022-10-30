@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/home/product_model/product_model.dart';
+import '../../../domain/product_model/product_model.dart';
 import '../../constant/color/colors.dart';
 import '../../constant/sizedbox/sizedbox.dart';
 
@@ -49,7 +49,7 @@ class CartContainerWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      Product.products[0].productName,
+                      product.productName,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontSize: 20,
