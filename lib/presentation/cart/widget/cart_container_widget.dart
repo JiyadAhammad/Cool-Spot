@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../application/cart/cart_bloc.dart';
 import '../../../domain/product_model/product_model.dart';
 import '../../constant/color/colors.dart';
 import '../../constant/sizedbox/sizedbox.dart';
@@ -68,29 +70,41 @@ class CartContainerWidget extends StatelessWidget {
                 ),
               ),
             ),
-            Row(
-              children: <Widget>[
-                IconButton(
-                  padding: EdgeInsets.zero,
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.remove_circle,
-                    size: 30,
-                  ),
-                ),
-                const Text(
-                  '2',
-                  style: TextStyle(fontSize: 20),
-                ),
-                IconButton(
-                  padding: EdgeInsets.zero,
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.add_circle,
-                    size: 30,
-                  ),
-                ),
-              ],
+            BlocBuilder<CartBloc, CartState>(
+              builder: (BuildContext context, CartState state) {
+                return Row(
+                  children: <Widget>[
+                    IconButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: () {
+                        context.read<CartBloc>().add(
+                              RemoveCartProduct(product),
+                            );
+                      },
+                      icon: const Icon(
+                        Icons.remove_circle,
+                        size: 30,
+                      ),
+                    ),
+                    const Text(
+                      '1',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    IconButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: () {
+                        context.read<CartBloc>().add(
+                              CartProductAdded(product),
+                            );
+                      },
+                      icon: const Icon(
+                        Icons.add_circle,
+                        size: 30,
+                      ),
+                    ),
+                  ],
+                );
+              },
             )
           ],
         ),

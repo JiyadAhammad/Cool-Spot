@@ -50,7 +50,7 @@ class CartScreen extends StatelessWidget {
                 Column(
                   children: <Widget>[
                     SizedBox(
-                      height: MediaQuery.of(context).size.width / .90,
+                      height: MediaQuery.of(context).size.width / .750,
                       child: ListView.builder(
                         shrinkWrap: true,
                         physics: const BouncingScrollPhysics(),
@@ -84,7 +84,7 @@ class CartScreen extends StatelessWidget {
                     ),
                     const PriceDetailsWidget(),
                   ],
-                )
+                ),
               ],
             );
           } else {

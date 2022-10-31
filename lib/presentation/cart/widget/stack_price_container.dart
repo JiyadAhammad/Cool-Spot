@@ -52,11 +52,11 @@ class StackPriceContainerWidget extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       text,
-                        style: const TextStyle(
-                          color: kwhiteText,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      style: const TextStyle(
+                        color: kwhiteText,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     Text(
                       price,

@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
           MaterialPageRoute<Navdrawer>(
             builder: (_) => const Navdrawer(),
           ),
-         ),
+        ),
         icon: Icons.density_medium,
         appBarTitle: 'Coolspot',
         appBarIcon: Icons.favorite,
@@ -57,6 +57,7 @@ class HomeScreen extends StatelessWidget {
                     .toList(),
               ),
             ),
+            kheight,
             const HomeSectionwidget(
               sectionTitle: 'RECOMMENDED',
             ),
