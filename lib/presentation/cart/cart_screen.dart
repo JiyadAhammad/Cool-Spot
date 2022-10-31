@@ -69,7 +69,7 @@ class CartScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: Text(
-                        const Cart().freeDelivey,
+                        state.cart.freeDelivey,
                         style: const TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.w500,
