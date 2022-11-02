@@ -43,49 +43,55 @@ class CartScreen extends StatelessWidget {
             );
           }
           if (state is CartLoaded) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    SizedBox(
-                      height: MediaQuery.of(context).size.width / .750,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: state.cart.product.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return CartContainerWidget(
-                            product: state.cart.product[index],
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: Text(
-                        state.cart.freeDelivey,
-                        style: const TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w500,
+            final Map<dynamic, dynamic> cartItem =
+                state.cart.productQuantity(state.cart.product);
+
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height: MediaQuery.of(context).size.width / .750,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: cartItem.keys.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return CartContainerWidget(
+                              product: cartItem.keys.elementAt(index),
+                              quantity: cartItem.values.elementAt(index),
+                            );
+                          },
                         ),
                       ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Divider(
-                        thickness: 2,
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        child: Text(
+                          state.cart.freeDelivey,
+                          style: const TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                       ),
-                    ),
-                    const PriceDetailsWidget(),
-                  ],
-                ),
-              ],
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Divider(
+                          thickness: 2,
+                        ),
+                      ),
+                      const PriceDetailsWidget(),
+                    ],
+                  ),
+                ],
+              ),
             );
           } else {
             return const Center(

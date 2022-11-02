@@ -10,9 +10,11 @@ class CartContainerWidget extends StatelessWidget {
   const CartContainerWidget({
     super.key,
     required this.product,
+    this.quantity,
   });
 
-  final Product product;
+  final product;
+  final quantity;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class CartContainerWidget extends StatelessWidget {
                 Radius.circular(20),
               ),
               child: Image.network(
-                product.imageUrl,
+                product.imageUrl.toString(),
                 fit: BoxFit.fitHeight,
                 width: 110,
                 height: 120,
@@ -51,7 +53,7 @@ class CartContainerWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      product.productName,
+                      product.productName.toString(),
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontSize: 20,
@@ -78,7 +80,7 @@ class CartContainerWidget extends StatelessWidget {
                       padding: EdgeInsets.zero,
                       onPressed: () {
                         context.read<CartBloc>().add(
-                              RemoveCartProduct(product),
+                              RemoveCartProduct(product as Product),
                             );
                       },
                       icon: const Icon(
@@ -86,15 +88,15 @@ class CartContainerWidget extends StatelessWidget {
                         size: 30,
                       ),
                     ),
-                    const Text(
-                      '1',
-                      style: TextStyle(fontSize: 20),
+                    Text(
+                      '$quantity',
+                      style: const TextStyle(fontSize: 20),
                     ),
                     IconButton(
                       padding: EdgeInsets.zero,
                       onPressed: () {
                         context.read<CartBloc>().add(
-                              CartProductAdded(product),
+                              CartProductAdded(product as Product),
                             );
                       },
                       icon: const Icon(

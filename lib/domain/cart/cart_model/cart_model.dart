@@ -3,8 +3,12 @@ import 'package:equatable/equatable.dart';
 import '../../product_model/product_model.dart';
 
 class Cart extends Equatable {
-  const Cart({this.product = const <Product>[]});
+  const Cart({
+    this.product = const <Product>[],
+  });
+
   final List<Product> product;
+
   double deliveryFee(double subTotals) {
     if (subTotal >= 500) {
       return 0;
@@ -39,4 +43,17 @@ class Cart extends Equatable {
 
   @override
   List<Object?> get props => <Object?>[product];
+
+  Map<dynamic ,dynamic> productQuantity(dynamic products) {
+    final Map<dynamic,dynamic> quntity = <dynamic,dynamic>{};
+
+    products.forEach((dynamic quantity) {
+      if (!quntity.containsKey(quantity)) {
+        quntity[quantity] = 1;
+      } else {
+        quntity[quantity] += 1;
+      }
+    });
+    return quntity;
+  }
 }
