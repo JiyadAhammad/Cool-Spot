@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../application/cart/cart_bloc.dart';
 import '../../domain/cart/cart_model/cart_model.dart';
@@ -51,12 +52,13 @@ class CartScreen extends StatelessWidget {
                 ? Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const <Widget>[
-                        Text(
+                      children: <Widget>[
+                        Lottie.asset('assets/lottie/emptyfile.json'),
+                        const Text(
                           'Cart is Still Empty ',
                         ),
                         kheight,
-                        Text(
+                        const Text(
                           'Add More Items',
                         ),
                       ],
