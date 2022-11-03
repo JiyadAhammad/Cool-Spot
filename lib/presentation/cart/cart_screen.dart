@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../application/cart/cart_bloc.dart';
 import '../../domain/cart/cart_model/cart_model.dart';
 import '../constant/color/colors.dart';
+import '../constant/sizedbox/sizedbox.dart';
 import '../widget/custom_app_bar.dart';
 import '../widget/custom_bootom_bar_widget.dart';
 import '../widget/price_details_widget.dart';
@@ -46,53 +47,69 @@ class CartScreen extends StatelessWidget {
             final Map<dynamic, dynamic> cartItem =
                 state.cart.productQuantity(state.cart.product);
 
-            return SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height: MediaQuery.of(context).size.width / .750,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          physics: const BouncingScrollPhysics(),
-                          itemCount: cartItem.keys.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return CartContainerWidget(
-                              product: cartItem.keys.elementAt(index),
-                              quantity: cartItem.values.elementAt(index),
-                            );
-                          },
+            return cartItem.keys.isEmpty
+                ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const <Widget>[
+                        Text(
+                          'Cart is Still Empty ',
                         ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: Text(
-                          state.cart.freeDelivey,
-                          style: const TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.w500,
-                          ),
+                        kheight,
+                        Text(
+                          'Add More Items',
                         ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Divider(
-                          thickness: 2,
+                      ],
+                    ),
+                  )
+                : SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Column(
+                          children: <Widget>[
+                            SizedBox(
+                              height: MediaQuery.of(context).size.width / .750,
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: const BouncingScrollPhysics(),
+                                itemCount: cartItem.keys.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return CartContainerWidget(
+                                    product: cartItem.keys.elementAt(index),
+                                    quantity: cartItem.values.elementAt(index),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      const PriceDetailsWidget(),
-                    ],
-                  ),
-                ],
-              ),
-            );
+                        Column(
+                          children: <Widget>[
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15),
+                              child: Text(
+                                state.cart.freeDelivey,
+                                style: const TextStyle(
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              child: Divider(
+                                thickness: 2,
+                              ),
+                            ),
+                            const PriceDetailsWidget(),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
           } else {
             return const Center(
               child: Text('Something Error'),
