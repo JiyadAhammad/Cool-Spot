@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 
 class Product extends Equatable {
   const Product({
+    required this.description,
     required this.imageUrl,
     required this.productName,
     required this.productPrice,
@@ -17,6 +18,7 @@ class Product extends Equatable {
   final String category;
   final bool isrecommended;
   final bool ispopular;
+  final String description;
 
   @override
   List<Object?> get props => <Object?>[
@@ -26,6 +28,7 @@ class Product extends Equatable {
         category,
         ispopular,
         isrecommended,
+        description,
       ];
 
   static Product fromSnapshot(DocumentSnapshot<Object> snapshot) {
@@ -36,6 +39,7 @@ class Product extends Equatable {
       category: snapshot['catergory'] as String,
       isrecommended: snapshot['isRecommended'] as bool,
       ispopular: snapshot['isPopular'] as bool,
+      description: snapshot['decription'] as String,
     );
     return product;
   }
@@ -49,6 +53,7 @@ class Product extends Equatable {
       category: 'Water',
       isrecommended: false,
       ispopular: false,
+      description: 'fgfhjkl',
     ),
     const Product(
       imageUrl:
@@ -58,6 +63,7 @@ class Product extends Equatable {
       category: 'Water',
       isrecommended: false,
       ispopular: true,
+      description: 'sadfgh',
     ),
     const Product(
       imageUrl:
@@ -67,6 +73,7 @@ class Product extends Equatable {
       category: 'IceCream',
       isrecommended: true,
       ispopular: false,
+      description: 'dsfg',
     ),
     const Product(
       imageUrl:
@@ -76,6 +83,7 @@ class Product extends Equatable {
       category: 'IceCream',
       isrecommended: false,
       ispopular: true,
+      description: 'dsfg',
     ),
     const Product(
       imageUrl: 'https://m.media-amazon.com/images/I/71tTYGmAMGL._SX522_.jpg',
@@ -84,6 +92,7 @@ class Product extends Equatable {
       category: 'Cool Drinks',
       isrecommended: true,
       ispopular: true,
+      description: 'dfg',
     ),
     const Product(
       imageUrl:
@@ -93,6 +102,7 @@ class Product extends Equatable {
       category: 'Cool Drinks',
       isrecommended: true,
       ispopular: false,
+      description: 'dfg',
     ),
     const Product(
       imageUrl:
@@ -102,6 +112,7 @@ class Product extends Equatable {
       category: 'Fresh Jucie',
       isrecommended: false,
       ispopular: true,
+      description: 'dfg',
     ),
     const Product(
       imageUrl:
@@ -111,6 +122,7 @@ class Product extends Equatable {
       category: 'Fresh Jucie',
       isrecommended: true,
       ispopular: false,
+      description: 'dfg',
     ),
   ];
 }

@@ -1,10 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../application/cart/cart_bloc.dart';
-import '../../domain/cart/cart_model/cart_model.dart';
+import '../../application/product/product_bloc.dart';
 import '../constant/color/colors.dart';
 import '../constant/sizedbox/sizedbox.dart';
 import '../widget/custom_app_bar.dart';
@@ -119,10 +121,35 @@ class CartScreen extends StatelessWidget {
           }
         },
       ),
-      bottomNavigationBar: CutomeBottomBarWidget(
-        text: 'Checkout',
-        onPressed: () {
-          Navigator.pushNamed(context, '/checkout');
+      bottomNavigationBar: BlocBuilder<CartBloc, CartState>(
+        builder: (context, state) {
+          if (state is CartLoaded) {
+            final Map<dynamic, dynamic> cartItem =
+                state.cart.productQuantity(state.cart.product);
+            return CutomeBottomBarWidget(
+              text: 'Checkout',
+              onPressed: () {
+                log('${cartItem.length}');
+                if (cartItem.keys.isEmpty) {
+                  const SnackBar snackdemo = SnackBar(
+                    content: Text('No Item in Cart'),
+                    backgroundColor: Colors.green,
+                    elevation: 10,
+                    behavior: SnackBarBehavior.floating,
+                    margin: EdgeInsets.all(5),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackdemo);
+                } else {
+                  Navigator.pushNamed(context, '/checkout');
+                }
+              },
+            );
+          }
+          if (state is ProductLoding) {
+            return CupertinoActivityIndicator();
+          } else {
+            return Text('');
+          }
         },
       ),
     );
