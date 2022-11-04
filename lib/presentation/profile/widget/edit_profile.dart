@@ -6,15 +6,19 @@ import '../../home/widget/custom_nav_bar.dart';
 import '../../widget/login_text_feild.dart';
 
 class EditProfileScreen extends StatelessWidget {
-  const EditProfileScreen({super.key});
+  EditProfileScreen({super.key});
 
   static const String routeName = '/pedit';
   static Route<EditProfileScreen> route() {
     return MaterialPageRoute<EditProfileScreen>(
       settings: const RouteSettings(name: routeName),
-      builder: (_) => const EditProfileScreen(),
+      builder: (_) => EditProfileScreen(),
     );
   }
+
+  final TextEditingController emailControll = TextEditingController();
+  final TextEditingController nameControll = TextEditingController();
+  final TextEditingController numberControll = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -51,15 +55,18 @@ class EditProfileScreen extends StatelessWidget {
             ),
           ),
           kheight20,
-          const LoginTextFormField(
+          LoginTextFormField(
+            controller: nameControll,
             prefixIcon: Icons.person,
             hintText: 'Name',
           ),
-          const LoginTextFormField(
+          LoginTextFormField(
+            controller: emailControll,
             prefixIcon: Icons.mail,
             hintText: 'Email',
           ),
-          const LoginTextFormField(
+          LoginTextFormField(
+            controller: numberControll,
             prefixIcon: Icons.mobile_friendly,
             hintText: 'Number',
           ),

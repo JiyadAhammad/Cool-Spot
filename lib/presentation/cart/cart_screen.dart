@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -122,21 +120,27 @@ class CartScreen extends StatelessWidget {
         },
       ),
       bottomNavigationBar: BlocBuilder<CartBloc, CartState>(
-        builder: (context, state) {
+        builder: (BuildContext context, CartState state) {
           if (state is CartLoaded) {
             final Map<dynamic, dynamic> cartItem =
                 state.cart.productQuantity(state.cart.product);
             return CutomeBottomBarWidget(
               text: 'Checkout',
               onPressed: () {
-                log('${cartItem.length}');
                 if (cartItem.keys.isEmpty) {
                   const SnackBar snackdemo = SnackBar(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                    ),
                     content: Text('No Item in Cart'),
-                    backgroundColor: Colors.green,
+                    backgroundColor: kblackText,
                     elevation: 10,
+                    width: 200,
                     behavior: SnackBarBehavior.floating,
-                    margin: EdgeInsets.all(5),
+                    duration: Duration(seconds: 3),
+                    padding: EdgeInsets.all(20),
                   );
                   ScaffoldMessenger.of(context).showSnackBar(snackdemo);
                 } else {
@@ -146,9 +150,9 @@ class CartScreen extends StatelessWidget {
             );
           }
           if (state is ProductLoding) {
-            return CupertinoActivityIndicator();
+            return const CupertinoActivityIndicator();
           } else {
-            return Text('');
+            return const Text('Something Went Wrong');
           }
         },
       ),

@@ -5,7 +5,7 @@ import '../../constant/sizedbox/sizedbox.dart';
 import '../../widget/login_text_feild.dart';
 
 class LoginPageWidget extends StatelessWidget {
-  const LoginPageWidget({
+  LoginPageWidget({
     super.key,
     required this.buttonText,
     required this.bottomText,
@@ -20,6 +20,9 @@ class LoginPageWidget extends StatelessWidget {
   final String page;
   final String fText;
   final Function() onPressed;
+
+  final TextEditingController emailLController = TextEditingController();
+  final TextEditingController pswrdLController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +40,15 @@ class LoginPageWidget extends StatelessWidget {
         ),
         Column(
           children: <Widget>[
-            const LoginTextFormField(
+            LoginTextFormField(
+              controller: emailLController,
               prefixIcon: Icons.person,
               hintText: 'Email/Mobile',
             ),
-            const LoginTextFormField(
+            LoginTextFormField(
+              controller: pswrdLController,
               prefixIcon: Icons.https,
-              hintText: 'Password',   
+              hintText: 'Password',
             ),
             TextButton(
               onPressed: ftextOnpressed,
