@@ -13,14 +13,14 @@ class ProductDetailsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: SizedBox(
-        width: 100,
-        child: Image.network(
-          Product.products[index].imageUrl,
-        ),
-      ),
+      // leading: SizedBox(
+      //   width: 100,
+      //   child: Image.network(
+      //     Product.products[index].imageUrl,
+      //   ),
+      // ),
       title: Text(
-        Product.products[index].productName,
+        'Product.products[index].productName',
         style: const TextStyle(
           color: kblack,
           fontWeight: FontWeight.bold,
@@ -28,7 +28,7 @@ class ProductDetailsWidget extends StatelessWidget {
         ),
       ),
       subtitle: Text(
-        Product.products[index].productPrice.toString(),
+        'Product.products[index].productPrice.toString()',
         style: const TextStyle(
           color: kblack,
           fontSize: 20,

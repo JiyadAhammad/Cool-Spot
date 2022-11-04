@@ -37,7 +37,8 @@ class WhishListScreen extends StatelessWidget {
           crossAxisCount: 1,
           childAspectRatio: 1.75,
         ),
-        itemCount: Product.products.length,
+        // itemCount: Product.products.length,
+        itemCount: 1,
         itemBuilder: (BuildContext context, int index) {
           return ProductCardWidget(
             productItem: Product.products[index],

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/category/category_bloc.dart';
+import '../../application/product/product_bloc.dart';
 import '../../domain/category_model/category_model.dart';
 import '../../domain/product_model/product_model.dart';
 import '../constant/color/colors.dart';
@@ -90,20 +91,51 @@ class HomeScreen extends StatelessWidget {
               sectionTitle: 'RECOMMENDED',
             ),
             kheight,
-            ProductCarousel(
-              products: Product.products
-                  .where((Product item) => item.isrecommended)
-                  .toList(),
+            BlocBuilder<ProductBloc, ProductState>(
+              builder: (BuildContext context, ProductState state) {
+                if (state is ProductLoding) {
+                  return const Center(
+                    child: CupertinoActivityIndicator(),
+                  );
+                }
+                if (state is ProductLoded) {
+                  log('${state.products} this prodcucts fetch from firebase');
+                  return state.products.isEmpty
+                      ? const Text('No Item Found')
+                      : ProductCarousel(
+                          products: state.products
+                              .where((Product item) => item.isrecommended)
+                              .toList(),
+                        );
+                } else {
+                  return const Text('Something Went Wrong');
+                }
+              },
             ),
             kheight,
             const HomeSectionwidget(
               sectionTitle: 'MOST POPULAR',
             ),
             kheight,
-            ProductCarousel(
-              products: Product.products
-                  .where((Product item) => item.ispopular)
-                  .toList(),
+            BlocBuilder<ProductBloc, ProductState>(
+              builder: (BuildContext context, ProductState state) {
+                if (state is ProductLoding) {
+                  return const Center(
+                    child: CupertinoActivityIndicator(),
+                  );
+                }
+                if (state is ProductLoded) {
+                  return state.products.isEmpty
+                      ? const Text('No Item Found')
+                      : ProductCarousel(
+                          products: state.products
+                              .where((Product item) => item.ispopular)
+                              .toList(),
+                        );
+                } else {
+                  return const Text('Something Went Wrong');
+                }
+              },
             ),
             kheight20,
           ],
