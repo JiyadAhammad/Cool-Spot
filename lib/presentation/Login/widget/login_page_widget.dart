@@ -44,11 +44,13 @@ class LoginPageWidget extends StatelessWidget {
               controller: emailLController,
               prefixIcon: Icons.person,
               hintText: 'Email/Mobile',
+              validator: (p0) {},
             ),
             LoginTextFormField(
               controller: pswrdLController,
               prefixIcon: Icons.https,
               hintText: 'Password',
+              validator: (p0) {},
             ),
             TextButton(
               onPressed: ftextOnpressed,

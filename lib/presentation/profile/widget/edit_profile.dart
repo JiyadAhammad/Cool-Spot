@@ -59,16 +59,19 @@ class EditProfileScreen extends StatelessWidget {
             controller: nameControll,
             prefixIcon: Icons.person,
             hintText: 'Name',
+            validator: (p0) {},
           ),
           LoginTextFormField(
             controller: emailControll,
             prefixIcon: Icons.mail,
             hintText: 'Email',
+            validator: (p0) {},
           ),
           LoginTextFormField(
             controller: numberControll,
             prefixIcon: Icons.mobile_friendly,
             hintText: 'Number',
+            validator: (p0) {},
           ),
           Padding(
             padding: const EdgeInsets.symmetric(

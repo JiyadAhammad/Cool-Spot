@@ -7,11 +7,13 @@ class LoginTextFormField extends StatelessWidget {
     required this.hintText,
     required this.controller,
     this.visble = false,
+    required this.validator,
   });
   final IconData prefixIcon;
   final String hintText;
   final TextEditingController controller;
   final bool visble;
+  final String? Function(String?) validator;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,7 @@ class LoginTextFormField extends StatelessWidget {
         vertical: 10,
       ),
       child: TextFormField(
+        validator: validator,
         controller: controller,
         obscureText: visble,
         style: const TextStyle(

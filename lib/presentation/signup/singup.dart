@@ -42,18 +42,21 @@ class SignupScreen extends StatelessWidget {
                 controller: emailControll,
                 prefixIcon: Icons.person,
                 hintText: 'Email/Mobile',
+                validator: (p0) {},
               ),
               LoginTextFormField(
                 controller: paswordControll,
                 prefixIcon: Icons.https,
                 hintText: 'Password',
                 visble: true,
+                validator: (p0) {},
               ),
               LoginTextFormField(
                 controller: confirmPswrdControll,
                 prefixIcon: Icons.vpn_key,
                 hintText: 'Confirm Password',
                 visble: true,
+                validator: (p0) {},
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
