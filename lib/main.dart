@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'application/cart/cart_bloc.dart';
+import 'application/category/category_bloc.dart';
 import 'domain/config/app_router.dart';
+import 'infrastructure/category/category_repository.dart';
 
 bool shouldUseFirestoreEmulator = false;
 
@@ -33,6 +35,13 @@ class MyApp extends StatelessWidget {
           create: (_) => CartBloc()
             ..add(
               LoadCart(),
+            ),
+        ),
+        BlocProvider<CategoryBloc>(
+          create: (_) => CategoryBloc(
+            categoryRepository: CategoryRepository(),
+          )..add(
+              LoadCategories(),
             ),
         ),
       ],

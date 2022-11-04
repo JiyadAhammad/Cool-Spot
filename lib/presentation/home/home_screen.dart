@@ -1,6 +1,11 @@
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/material.dart';
+import 'dart:developer';
 
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../application/category/category_bloc.dart';
 import '../../domain/category_model/category_model.dart';
 import '../../domain/product_model/product_model.dart';
 import '../constant/color/colors.dart';
@@ -42,20 +47,43 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(
-              child: CarouselSlider(
-                options: CarouselOptions(
-                  aspectRatio: 1.5,
-                  viewportFraction: 0.90,
-                  enlargeCenterPage: true,
-                  enlargeStrategy: CenterPageEnlargeStrategy.height,
-                  autoPlay: true,
-                  autoPlayAnimationDuration: const Duration(seconds: 2),
-                ),
-                items: Category.categories
-                    .map((Category item) => CarouselCard(category: item))
-                    .toList(),
-              ),
+            BlocBuilder<CategoryBloc, CategoryState>(
+              builder: (BuildContext context, CategoryState state) {
+                if (state is CategoryLoding) {
+                  return const Center(
+                    child: CupertinoActivityIndicator(),
+                  );
+                }
+                if (state is CategoryLoded) {
+                  log('${state.categories} this categories fetch from firebase');
+                  return SizedBox(
+                    child: CarouselSlider(
+                      options: CarouselOptions(
+                        aspectRatio: 1.5,
+                        viewportFraction: 0.90,
+                        enlargeCenterPage: true,
+                        enlargeStrategy: CenterPageEnlargeStrategy.height,
+                        autoPlay: true,
+                        autoPlayAnimationDuration: const Duration(seconds: 2),
+                      ),
+                      items: state.categories
+                          .map((Category item) => CarouselCard(
+                                category: item,
+                              ))
+                          .toList(),
+                      // items: Category.categories
+                      //     .map((Category item) => CarouselCard(category: item))
+                      //     .toList(),
+                    ),
+                  );
+                } else {
+                  return const Center(
+                    child: Text(
+                      'Something Went Wrong',
+                    ),
+                  );
+                }
+              },
             ),
             kheight,
             const HomeSectionwidget(
