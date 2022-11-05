@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../constant/color/colors.dart';
 import '../../constant/sizedbox/sizedbox.dart';
@@ -23,96 +25,146 @@ class LoginPageWidget extends StatelessWidget {
 
   final TextEditingController emailLController = TextEditingController();
   final TextEditingController pswrdLController = TextEditingController();
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.symmetric(
-        vertical: MediaQuery.of(context).size.width / 3,
-        horizontal: 10,
-      ),
-      shrinkWrap: true,
-      children: <Widget>[
-        Column(
-          children: <Widget>[
-            Image.asset('assets/images/login.png'),
-          ],
+    return Form(
+      key: formKey,
+      child: ListView(
+        padding: EdgeInsets.symmetric(
+          vertical: MediaQuery.of(context).size.width / 3,
+          horizontal: 10,
         ),
-        Column(
-          children: <Widget>[
-            LoginTextFormField(
-              controller: emailLController,
-              prefixIcon: Icons.person,
-              hintText: 'Email/Mobile',
-              validator: (p0) {},
-            ),
-            LoginTextFormField(
-              controller: pswrdLController,
-              prefixIcon: Icons.https,
-              hintText: 'Password',
-              validator: (p0) {},
-            ),
-            TextButton(
-              onPressed: ftextOnpressed,
-              child: Text(
-                fText,
-                style: const TextStyle(
-                  color: kgreen,
-                ),
+        shrinkWrap: true,
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Image.asset('assets/images/login.png'),
+            ],
+          ),
+          Column(
+            children: <Widget>[
+              LoginTextFormField(
+                controller: emailLController,
+                prefixIcon: Icons.person,
+                hintText: 'Email/Mobile',
+                validator: (String? value) {
+                  if (value!.isEmpty) {
+                    return 'please Enter your Email';
+                  }
+                  if (!RegExp(
+                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                      .hasMatch(value)) {
+                    return 'please Enter Valid Email';
+                  }
+                  return null;
+                },
               ),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: kblack,
-                minimumSize: Size(
-                  MediaQuery.of(context).size.width / 1.5,
-                  50,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
+              LoginTextFormField(
+                controller: pswrdLController,
+                prefixIcon: Icons.https,
+                hintText: 'Password',
+                validator: (String? value) {
+                  final RegExp regExp = RegExp(r'/^.{6,}$/');
+                  if (value!.isEmpty) {
+                    return 'please Enter your Password';
+                  }
+                  if (!regExp.hasMatch(value)) {
+                    return 'please Enter Valid Password(min 6 char)';
+                  }
+                  return null;
+                },
               ),
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, '/home');
-              },
-              child: Text(
-                buttonText,
-                style: const TextStyle(
-                  color: kwhiteText,
-                  fontSize: 20,
-                ),
-              ),
-            ),
-            kheight20,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                GestureDetector(
-                  onTap: () {},
-                  child: Image.asset('assets/images/facebook.png'),
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Image.asset('assets/images/google.png'),
-                ),
-              ],
-            ),
-            kheight,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(bottomText),
-                TextButton(
-                  onPressed: onPressed,
-                  child: Text(
-                    page,
+              TextButton(
+                onPressed: ftextOnpressed,
+                child: Text(
+                  fText,
+                  style: const TextStyle(
+                    color: kgreen,
                   ),
                 ),
-              ],
-            ),
-          ],
-        ),
-      ],
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: kblack,
+                  minimumSize: Size(
+                    MediaQuery.of(context).size.width / 1.5,
+                    50,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                ),
+                onPressed: () {
+                  singIn(
+                    emailLController.text,
+                    pswrdLController.text,
+                    context,
+                  );
+                },
+                child: Text(
+                  buttonText,
+                  style: const TextStyle(
+                    color: kwhiteText,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+              kheight20,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () {},
+                    child: Image.asset('assets/images/facebook.png'),
+                  ),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Image.asset('assets/images/google.png'),
+                  ),
+                ],
+              ),
+              kheight,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(bottomText),
+                  TextButton(
+                    onPressed: onPressed,
+                    child: Text(
+                      page,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
     );
+  }
+
+  Future<void> singIn(
+    String email,
+    String password,
+    BuildContext context,
+  ) async {
+    if (formKey.currentState!.validate()) {
+      await auth
+          .signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      )
+          .then((UserCredential value) {
+        Fluttertoast.showToast(msg: 'Login Successfull');
+        Navigator.pushReplacementNamed(context, '/home');
+      }).catchError((error) {
+        Fluttertoast.showToast(
+          msg: error!.toString(),
+        );
+      });
+    }
   }
 }

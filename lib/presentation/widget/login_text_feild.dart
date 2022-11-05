@@ -8,13 +8,14 @@ class LoginTextFormField extends StatelessWidget {
     required this.controller,
     this.visble = false,
     required this.validator,
+    this.onSaved,
   });
   final IconData prefixIcon;
   final String hintText;
   final TextEditingController controller;
   final bool visble;
   final String? Function(String?) validator;
-
+  final Function(String?)? onSaved;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,6 +24,7 @@ class LoginTextFormField extends StatelessWidget {
         vertical: 10,
       ),
       child: TextFormField(
+        onSaved: onSaved,
         validator: validator,
         controller: controller,
         obscureText: visble,
