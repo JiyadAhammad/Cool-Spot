@@ -61,20 +61,25 @@ class LoginPageWidget extends StatelessWidget {
                   }
                   return null;
                 },
+                onSaved: (String? value) {
+                  emailLController.text = value!;
+                },
               ),
               LoginTextFormField(
                 controller: pswrdLController,
                 prefixIcon: Icons.https,
                 hintText: 'Password',
                 validator: (String? value) {
-                  final RegExp regExp = RegExp(r'/^.{6,}$/');
+                  // final RegExp regExp = RegExp(r'/^.{6,}$/');
                   if (value!.isEmpty) {
                     return 'please Enter your Password';
                   }
-                  if (!regExp.hasMatch(value)) {
-                    return 'please Enter Valid Password(min 6 char)';
-                  }
-                  return null;
+                  // if (!regExp.hasMatch(value)) {
+                  //   return 'please Enter Valid Password(min 6 char)';
+                  // }
+                },
+                onSaved: (String? value) {
+                  pswrdLController.text = value!;
                 },
               ),
               TextButton(
@@ -98,6 +103,7 @@ class LoginPageWidget extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
+                  // Navigator.pushReplacementNamed(context, '/home');
                   singIn(
                     emailLController.text,
                     pswrdLController.text,
