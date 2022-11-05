@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
+import '../../domain/usermodel/user_model.dart';
 import '../constant/color/colors.dart';
 import '../constant/sizedbox/sizedbox.dart';
 import '../widget/login_text_feild.dart';
@@ -20,12 +23,14 @@ class SignupScreen extends StatelessWidget {
   final TextEditingController paswordControll = TextEditingController();
   final TextEditingController confirmPswrdControll = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
       body: Form(
+        key: formKey,
         child: ListView(
           padding: EdgeInsets.symmetric(
             vertical: MediaQuery.of(context).size.width / 4,
@@ -43,7 +48,7 @@ class SignupScreen extends StatelessWidget {
                 LoginTextFormField(
                   controller: emailControll,
                   prefixIcon: Icons.person,
-                  hintText: 'Email/Mobile',
+                  hintText: 'Email',
                   validator: (String? value) {
                     if (value!.isEmpty) {
                       return 'please Enter your Email';
@@ -69,6 +74,7 @@ class SignupScreen extends StatelessWidget {
                     if (value!.isEmpty) {
                       return 'please Enter your Password';
                     }
+                    return null;
                     // if (!regExp.hasMatch(value)) {
                     //   return 'please Enter Valid Password(min 6 char)';
                     // }
@@ -89,6 +95,9 @@ class SignupScreen extends StatelessWidget {
                       return null;
                     }
                   },
+                  onSaved: (String? p0) {
+                    confirmPswrdControll.text = p0!;
+                  },
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -101,7 +110,13 @@ class SignupScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30.0),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    singnUp(
+                      emailControll.text,
+                      paswordControll.text,
+                      context,
+                    );
+                  },
                   // onPressed: () {
                   //   // Navigator.pushReplacementNamed(context, '/home')/;
                   // },
@@ -160,7 +175,38 @@ class SignupScreen extends StatelessWidget {
   Future<void> singnUp(
     String email,
     String password,
+    BuildContext context,
   ) async {
-    if (formKey.currentState!.validate()) {}
+    if (formKey.currentState!.validate()) {
+      await auth
+          .createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      )
+          .then((UserCredential value) {
+        addCreditianlToFirebase(context);
+      }).catchError((onError) {
+        Fluttertoast.showToast(
+          msg: onError!.toString(),
+        );
+      });
+    }
+  }
+
+  Future<void> addCreditianlToFirebase(BuildContext context) async {
+    final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    final User? user = auth.currentUser;
+
+    final UserModel userModel = UserModel();
+    userModel.email = user!.email;
+    userModel.uid = user.uid;
+
+    await firebaseFirestore.collection('user').doc(user.uid).set(
+          userModel.toDocumet(),
+        );
+    Fluttertoast.showToast(
+      msg: 'Account Created Successfully',
+    );
+    Navigator.pushReplacementNamed(context, '/home');
   }
 }

@@ -74,6 +74,7 @@ class LoginPageWidget extends StatelessWidget {
                   if (value!.isEmpty) {
                     return 'please Enter your Password';
                   }
+                  return null;
                   // if (!regExp.hasMatch(value)) {
                   //   return 'please Enter Valid Password(min 6 char)';
                   // }

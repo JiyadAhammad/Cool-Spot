@@ -2,18 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 class UserModel extends Equatable {
-  const UserModel({
-    required this.email,
+  UserModel({
+    this.email,
     this.uid,
   });
   factory UserModel.fromSnapshot(DocumentSnapshot snapshot) {
     return UserModel(
-      uid: snapshot.id,
+      uid: snapshot['uid'] as String,
       email: snapshot['email'] as String,
     );
   }
-  final String? uid;
-  final String email;
+  String? uid;
+  String? email;
 
   UserModel copyWith({
     String? uid,
