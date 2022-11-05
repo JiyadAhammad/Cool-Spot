@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../constant/color/colors.dart';
+import '../constant/sizedbox/sizedbox.dart';
+
 class LoginTextFormField extends StatelessWidget {
   const LoginTextFormField({
     super.key,
@@ -30,14 +33,14 @@ class LoginTextFormField extends StatelessWidget {
         obscureText: visble,
         style: const TextStyle(
           fontSize: 24,
-          color: Colors.blue,
-          fontWeight: FontWeight.w600,
+          color: kblack,
+          fontWeight: FontWeight.w400,
         ),
         decoration: InputDecoration(
-          focusColor: Colors.white,
+          focusColor: kwhite,
           prefixIcon: Icon(
             prefixIcon,
-            color: Colors.grey,
+            color: kbluegrey,
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16.0),
@@ -48,10 +51,10 @@ class LoginTextFormField extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          fillColor: Colors.grey,
+          fillColor: kbluegrey,
           hintText: hintText,
           hintStyle: const TextStyle(
-            color: Colors.grey,
+            color: kbluegrey,
             fontSize: 16,
             fontFamily: 'verdana_regular',
             fontWeight: FontWeight.w400,

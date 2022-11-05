@@ -69,6 +69,7 @@ class LoginPageWidget extends StatelessWidget {
                 controller: pswrdLController,
                 prefixIcon: Icons.https,
                 hintText: 'Password',
+                visble: true,
                 validator: (String? value) {
                   // final RegExp regExp = RegExp(r'/^.{6,}$/');
                   if (value!.isEmpty) {

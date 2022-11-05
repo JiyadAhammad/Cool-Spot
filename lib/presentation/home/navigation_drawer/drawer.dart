@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -146,12 +147,19 @@ class Navdrawer extends StatelessWidget {
             },
           ),
           DrawerListTile(
+            text: 'SignOut',
+            leadingIcon: Icons.logout,
+            onTap: () {
+              signOut(context);
+            },
+          ),
+          DrawerListTile(
             text: 'Exit',
             leadingIcon: Icons.exit_to_app,
             onTap: () => exitApp(context),
           ),
           const SizedBox(
-            height: 140,
+            height: 80,
           ),
           const ListTile(
             title: Text(
@@ -194,4 +202,9 @@ class Navdrawer extends StatelessWidget {
       },
     );
   }
+}
+
+Future<void> signOut(BuildContext context) async {
+  await FirebaseAuth.instance.signOut();
+  Navigator.pushNamed(context, '/login');
 }
