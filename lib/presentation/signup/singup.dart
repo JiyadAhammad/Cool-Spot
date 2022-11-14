@@ -70,14 +70,10 @@ class SignupScreen extends StatelessWidget {
                   hintText: 'Password',
                   visble: true,
                   validator: (String? value) {
-                    // final RegExp regExp = RegExp(r'/^.{6,}$/');
                     if (value!.isEmpty) {
                       return 'please Enter your Password';
                     }
                     return null;
-                    // if (!regExp.hasMatch(value)) {
-                    //   return 'please Enter Valid Password(min 6 char)';
-                    // }
                   },
                   onSaved: (String? value) {
                     paswordControll.text = value!;
@@ -117,9 +113,6 @@ class SignupScreen extends StatelessWidget {
                       context,
                     );
                   },
-                  // onPressed: () {
-                  //   // Navigator.pushReplacementNamed(context, '/home')/;
-                  // },
                   child: const Text(
                     'Sign up',
                     style: TextStyle(
@@ -160,15 +153,6 @@ class SignupScreen extends StatelessWidget {
           ],
         ),
       ),
-      // body: LoginPageWidget(
-      //   ftextOnpressed: () {},
-      //   buttonText: 'Signup',
-      //   bottomText: 'Alredy Have an Account?',
-      //   page: 'Login',
-      //   onPressed: () {
-      //     Navigator.pushNamed(context, '/login');
-      //   },
-      // ),
     );
   }
 
@@ -207,6 +191,7 @@ class SignupScreen extends StatelessWidget {
     Fluttertoast.showToast(
       msg: 'Account Created Successfully',
     );
+    // ignore: use_build_context_synchronously
     Navigator.pushReplacementNamed(context, '/home');
   }
 }

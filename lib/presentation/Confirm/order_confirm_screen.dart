@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../constant/color/colors.dart';
 import '../constant/sizedbox/sizedbox.dart';
@@ -9,7 +10,7 @@ import '../widget/custom_app_bar.dart';
 import '../widget/custom_bootom_bar_widget.dart';
 import '../widget/price_details_widget.dart';
 
-class OrderConfirmationScreen extends StatefulWidget {
+class OrderConfirmationScreen extends StatelessWidget {
   const OrderConfirmationScreen({super.key});
 
   static const String routeName = '/confirm';
@@ -18,28 +19,6 @@ class OrderConfirmationScreen extends StatefulWidget {
       settings: const RouteSettings(name: routeName),
       builder: (_) => const OrderConfirmationScreen(),
     );
-  }
-
-  @override
-  State<OrderConfirmationScreen> createState() =>
-      _OrderConfirmationScreenState();
-}
-
-class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
-  late ConfettiController _controllerCenter;
-  @override
-  void initState() {
-    super.initState();
-    _controllerCenter = ConfettiController(
-      duration: const Duration(minutes: 1),
-    );
-    _controllerCenter.play();
-  }
-
-  @override
-  void dispose() {
-    _controllerCenter.dispose();
-    super.dispose();
   }
 
   @override
@@ -54,66 +33,162 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
           Navigator.pushReplacementNamed(context, '/home');
         },
       ),
-      body: Stack(
-        children: <Widget>[
-          SizedBox(
-            height: MediaQuery.of(context).size.width / 2,
-            child: Align(
-              child: ConfettiWidget(
-                confettiController: _controllerCenter,
-                blastDirection: pi / 2,
-                maxBlastForce: 5,
-                minBlastForce: 1,
-                emissionFrequency: 0.03,
-                gravity: 0,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 30,
-              horizontal: 30,
-            ),
-            child: Column(
-              // mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const <Widget>[
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: Text(
+      extendBodyBehindAppBar: true,
+      body: SingleChildScrollView(
+        // controller: controller,
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                Container(
+                  color: kblack,
+                  width: double.infinity,
+                  height: 300,
+                ),
+                Positioned(
+                  left: (MediaQuery.of(context).size.width - 100) / 2,
+                  top: 125,
+                  child: SvgPicture.asset(
+                    'assets/images/garlands.svg',
+                  ),
+                ),
+                Positioned(
+                  top: 230,
+                  height: 100,
+                  width: MediaQuery.of(context).size.width,
+                  child: const Text(
                     'order Completed Succesfully',
+                    textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: kblackText,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
+                      color: kwhiteText,
+                      fontSize: 18,
                     ),
                   ),
                 ),
-                kheight50,
-                Text(
-                  'Hi Jiyad',
-                  style: TextStyle(
-                    color: kblackText,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                kheight,
-                Text(
-                  'Thank you purchsing on Cool Spot ',
-                  style: TextStyle(
-                    color: kblackText,
-                    fontSize: 25,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                kheight50,
-                PriceDetailsWidget(),
               ],
             ),
-          )
-        ],
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 10,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Hi Jiyad',
+                    style: TextStyle(
+                      color: kblackText,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  kheight,
+                  Text(
+                    'Thank you purchsing on Cool Spot ',
+                    style: TextStyle(
+                      color: kblackText,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  kheight20,
+                  Text(
+                    'ORDER CODE : 123456',
+                    style: TextStyle(
+                      color: kblackText,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  kheight50,
+                  PriceDetailsWidget(),
+                  kheight,
+                  Divider(
+                    thickness: 2,
+                    color: kblack,
+                  ),
+                  kheight,
+                  Text(
+                    'ORDER DETAILS',
+                    style: TextStyle(
+                      color: kblackText,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  ListView(
+                    shrinkWrap: true,
+                    padding: EdgeInsets.zero,
+                    physics: NeverScrollableScrollPhysics(),
+                    children: [],
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
+      // body: Stack(
+      //   children: <Widget>[
+      //     SizedBox(
+      //       height: MediaQuery.of(context).size.width / 2,
+      //       child: Align(
+      //         child: ConfettiWidget(
+      //           confettiController: _controllerCenter,
+      //           blastDirection: pi / 2,
+      //           maxBlastForce: 5,
+      //           minBlastForce: 1,
+      //           emissionFrequency: 0.03,
+      //           gravity: 0,
+      //         ),
+      //       ),
+      //     ),
+      //     Padding(
+      //       padding: const EdgeInsets.symmetric(
+      //         vertical: 30,
+      //         horizontal: 30,
+      //       ),
+      //       child: Column(
+      //         // mainAxisAlignment: MainAxisAlignment.start,
+      //         crossAxisAlignment: CrossAxisAlignment.start,
+      //         children: const <Widget>[
+      //           Align(
+      //             alignment: Alignment.topCenter,
+      //             child: Text(
+      //               'order Completed Succesfully',
+      //               style: TextStyle(
+      //                 color: kblackText,
+      //                 fontSize: 25,
+      //                 fontWeight: FontWeight.bold,
+      //               ),
+      //             ),
+      //           ),
+      //           kheight50,
+      //           Text(
+      //             'Hi Jiyad',
+      //             style: TextStyle(
+      //               color: kblackText,
+      //               fontSize: 25,
+      //               fontWeight: FontWeight.bold,
+      //             ),
+      //           ),
+      //           kheight,
+      //           Text(
+      //             'Thank you purchsing on Cool Spot ',
+      //             style: TextStyle(
+      //               color: kblackText,
+      //               fontSize: 25,
+      //               fontWeight: FontWeight.w400,
+      //             ),
+      //           ),
+      //           kheight50,
+      //           PriceDetailsWidget(),
+      //         ],
+      //       ),
+      //     )
+      //   ],
+      // ),
       bottomNavigationBar: CutomeBottomBarWidget(
         text: 'Back to Home',
         onPressed: () {

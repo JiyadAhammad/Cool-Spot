@@ -69,6 +69,7 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: AppRouter.onGenerateRoute,
         initialRoute: '/',
         // home: const SplashScreen(),
+        // initialRoute: '/confirm',
       ),
     );
   }

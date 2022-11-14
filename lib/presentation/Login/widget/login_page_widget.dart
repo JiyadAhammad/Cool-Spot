@@ -168,11 +168,13 @@ class LoginPageWidget extends StatelessWidget {
           .then((UserCredential value) {
         Fluttertoast.showToast(msg: 'Login Successfull');
         Navigator.pushReplacementNamed(context, '/home');
-      }).catchError((error) {
-        Fluttertoast.showToast(
-          msg: error!.toString(),
-        );
-      });
+      }).catchError(
+        (error) {
+          Fluttertoast.showToast(
+            msg: error!.toString(),
+          );
+        },
+      );
     }
   }
 }

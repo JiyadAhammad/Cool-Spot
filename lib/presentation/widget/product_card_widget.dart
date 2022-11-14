@@ -91,21 +91,28 @@ class ProductCardWidget extends StatelessWidget {
                     builder: (BuildContext context, CartState state) {
                       if (state is CartLoading) {
                         return const Center(
-                          child: CupertinoActivityIndicator(),
+                          child: CupertinoActivityIndicator(
+                            color: kwhiteIcon,
+                          ),
                         );
-                      } else if (state is CartError) {
-                        return const Center(
-                          child: Text('Something Error'),
-                        );
-                      } else {
+                      } else if (state is CartLoaded) {
                         return Expanded(
                           child: IconButton(
                             padding: EdgeInsets.zero,
                             onPressed: () {
+                              const SnackBar snackdemo = SnackBar(
+                                content: Text('Product Added to cart!'),
+                                backgroundColor: kblack,
+                                elevation: 10,
+                                behavior: SnackBarBehavior.floating,
+                                margin: EdgeInsets.all(60),
+                                duration: Duration(seconds: 2),
+                              );
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackdemo);
                               context.read<CartBloc>().add(
                                     CartProductAdded(productItem),
                                   );
-                              log('$productItem');
                             },
                             icon: const Icon(
                               Icons.add_circle_outline,
@@ -113,6 +120,10 @@ class ProductCardWidget extends StatelessWidget {
                               color: kwhiteIcon,
                             ),
                           ),
+                        );
+                      } else {
+                        return const Center(
+                          child: Text('Something Error'),
                         );
                       }
                     },
