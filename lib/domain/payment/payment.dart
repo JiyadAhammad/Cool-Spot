@@ -1,4 +1,4 @@
-enum PaymentMethod {
+enum PaymentMethodType {
   google_pay,
   razor_pay,
 }

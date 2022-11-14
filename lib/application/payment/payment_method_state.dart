@@ -2,9 +2,22 @@ part of 'payment_method_bloc.dart';
 
 abstract class PaymentMethodState extends Equatable {
   const PaymentMethodState();
-  
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 }
 
-class PaymentMethodInitial extends PaymentMethodState {}
+class PaymentMethodLoding extends PaymentMethodState {
+  @override
+  List<Object> get props => <Object>[];
+}
+
+class PaymentMethodLoded extends PaymentMethodState {
+  const PaymentMethodLoded({
+    this.paymentMethod = PaymentMethodType.google_pay,
+  });
+
+  final PaymentMethodType paymentMethod;
+  @override
+  List<Object> get props => <Object>[paymentMethod];
+}
