@@ -1,4 +1,4 @@
-import 'dart:developer';
+
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
@@ -56,7 +56,7 @@ class HomeScreen extends StatelessWidget {
                   );
                 }
                 if (state is CategoryLoded) {
-                  log('${state.categories} this categories fetch from firebase');
+                  // log('${state.categories} this categories fetch from firebase');
                   return SizedBox(
                     child: CarouselSlider(
                       options: CarouselOptions(
@@ -99,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                   );
                 }
                 if (state is ProductLoded) {
-                  log('${state.products} this prodcucts fetch from firebase');
+                  // log('${state.products} this prodcucts fetch from firebase');
                   return state.products.isEmpty
                       ? const Text('No Item Found')
                       : ProductCarousel(

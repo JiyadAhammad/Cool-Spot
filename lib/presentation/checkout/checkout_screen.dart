@@ -8,6 +8,7 @@ import '../../application/cart/cart_bloc.dart';
 import '../../application/checkout/checkout_bloc.dart';
 import '../constant/color/colors.dart';
 import '../constant/sizedbox/sizedbox.dart';
+import '../payment/payment_screen.dart';
 import '../widget/custom_app_bar.dart';
 import '../widget/custom_bootom_bar_widget.dart';
 import '../widget/price_details_widget.dart';
@@ -138,35 +139,36 @@ class CheckoutScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BlocBuilder<CheckoutBloc, CheckoutState>(
-        builder: (BuildContext context, CheckoutState state) {
-          if (state is CartLoading) {
-            return const Center(
-              child: CupertinoActivityIndicator(),
-            );
-          }
-          if (state is CheckoutLoded) {
-            return CutomeBottomBarWidget(
-              text: 'Confirm',
-              onPressed: () {
-                log('00');
-                context.read<CheckoutBloc>().add(
-                      ConfirmChekout(checkout: state.checkout),
-                    );
-                Navigator.pushNamed(context, '/confirm');
-              },
-            );
-          } else {
-            return const Text('data');
-          }
-          // return CutomeBottomBarWidget(
-          //     text: 'text',
-          //     onPressed: () {
-          //       context.read<CheckoutBloc>().add(ConfirmChekout(checkout:state. ))
-          //     },
-          //   );
-        },
-      ),
+      bottomNavigationBar: const OrderNowNavBar(),
+      // bottomNavigationBar: BlocBuilder<CheckoutBloc, CheckoutState>(
+      //   builder: (BuildContext context, CheckoutState state) {
+      //     if (state is CartLoading) {
+      //       return const Center(
+      //         child: CupertinoActivityIndicator(),
+      //       );
+      //     }
+      //     if (state is CheckoutLoded) {
+      //       return CutomeBottomBarWidget(
+      //         text: 'Confirm',
+      //         onPressed: () {
+      //           log('00');
+      //           context.read<CheckoutBloc>().add(
+      //                 ConfirmChekout(checkout: state.checkout),
+      //               );
+      //           Navigator.pushNamed(context, '/confirm');
+      //         },
+      //       );
+      //     } else {
+      //       return const Text('data');
+      //     }
+      //     // return CutomeBottomBarWidget(
+      //     //     text: 'text',
+      //     //     onPressed: () {
+      //     //       context.read<CheckoutBloc>().add(ConfirmChekout(checkout:state. ))
+      //     //     },
+      //     //   );
+      //   },
+      // ),
     );
   }
 }

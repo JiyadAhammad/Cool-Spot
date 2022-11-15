@@ -19,6 +19,7 @@ class CheckoutLoded extends CheckoutState {
     this.subTotal,
     this.deliveryFee,
     this.total,
+    this.paymentMethodType = PaymentMethodType.google_pay,
   }) : checkout = Checkout(
           location: location,
           address: address,
@@ -39,6 +40,7 @@ class CheckoutLoded extends CheckoutState {
   final String? deliveryFee;
   final String? total;
   final Checkout checkout;
+  final PaymentMethodType paymentMethodType;
 
   @override
   List<Object?> get props => <Object?>[
@@ -50,5 +52,6 @@ class CheckoutLoded extends CheckoutState {
         subTotal,
         deliveryFee,
         total,
-      ]; 
+        paymentMethodType
+      ];
 }

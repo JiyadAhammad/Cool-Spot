@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'application/cart/cart_bloc.dart';
 import 'application/category/category_bloc.dart';
 import 'application/checkout/checkout_bloc.dart';
+import 'application/payment/payment_method_bloc.dart';
 import 'application/product/product_bloc.dart';
 import 'domain/config/app_router.dart';
 import 'infrastructure/category/category_repository.dart';
@@ -57,9 +58,14 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<CheckoutBloc>(
           create: (BuildContext context) => CheckoutBloc(
+            paymentBloc: context.read<PaymentMethodBloc>(),
             checkoutRepository: CheckoutRepository(),
             cartBloc: context.read<CartBloc>(),
           ),
+        ),
+        BlocProvider<PaymentMethodBloc>(
+          create: (BuildContext context) =>
+              PaymentMethodBloc()..add(LoadPayment()),
         ),
       ],
       child: MaterialApp(

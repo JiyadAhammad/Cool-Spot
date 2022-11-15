@@ -14,7 +14,7 @@ class SelectPayment extends PaymentMethodEvent {
     required this.paymentItem,
   });
 
-  final PaymentItemType paymentItem;
+  final PaymentMethodType paymentItem;
 
   @override
   List<Object> get props => <Object>[paymentItem];

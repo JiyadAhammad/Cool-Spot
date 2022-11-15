@@ -9,6 +9,7 @@ abstract class CheckoutEvent extends Equatable {
 
 class UpdateChekout extends CheckoutEvent {
   const UpdateChekout({
+    this.paymentMethod,
     this.location,
     this.address,
     this.city,
@@ -21,6 +22,7 @@ class UpdateChekout extends CheckoutEvent {
   final String? city;
   final String? landMark;
   final Cart? cart;
+  final PaymentMethodType? paymentMethod;
 
   @override
   List<Object?> get props => <Object?>[
@@ -29,6 +31,7 @@ class UpdateChekout extends CheckoutEvent {
         city,
         landMark,
         cart,
+        paymentMethod
       ];
 }
 

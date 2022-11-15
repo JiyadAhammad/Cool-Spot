@@ -7,10 +7,7 @@ abstract class PaymentMethodState extends Equatable {
   List<Object> get props => <Object>[];
 }
 
-class PaymentMethodLoding extends PaymentMethodState {
-  @override
-  List<Object> get props => <Object>[];
-}
+class PaymentMethodLoding extends PaymentMethodState {}
 
 class PaymentMethodLoded extends PaymentMethodState {
   const PaymentMethodLoded({

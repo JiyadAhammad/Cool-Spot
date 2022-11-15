@@ -39,12 +39,12 @@ class GooglePay extends StatelessWidget {
     return SizedBox(
       width: 50,
       child: GooglePayButton(
-        paymentConfigurationAsset: 'assets/pay/payment_profile_google_pay.json',
+        paymentConfigurationAsset: 'payment_profile_google_pay.json',
         onPaymentResult: onGooglePaymentResult,
         paymentItems: paymentItems,
-        // margin: const EdgeInsets.only(
-        //   top: 10,
-        // ),
+        margin: const EdgeInsets.only(
+          top: 10,
+        ),
         loadingIndicator: const CupertinoActivityIndicator(),
       ),
     );

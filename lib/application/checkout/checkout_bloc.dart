@@ -3,21 +3,26 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:pay/pay.dart';
 
 import '../../domain/cart/cart_model/cart_model.dart';
 import '../../domain/checkout/checkout_model.dart';
+import '../../domain/payment/payment.dart';
 import '../../domain/product_model/product_model.dart';
 import '../../infrastructure/checkout/checkout_repository.dart';
 import '../cart/cart_bloc.dart';
+import '../payment/payment_method_bloc.dart';
 
 part 'checkout_event.dart';
 part 'checkout_state.dart';
 
 class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
   CheckoutBloc({
+    required PaymentMethodBloc paymentBloc,
     required CartBloc cartBloc,
     required CheckoutRepository checkoutRepository,
   })  : _cartBloc = cartBloc,
+        _paymentBloc = paymentBloc,
         _checkoutRepository = checkoutRepository,
         super(
           cartBloc.state is CartLoaded
@@ -41,12 +46,20 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
         }
       },
     );
+    paymentSubscription =
+        _paymentBloc.stream.listen((PaymentMethodState state) {
+      if (state is PaymentMethodLoded) {
+        add(
+          UpdateChekout(paymentMethod: state.paymentMethod),
+        );
+      }
+    });
   }
   final CartBloc _cartBloc;
-  // final PaymentBloc _paymentBloc;
+  final PaymentMethodBloc _paymentBloc;
   final CheckoutRepository _checkoutRepository;
   StreamSubscription<dynamic>? cartSubscription;
-  // StreamSubscription<dynamic>? paymentSubscription;
+  StreamSubscription<dynamic>? paymentSubscription;
   StreamSubscription<dynamic>? checkoutSubscription;
 
   void onUpdateChekout(
@@ -57,15 +70,15 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
       final CheckoutLoded state = this.state as CheckoutLoded;
       emit(
         CheckoutLoded(
-          location: event.location ?? state.location,
-          address: event.address ?? state.address,
-          city: event.city ?? state.city,
-          landMark: event.landMark ?? state.landMark,
-          products: event.cart?.product ?? state.products,
-          subTotal: event.cart?.subTotalString ?? state.subTotal,
-          deliveryFee: event.cart?.deliveryFees ?? state.deliveryFee,
-          total: event.cart?.totalPrices ?? state.total,
-        ),
+            location: event.location ?? state.location,
+            address: event.address ?? state.address,
+            city: event.city ?? state.city,
+            landMark: event.landMark ?? state.landMark,
+            products: event.cart?.product ?? state.products,
+            subTotal: event.cart?.subTotalString ?? state.subTotal,
+            deliveryFee: event.cart?.deliveryFees ?? state.deliveryFee,
+            total: event.cart?.totalPrices ?? state.total,
+            paymentMethodType: event.paymentMethod ?? state.paymentMethodType),
       );
     }
   }
