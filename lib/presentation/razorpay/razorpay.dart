@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 import '../../domain/product_model/product_model.dart';
+import '../constant/color/colors.dart';
 
 class RazorPay extends StatefulWidget {
   RazorPay({
@@ -45,9 +46,37 @@ class _RazorPayState extends State<RazorPay> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 100,
-    );
+    log(widget.total);
+    final double totalPrice = double.parse(widget.total) * 100;
+    log(totalPrice.toString());
+    // int totalPrice = int.parse(widget.total * 100);
+    // log(totalPrice.toString());
+    final Map<String, Object> options = <String, Object>{
+      'key': 'rzp_live_3hNvMCaWqLWH5k',
+      'amount': totalPrice, //in the smallest currency sub-unit.
+      'name': 'Acme Corp.',
+      // 'order_id': 'order_EMBFqjDHEEn80l', // Generate order_id using Orders API
+      // 'description': 'Fine T-Shirt',
+      'timeout': 120, // in seconds
+      'prefill': <String, String>{
+        'contact': '6282615775',
+        'email': 'gaurav.kumar@example.com',
+      }
+    };
+    return Scaffold(
+        backgroundColor: bgColor,
+        body: SafeArea(
+          child: Column(
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  razorpay.open(options);
+                },
+                child: const Text('data'),
+              ),
+            ],
+          ),
+        ));
   }
 
   @override

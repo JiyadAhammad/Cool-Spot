@@ -176,7 +176,11 @@ class CheckoutScreen extends StatelessWidget {
           },
         ),
       ),
-      bottomNavigationBar: const CheckoutBottomBar(),
+      bottomNavigationBar: Container(
+        height: 60,
+        color: kblack,
+        child: const CheckoutBottomBar(),
+      ),
     );
   }
 }
@@ -196,13 +200,39 @@ class CheckoutBottomBar extends StatelessWidget {
             if (state is CheckoutLoding) {
               return const Center(
                 child: CupertinoActivityIndicator(
-                  color: Colors.red,
+                  color: kblack,
                 ),
               );
             }
             if (state is CheckoutLoded) {
               if (state.paymentMethodType == PaymentMethodType.razor_pay) {
-                // return Razorpay();
+                // return RazorPay(total: total, products: products)
+                // return RazorPay(
+                //   total: state.total!,
+                //   products: state.products!,
+                // );
+                return ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(backgroundColor: kwhite),
+                  onPressed: () {
+                    log('${state.total!} total amount');
+                    
+                    Navigator.of(context).push(
+                      MaterialPageRoute<dynamic>(
+                        builder: (_) => RazorPay(
+                          total: state.total!,
+                          products: state.products!,
+                        ),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.payment),
+                  label: const Text('RazorPay'),
+                );
+                // return RazorPay(
+                //   total: state.total!,
+                //   products: state.products!,
+                // );
+
                 // return Text(
                 //   'Pay with Razorpay',
                 //   style: Theme.of(context)
@@ -213,24 +243,17 @@ class CheckoutBottomBar extends StatelessWidget {
               }
               if (Platform.isAndroid &&
                   state.paymentMethodType == PaymentMethodType.google_pay) {
-                switch (state.paymentMethodType) {
-                  case PaymentMethodType.google_pay:
-                    return GooglePay(
-                      products: state.products!,
-                      total: state.total!,
-                    );
+                return GooglePay(
+                  products: state.products!,
+                  total: state.total!,
+                );
 
-                  case PaymentMethodType.razor_pay:
-                    return Container(
-                      child: const Text('RazorPy'),
-                    );
+                // default:
+                //   return GooglePay(
+                //     products: state.products!,
+                //     total: state.total!,
+                //   );
 
-                  default:
-                    return GooglePay(
-                      products: state.products!,
-                      total: state.total!,
-                    );
-                }
               } else {
                 return ElevatedButton(
                   onPressed: () {
