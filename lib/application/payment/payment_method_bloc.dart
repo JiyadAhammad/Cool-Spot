@@ -17,7 +17,7 @@ class PaymentMethodBloc extends Bloc<PaymentMethodEvent, PaymentMethodState> {
   FutureOr<void> onLoadPayment(
     LoadPayment event,
     Emitter<PaymentMethodState> emit,
-  ) {
+  ) async {
     emit(
       const PaymentMethodLoded(),
     );
@@ -26,7 +26,7 @@ class PaymentMethodBloc extends Bloc<PaymentMethodEvent, PaymentMethodState> {
   FutureOr<void> onSelectPayment(
     SelectPayment event,
     Emitter<PaymentMethodState> emit,
-  ) {
+  ) async {
     emit(
       PaymentMethodLoded(
         paymentMethod: event.paymentItem,

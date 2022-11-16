@@ -24,20 +24,21 @@ class GooglePay extends StatelessWidget {
           ),
         )
         .toList();
-    // final List<PaymentItem> paymentItems = <PaymentItem>[
-    //   const PaymentItem(
-    //     label: 'Total',
-    //     amount: '99.99',
-    //     status: PaymentItemStatus.final_price,
-    //   )
-    // ];
+
+    paymentItems.add(
+      PaymentItem(
+        label: 'Total',
+        amount: total,
+        status: PaymentItemStatus.final_price,
+      ),
+    );
 
     void onGooglePaymentResult(Map<String, dynamic> result) {
       debugPrint(result.toString());
     }
 
     return SizedBox(
-      width: 50,
+      width: MediaQuery.of(context).size.width - 50,
       child: GooglePayButton(
         paymentConfigurationAsset: 'payment_profile_google_pay.json',
         onPaymentResult: onGooglePaymentResult,

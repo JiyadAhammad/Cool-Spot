@@ -95,6 +95,7 @@ class SignupScreen extends StatelessWidget {
                     confirmPswrdControll.text = p0!;
                   },
                 ),
+                kheight,
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: kblack,
@@ -122,19 +123,19 @@ class SignupScreen extends StatelessWidget {
                   ),
                 ),
                 kheight20,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    GestureDetector(
-                      onTap: () {},
-                      child: Image.asset('assets/images/facebook.png'),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Image.asset('assets/images/google.png'),
-                    ),
-                  ],
-                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //   children: <Widget>[
+                //     GestureDetector(
+                //       onTap: () {},
+                //       child: Image.asset('assets/images/facebook.png'),
+                //     ),
+                //     GestureDetector(
+                //       onTap: () {},
+                //       child: Image.asset('assets/images/google.png'),
+                //     ),
+                //   ],
+                // ),
                 kheight,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -169,9 +170,9 @@ class SignupScreen extends StatelessWidget {
       )
           .then((UserCredential value) {
         addCreditianlToFirebase(context);
-      }).catchError((onError) {
+      }).catchError((dynamic onError) {
         Fluttertoast.showToast(
-          msg: onError!.toString(),
+          msg: onError.toString(),
         );
       });
     }

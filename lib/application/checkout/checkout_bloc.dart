@@ -3,7 +3,6 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:pay/pay.dart';
 
 import '../../domain/cart/cart_model/cart_model.dart';
 import '../../domain/checkout/checkout_model.dart';
@@ -18,11 +17,12 @@ part 'checkout_state.dart';
 
 class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
   CheckoutBloc({
-    required PaymentMethodBloc paymentBloc,
+    // required PaymentMethodBloc paymentBloc,
     required CartBloc cartBloc,
+    // required PaymentMethodBloc paymentBloc,
     required CheckoutRepository checkoutRepository,
   })  : _cartBloc = cartBloc,
-        _paymentBloc = paymentBloc,
+        // _paymentBloc = paymentBloc,
         _checkoutRepository = checkoutRepository,
         super(
           cartBloc.state is CartLoaded
@@ -46,20 +46,21 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
         }
       },
     );
-    paymentSubscription =
-        _paymentBloc.stream.listen((PaymentMethodState state) {
-      if (state is PaymentMethodLoded) {
-        add(
-          UpdateChekout(paymentMethod: state.paymentMethod),
-        );
-      }
-    });
+    // paymentSubscription = _paymentBloc.stream.listen(
+    //   (PaymentMethodState state) {
+    //     if (state is PaymentMethodLoded) {
+    //       add(
+    //         UpdateChekout(paymentMethod: state.paymentMethod),
+    //       );
+    //     }
+    //   },
+    // );
   }
   final CartBloc _cartBloc;
-  final PaymentMethodBloc _paymentBloc;
+  // final PaymentMethodBloc _paymentBloc;
   final CheckoutRepository _checkoutRepository;
   StreamSubscription<dynamic>? cartSubscription;
-  StreamSubscription<dynamic>? paymentSubscription;
+  // StreamSubscription<dynamic>? paymentSubscription;
   StreamSubscription<dynamic>? checkoutSubscription;
 
   void onUpdateChekout(
@@ -70,15 +71,16 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
       final CheckoutLoded state = this.state as CheckoutLoded;
       emit(
         CheckoutLoded(
-            location: event.location ?? state.location,
-            address: event.address ?? state.address,
-            city: event.city ?? state.city,
-            landMark: event.landMark ?? state.landMark,
-            products: event.cart?.product ?? state.products,
-            subTotal: event.cart?.subTotalString ?? state.subTotal,
-            deliveryFee: event.cart?.deliveryFees ?? state.deliveryFee,
-            total: event.cart?.totalPrices ?? state.total,
-            paymentMethodType: event.paymentMethod ?? state.paymentMethodType),
+          location: event.location ?? state.location,
+          address: event.address ?? state.address,
+          city: event.city ?? state.city,
+          landMark: event.landMark ?? state.landMark,
+          products: event.cart?.product ?? state.products,
+          subTotal: event.cart?.subTotalString ?? state.subTotal,
+          deliveryFee: event.cart?.deliveryFees ?? state.deliveryFee,
+          total: event.cart?.totalPrices ?? state.total,
+          // paymentMethodType: event.paymentMethod ?? state.paymentMethodType,
+        ),
       );
     }
   }
@@ -97,10 +99,10 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
     }
   }
 
-  // Future<void> close() {}
   @override
   Future<void> close() {
     cartSubscription?.cancel();
+    // paymentSubscription?.cancel();
     return super.close();
   }
 }

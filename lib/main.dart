@@ -1,3 +1,18 @@
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
+
+// import 'application/cart/cart_bloc.dart';
+// import 'application/category/category_bloc.dart';
+// import 'application/checkout/checkout_bloc.dart';
+// import 'application/payment/payment_method_bloc.dart';
+// import 'application/product/product_bloc.dart';
+// import 'domain/config/app_router.dart';
+// import 'infrastructure/category/category_repository.dart';
+// import 'infrastructure/checkout/checkout_repository.dart';
+// import 'infrastructure/product/product_repository.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +50,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: <BlocProvider<Bloc<dynamic, dynamic>>>[
+      providers: [
+        // BlocProvider(
+        //   create: (context) => CheckoutBloc(
+        //     cartBloc: context.read<CartBloc>(),
+        //     // paymentBloc: context.read<PaymentMethodBloc>(),
+        //     checkoutRepository: CheckoutRepository(),
+        //   ),
+        // ),
         BlocProvider<CartBloc>(
           create: (_) => CartBloc()
             ..add(
@@ -58,14 +80,13 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<CheckoutBloc>(
           create: (BuildContext context) => CheckoutBloc(
-            paymentBloc: context.read<PaymentMethodBloc>(),
-            checkoutRepository: CheckoutRepository(),
             cartBloc: context.read<CartBloc>(),
+            // paymentBloc: context.read<PaymentMethodBloc>(),
+            checkoutRepository: CheckoutRepository(),
           ),
         ),
         BlocProvider<PaymentMethodBloc>(
-          create: (BuildContext context) =>
-              PaymentMethodBloc()..add(LoadPayment()),
+          create: (_) => PaymentMethodBloc()..add(LoadPayment()),
         ),
       ],
       child: MaterialApp(

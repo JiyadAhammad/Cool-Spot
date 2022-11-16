@@ -119,6 +119,7 @@ class CartScreen extends StatelessWidget {
           }
         },
       ),
+      // bottomNavigationBar: const GoToCheckoutNavBar(),
       bottomNavigationBar: BlocBuilder<CartBloc, CartState>(
         builder: (BuildContext context, CartState state) {
           if (state is CartLoaded) {
@@ -156,6 +157,37 @@ class CartScreen extends StatelessWidget {
           }
         },
       ),
+    );
+  }
+}
+
+class GoToCheckoutNavBar extends StatelessWidget {
+  const GoToCheckoutNavBar({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        ElevatedButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/checkout');
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: kblack,
+            shape: const RoundedRectangleBorder(),
+          ),
+          child: const Text(
+            'GO TO CHECKOUT',
+            style: TextStyle(
+              color: kwhiteText,
+              fontSize: 20,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

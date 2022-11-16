@@ -19,7 +19,7 @@ class CheckoutLoded extends CheckoutState {
     this.subTotal,
     this.deliveryFee,
     this.total,
-    this.paymentMethodType = PaymentMethodType.google_pay,
+    this.paymentMethodType = PaymentMethodType.razor_pay,
   }) : checkout = Checkout(
           location: location,
           address: address,

@@ -11,7 +11,7 @@ class PaymentMethodLoding extends PaymentMethodState {}
 
 class PaymentMethodLoded extends PaymentMethodState {
   const PaymentMethodLoded({
-    this.paymentMethod = PaymentMethodType.google_pay,
+    this.paymentMethod = PaymentMethodType.razor_pay,
   });
 
   final PaymentMethodType paymentMethod;
