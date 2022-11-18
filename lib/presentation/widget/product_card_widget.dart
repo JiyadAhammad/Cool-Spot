@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/cart/cart_bloc.dart';
+import '../../application/whislist/whislist_bloc.dart';
 import '../../domain/product_model/product_model.dart';
 import '../constant/color/colors.dart';
 
@@ -130,14 +131,30 @@ class ProductCardWidget extends StatelessWidget {
                   ),
                   if (isWhisList)
                     Expanded(
-                      child: IconButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.delete,
-                          size: 25,
-                          color: kwhiteIcon,
-                        ),
+                      child: BlocBuilder<WhislistBloc, WhislistState>(
+                        builder: (BuildContext context, WhislistState state) {
+                          return IconButton(
+                            padding: EdgeInsets.zero,
+                            onPressed: () {
+                              log('$productItem this is product');
+                              const SnackBar snackBar = SnackBar(
+                                content: Text(
+                                  'Removed From Whishlist',
+                                ),
+                              );
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                              context.read<WhislistBloc>().add(
+                                    RemovefromWishList(productItem),
+                                  );
+                            },
+                            icon: const Icon(
+                              Icons.delete,
+                              size: 25,
+                              color: kwhiteIcon,
+                            ),
+                          );
+                        },
                       ),
                     )
                   else

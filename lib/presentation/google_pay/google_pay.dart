@@ -38,7 +38,7 @@ class GooglePay extends StatelessWidget {
     }
 
     return SizedBox(
-      width: MediaQuery.of(context).size.width - 50,
+      width: MediaQuery.of(context).size.width ,
       child: GooglePayButton(
         paymentConfigurationAsset: 'payment_profile_google_pay.json',
         onPaymentResult: onGooglePaymentResult,

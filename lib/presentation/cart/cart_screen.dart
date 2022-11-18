@@ -170,7 +170,7 @@ class GoToCheckoutNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
+      children: <Widget>[
         ElevatedButton(
           onPressed: () {
             Navigator.pushNamed(context, '/checkout');

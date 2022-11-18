@@ -17,13 +17,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'application/cart/cart_bloc.dart';
 import 'application/category/category_bloc.dart';
 import 'application/checkout/checkout_bloc.dart';
 import 'application/payment/payment_method_bloc.dart';
 import 'application/product/product_bloc.dart';
+import 'application/whislist/whislist_bloc.dart';
 import 'domain/config/app_router.dart';
+import 'domain/product_model/product_model.dart';
+import 'infrastructure/cart/whishlist/whish_list.dart';
 import 'infrastructure/category/category_repository.dart';
 import 'infrastructure/checkout/checkout_repository.dart';
 import 'infrastructure/product/product_repository.dart';
@@ -33,6 +37,8 @@ bool shouldUseFirestoreEmulator = false;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  Hive.initFlutter();
+  Hive.registerAdapter(ProductAdapter());
 
   if (shouldUseFirestoreEmulator) {
     FirebaseFirestore.instance.useFirestoreEmulator(
@@ -62,6 +68,13 @@ class MyApp extends StatelessWidget {
           create: (_) => CartBloc()
             ..add(
               LoadCart(),
+            ),
+        ),
+        BlocProvider<WhislistBloc>(
+          create: (_) => WhislistBloc(
+            whishlistRepository: WhishlistRepository(),
+          )..add(
+              LoadWishList(),
             ),
         ),
         BlocProvider<CategoryBloc>(

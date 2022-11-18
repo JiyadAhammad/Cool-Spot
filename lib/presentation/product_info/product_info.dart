@@ -1,7 +1,11 @@
+import 'dart:developer';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/cart/cart_bloc.dart';
+import '../../application/whislist/whislist_bloc.dart';
 import '../../domain/product_model/product_model.dart';
 import '../constant/color/colors.dart';
 import '../widget/custom_app_bar.dart';
@@ -81,20 +85,46 @@ class ProductInformation extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  log('$product this is product');
+                },
                 icon: const Icon(
                   Icons.share,
                   color: kwhiteIcon,
                   size: 30,
                 ),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.favorite,
-                  color: kwhiteIcon,
-                  size: 30,
-                ),
+              BlocBuilder<WhislistBloc, WhislistState>(
+                builder: (BuildContext context, WhislistState state) {
+                  if (state is WhislistLoding) {
+                    return const Center(
+                      child: CupertinoActivityIndicator(color: kwhiteIcon),
+                    );
+                  }
+                  if (state is WhislistLoded) {
+                    return IconButton(
+                      onPressed: () {
+                        log('$product this is product');
+                        const SnackBar snackBar = SnackBar(
+                          content: Text(
+                            'Added to Whishlist',
+                          ),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        context.read<WhislistBloc>().add(
+                              AddtoWishList(product),
+                            );
+                      },
+                      icon: const Icon(
+                        Icons.favorite,
+                        color: kwhiteIcon,
+                        size: 30,
+                      ),
+                    );
+                  } else {
+                    return Text('data');
+                  }
+                },
               ),
               BlocBuilder<CartBloc, CartState>(
                 builder: (BuildContext context, CartState state) {
