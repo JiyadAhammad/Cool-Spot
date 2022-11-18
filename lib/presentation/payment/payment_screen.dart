@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -10,6 +11,7 @@ import '../../application/payment/payment_method_bloc.dart';
 import '../../domain/payment/payment.dart';
 import '../constant/color/colors.dart';
 import '../google_pay/google_pay.dart';
+import '../razorpay/razorpay.dart';
 import '../widget/custom_app_bar.dart';
 
 class PaymentScreen extends StatelessWidget {
@@ -59,17 +61,120 @@ class PaymentScreen extends StatelessWidget {
                   )
                 else
                   const SizedBox(),
-                ElevatedButton(
-                  onPressed: () {
-                    context.read<PaymentMethodBloc>().add(
-                          const SelectPayment(
-                            paymentItem: PaymentMethodType.razor_pay,
-                          ),
-                        );
-                    Navigator.pop(context);
+                BlocBuilder<CheckoutBloc, CheckoutState>(
+                  builder: (BuildContext context, CheckoutState state) {
+                    if (state is CheckoutLoding) {
+                      return const Center(
+                        child: CupertinoActivityIndicator(
+                          color: kblack,
+                        ),
+                      );
+                    }
+                    if (state is CheckoutLoded) {
+                      return ElevatedButton.icon(
+                        style:
+                            ElevatedButton.styleFrom(backgroundColor: kwhite),
+                        onPressed: () {
+                          log('${state.total!} total amount');
+
+                          Navigator.of(context).push(
+                            MaterialPageRoute<dynamic>(
+                              builder: (_) => RazorPay(
+                                total: state.total!,
+                                products: state.products!,
+                              ),
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.payment),
+                        label: const Text('Pay with Razor Pay'),
+                      );
+                      // if (state.paymentMethodType == PaymentMethodType.razor_pay) {
+                      //   // return RazorPay(total: total, products: products)
+                      //   // return RazorPay(
+                      //   //   total: state.total!,
+                      //   //   products: state.products!,
+                      //   // );
+                      //   return ElevatedButton.icon(
+                      //     style: ElevatedButton.styleFrom(backgroundColor: kwhite),
+                      //     onPressed: () {
+                      //       log('${state.total!} total amount');
+
+                      //       Navigator.of(context).push(
+                      //         MaterialPageRoute<dynamic>(
+                      //           builder: (_) => RazorPay(
+                      //             total: state.total!,
+                      //             products: state.products!,
+                      //           ),
+                      //         ),
+                      //       );
+                      //     },
+                      //     icon: const Icon(Icons.payment),
+                      //     label: const Text(''),
+                      //   );
+                      //   // return RazorPay(
+                      //   //   total: state.total!,
+                      //   //   products: state.products!,
+                      //   // );
+
+                      //   // return Text(
+                      //   //   'Pay with Razorpay',
+                      //   //   style: Theme.of(context)
+                      //   //       .textTheme
+                      //   //       .headline4!
+                      //   //       .copyWith(color: Colors.white),
+                      //   // );
+                      // }
+                      // if (Platform.isAndroid &&
+                      //     state.paymentMethodType == PaymentMethodType.google_pay) {
+                      //   return GooglePay(
+                      //     products: state.products!,
+                      //     total: state.total!,
+                      //   );
+
+                      //   // default:
+                      //   //   return GooglePay(
+                      //   //     products: state.products!,
+                      //   //     total: state.total!,
+                      //   //   );
+
+                      // } else {
+                      //   return ElevatedButton(
+                      //     onPressed: () {
+                      //       Navigator.pushNamed(context, '/payment');
+                      //     },
+                      //     style: ElevatedButton.styleFrom(
+                      //       backgroundColor: Colors.black,
+                      //     ),
+                      //     child: Text(
+                      //       'CHOOSE PAYMENT',
+                      //       style: Theme.of(context)
+                      //           .textTheme
+                      //           .headline6!
+                      //           .copyWith(color: kwhite),
+                      //     ),
+                      //   );
+                      // }
+                    } else {
+                      return const Text('Something went wrong');
+                    }
                   },
-                  child: const Text('Pay with Razor Pay'),
                 ),
+                // BlocBuilder<SubjectBloc, SubjectState>(
+                //   builder: (context, state) {
+                //     return ElevatedButton(
+                //       onPressed: () {
+                //         // context.read<PaymentMethodBloc>().add(
+                //         //       const SelectPayment(
+                //         //         paymentItem: PaymentMethodType.razor_pay,
+                //         //       ),
+                //         //     );
+                //         // Navigator.pop(context);
+                //       },
+                //       child: const Text('Pay with Razor Pay'),
+                //     );
+                //   },
+                // ),
               ],
             );
           } else {

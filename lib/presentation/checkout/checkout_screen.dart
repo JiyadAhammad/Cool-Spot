@@ -176,11 +176,11 @@ class CheckoutScreen extends StatelessWidget {
           },
         ),
       ),
-      bottomNavigationBar: Container(
-        height: 60,
-        color: kblack,
-        child: const CheckoutBottomBar(),
-      ),
+      // bottomNavigationBar: Container(
+      //   height: 60,
+      //   color: kblack,
+      //   child: const CheckoutBottomBar(),
+      // ),
     );
   }
 }
@@ -205,72 +205,89 @@ class CheckoutBottomBar extends StatelessWidget {
               );
             }
             if (state is CheckoutLoded) {
-              if (state.paymentMethodType == PaymentMethodType.razor_pay) {
-                // return RazorPay(total: total, products: products)
-                // return RazorPay(
-                //   total: state.total!,
-                //   products: state.products!,
-                // );
-                return ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(backgroundColor: kwhite),
-                  onPressed: () {
-                    log('${state.total!} total amount');
-                    
-                    Navigator.of(context).push(
-                      MaterialPageRoute<dynamic>(
-                        builder: (_) => RazorPay(
-                          total: state.total!,
-                          products: state.products!,
-                        ),
+              return ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(backgroundColor: kwhite),
+                onPressed: () {
+                  log('${state.total!} total amount');
+
+                  Navigator.of(context).push(
+                    MaterialPageRoute<dynamic>(
+                      builder: (_) => RazorPay(
+                        total: state.total!,
+                        products: state.products!,
                       ),
-                    );
-                  },
-                  icon: const Icon(Icons.payment),
-                  label: const Text('RazorPay'),
-                );
-                // return RazorPay(
-                //   total: state.total!,
-                //   products: state.products!,
-                // );
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.payment),
+                label: const Text(''),
+              );
+              // if (state.paymentMethodType == PaymentMethodType.razor_pay) {
+              //   // return RazorPay(total: total, products: products)
+              //   // return RazorPay(
+              //   //   total: state.total!,
+              //   //   products: state.products!,
+              //   // );
+              //   return ElevatedButton.icon(
+              //     style: ElevatedButton.styleFrom(backgroundColor: kwhite),
+              //     onPressed: () {
+              //       log('${state.total!} total amount');
 
-                // return Text(
-                //   'Pay with Razorpay',
-                //   style: Theme.of(context)
-                //       .textTheme
-                //       .headline4!
-                //       .copyWith(color: Colors.white),
-                // );
-              }
-              if (Platform.isAndroid &&
-                  state.paymentMethodType == PaymentMethodType.google_pay) {
-                return GooglePay(
-                  products: state.products!,
-                  total: state.total!,
-                );
+              //       Navigator.of(context).push(
+              //         MaterialPageRoute<dynamic>(
+              //           builder: (_) => RazorPay(
+              //             total: state.total!,
+              //             products: state.products!,
+              //           ),
+              //         ),
+              //       );
+              //     },
+              //     icon: const Icon(Icons.payment),
+              //     label: const Text(''),
+              //   );
+              //   // return RazorPay(
+              //   //   total: state.total!,
+              //   //   products: state.products!,
+              //   // );
 
-                // default:
-                //   return GooglePay(
-                //     products: state.products!,
-                //     total: state.total!,
-                //   );
+              //   // return Text(
+              //   //   'Pay with Razorpay',
+              //   //   style: Theme.of(context)
+              //   //       .textTheme
+              //   //       .headline4!
+              //   //       .copyWith(color: Colors.white),
+              //   // );
+              // }
+              // if (Platform.isAndroid &&
+              //     state.paymentMethodType == PaymentMethodType.google_pay) {
+              //   return GooglePay(
+              //     products: state.products!,
+              //     total: state.total!,
+              //   );
 
-              } else {
-                return ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/payment');
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                  ),
-                  child: Text(
-                    'CHOOSE PAYMENT',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline6!
-                        .copyWith(color: kwhite),
-                  ),
-                );
-              }
+              //   // default:
+              //   //   return GooglePay(
+              //   //     products: state.products!,
+              //   //     total: state.total!,
+              //   //   );
+
+              // } else {
+              //   return ElevatedButton(
+              //     onPressed: () {
+              //       Navigator.pushNamed(context, '/payment');
+              //     },
+              //     style: ElevatedButton.styleFrom(
+              //       backgroundColor: Colors.black,
+              //     ),
+              //     child: Text(
+              //       'CHOOSE PAYMENT',
+              //       style: Theme.of(context)
+              //           .textTheme
+              //           .headline6!
+              //           .copyWith(color: kwhite),
+              //     ),
+              //   );
+              // }
             } else {
               return const Text('Something went wrong');
             }
