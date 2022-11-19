@@ -1,13 +1,16 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../constant/color/colors.dart';
 import '../../constant/sizedbox/sizedbox.dart';
 import '../../widget/login_text_feild.dart';
 
-class LoginPageWidget extends StatelessWidget {
-  LoginPageWidget({
+class LoginPageWidget extends StatefulWidget {
+  const LoginPageWidget({
     super.key,
     required this.buttonText,
     required this.bottomText,
@@ -23,13 +26,37 @@ class LoginPageWidget extends StatelessWidget {
   final String fText;
   final Function() onPressed;
 
+  @override
+  State<LoginPageWidget> createState() => _LoginPageWidgetState();
+}
+
+class _LoginPageWidgetState extends State<LoginPageWidget> {
   final TextEditingController emailLController = TextEditingController();
+
   final TextEditingController pswrdLController = TextEditingController();
+
   final FirebaseAuth auth = FirebaseAuth.instance;
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  final GoogleSignIn googleSignIn = GoogleSignIn(
+    scopes: <String>['email'],
+  );
+  GoogleSignInAccount? currentUser;
+  @override
+  void initState() {
+    googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount? account) {
+      setState(() {
+        currentUser = account;
+      });
+    });
+    googleSignIn.signInSilently();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    GoogleSignInAccount? user = currentUser;
     return Form(
       key: formKey,
       child: ListView(
@@ -85,9 +112,9 @@ class LoginPageWidget extends StatelessWidget {
                 },
               ),
               TextButton(
-                onPressed: ftextOnpressed,
+                onPressed: widget.ftextOnpressed,
                 child: Text(
-                  fText,
+                  widget.fText,
                   style: const TextStyle(
                     color: kgreen,
                   ),
@@ -113,7 +140,7 @@ class LoginPageWidget extends StatelessWidget {
                   );
                 },
                 child: Text(
-                  buttonText,
+                  widget.buttonText,
                   style: const TextStyle(
                     color: kwhiteText,
                     fontSize: 20,
@@ -128,8 +155,10 @@ class LoginPageWidget extends StatelessWidget {
                     onTap: () {},
                     child: Image.asset('assets/images/facebook.png'),
                   ),
-                  GestureDetector(
-                    onTap: () {},
+                  InkWell(
+                    onTap: () {
+                      googleSingIN(user);
+                    },
                     child: Image.asset('assets/images/google.png'),
                   ),
                 ],
@@ -138,11 +167,11 @@ class LoginPageWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(bottomText),
+                  Text(widget.bottomText),
                   TextButton(
-                    onPressed: onPressed,
+                    onPressed: widget.onPressed,
                     child: Text(
-                      page,
+                      widget.page,
                     ),
                   ),
                 ],
@@ -169,12 +198,31 @@ class LoginPageWidget extends StatelessWidget {
         Fluttertoast.showToast(msg: 'Login Successfull');
         Navigator.pushReplacementNamed(context, '/home');
       }).catchError(
-        (error) {
+        (dynamic error) {
           Fluttertoast.showToast(
             msg: error!.toString(),
           );
         },
       );
+    }
+  }
+
+  Future<void> googleSingIN(GoogleSignInAccount? user) async {
+    try {
+      final GoogleSignInAccount? userAccount = await googleSignIn.signIn();
+      if (googleSignIn == null) {
+        return;
+      }
+      user = userAccount;
+      final GoogleSignInAuthentication googleAuth =
+          await userAccount!.authentication;
+      final OAuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      await FirebaseAuth.instance.signInWithCredential(credential);
+    } catch (e) {
+      log('$e catch Google Signin error');
     }
   }
 }
