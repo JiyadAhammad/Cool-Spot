@@ -9,6 +9,7 @@ abstract class CheckoutEvent extends Equatable {
 
 class UpdateChekout extends CheckoutEvent {
   const UpdateChekout({
+    this.isAccepted,
     this.paymentMethod,
     this.location,
     this.address,
@@ -22,6 +23,7 @@ class UpdateChekout extends CheckoutEvent {
   final String? city;
   final String? landMark;
   final Cart? cart;
+  final bool? isAccepted;
   final PaymentMethodType? paymentMethod;
 
   @override
@@ -31,7 +33,8 @@ class UpdateChekout extends CheckoutEvent {
         city,
         landMark,
         cart,
-        paymentMethod
+        paymentMethod,
+        isAccepted,
       ];
 }
 

@@ -12,6 +12,7 @@ class Checkout extends Equatable {
     required this.subTotal,
     required this.deliveryFee,
     required this.total,
+    required this.isAccepted,
   });
 
   final String? location;
@@ -22,6 +23,7 @@ class Checkout extends Equatable {
   final String? subTotal;
   final String? deliveryFee;
   final String? total;
+  final bool? isAccepted;
 
   @override
   List<Object?> get props => <Object?>[
@@ -33,6 +35,7 @@ class Checkout extends Equatable {
         subTotal,
         deliveryFee,
         total,
+        isAccepted,
       ];
 
   Map<String, Object> toDocument() {
@@ -41,12 +44,14 @@ class Checkout extends Equatable {
     customerAddress['address'] = address;
     customerAddress['city'] = city;
     customerAddress['landMark'] = landMark;
+
     return <String, Object>{
       'customerAddress': customerAddress,
       'Product': products!.map((Product item) => item.productName).toList(),
       'subTotal': subTotal!,
       'deliveryFee': deliveryFee!,
       'total': total!,
+      'isAccepted': isAccepted!,
     };
   }
 }

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 import '../../application/cart/cart_bloc.dart';
@@ -122,10 +123,18 @@ class CheckoutScreen extends StatelessWidget {
                         Center(
                           child: TextButton(
                             onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                '/payment',
+                              Navigator.of(context).push(
+                                MaterialPageRoute<dynamic>(
+                                  builder: (_) => RazorPay(
+                                    total: state.total!,
+                                    products: state.products!,
+                                  ),
+                                ),
                               );
+                              // Navigator.pushNamed(
+                              //   context,
+                              //   '/payment',
+                              // );
                             },
                             child: const Text(
                               'SELECT A PAYMENT METHOD',
@@ -176,124 +185,167 @@ class CheckoutScreen extends StatelessWidget {
           },
         ),
       ),
-      // bottomNavigationBar: Container(
-      //   height: 60,
-      //   color: kblack,
-      //   child: const CheckoutBottomBar(),
-      // ),
+      bottomNavigationBar: Container(
+        height: 60,
+        color: kblack,
+        child: const CheckoutBottomBar(),
+      ),
     );
   }
 }
 
 class CheckoutBottomBar extends StatelessWidget {
-  const CheckoutBottomBar({
-    super.key,
-  });
+  const CheckoutBottomBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        BlocBuilder<CheckoutBloc, CheckoutState>(
-          builder: (BuildContext context, CheckoutState state) {
-            if (state is CheckoutLoding) {
-              return const Center(
-                child: CupertinoActivityIndicator(
-                  color: kblack,
+    return BlocBuilder<CheckoutBloc, CheckoutState>(
+      builder: (BuildContext context, CheckoutState state) {
+        if (state is CheckoutLoding) {
+          return const Center(
+            child: CupertinoActivityIndicator(
+              color: kwhiteIcon,
+            ),
+          );
+        }
+        if (state is CheckoutLoded) {
+          return Column(
+            children: <Widget>[
+              ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: kwhite,
                 ),
-              );
-            }
-            if (state is CheckoutLoded) {
-              return ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(backgroundColor: kwhite),
                 onPressed: () {
-                  log('${state.total!} total amount');
-
-                  Navigator.of(context).push(
-                    MaterialPageRoute<dynamic>(
-                      builder: (_) => RazorPay(
-                        total: state.total!,
-                        products: state.products!,
-                      ),
-                    ),
-                  );
+                  log('${state.checkout} lid od nthelum');
+                  context.read<CheckoutBloc>().add(
+                        ConfirmChekout(checkout: state.checkout),
+                      );
+                  Navigator.pushReplacementNamed(context, '/confirm');
                 },
-                icon: const Icon(Icons.payment),
-                label: const Text(''),
-              );
-              // if (state.paymentMethodType == PaymentMethodType.razor_pay) {
-              //   // return RazorPay(total: total, products: products)
-              //   // return RazorPay(
-              //   //   total: state.total!,
-              //   //   products: state.products!,
-              //   // );
-              //   return ElevatedButton.icon(
-              //     style: ElevatedButton.styleFrom(backgroundColor: kwhite),
-              //     onPressed: () {
-              //       log('${state.total!} total amount');
-
-              //       Navigator.of(context).push(
-              //         MaterialPageRoute<dynamic>(
-              //           builder: (_) => RazorPay(
-              //             total: state.total!,
-              //             products: state.products!,
-              //           ),
-              //         ),
-              //       );
-              //     },
-              //     icon: const Icon(Icons.payment),
-              //     label: const Text(''),
-              //   );
-              //   // return RazorPay(
-              //   //   total: state.total!,
-              //   //   products: state.products!,
-              //   // );
-
-              //   // return Text(
-              //   //   'Pay with Razorpay',
-              //   //   style: Theme.of(context)
-              //   //       .textTheme
-              //   //       .headline4!
-              //   //       .copyWith(color: Colors.white),
-              //   // );
-              // }
-              // if (Platform.isAndroid &&
-              //     state.paymentMethodType == PaymentMethodType.google_pay) {
-              //   return GooglePay(
-              //     products: state.products!,
-              //     total: state.total!,
-              //   );
-
-              //   // default:
-              //   //   return GooglePay(
-              //   //     products: state.products!,
-              //   //     total: state.total!,
-              //   //   );
-
-              // } else {
-              //   return ElevatedButton(
-              //     onPressed: () {
-              //       Navigator.pushNamed(context, '/payment');
-              //     },
-              //     style: ElevatedButton.styleFrom(
-              //       backgroundColor: Colors.black,
-              //     ),
-              //     child: Text(
-              //       'CHOOSE PAYMENT',
-              //       style: Theme.of(context)
-              //           .textTheme
-              //           .headline6!
-              //           .copyWith(color: kwhite),
-              //     ),
-              //   );
-              // }
-            } else {
-              return const Text('Something went wrong');
-            }
-          },
-        ),
-      ],
+                icon: const Icon(Icons.check),
+                label: const Text(
+                  'Continue',
+                ),
+              ),
+            ],
+          );
+        } else {
+          return const Text('Somthing went Wrong');
+        }
+      },
     );
   }
 }
+
+// class CheckoutBottomBar extends StatelessWidget {
+//   const CheckoutBottomBar({
+//     super.key,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//       children: <Widget>[
+//         BlocBuilder<CheckoutBloc, CheckoutState>(
+//           builder: (BuildContext context, CheckoutState state) {
+//             if (state is CheckoutLoding) {
+//               return const Center(
+//                 child: CupertinoActivityIndicator(
+//                   color: kblack,
+//                 ),
+//               );
+//             }
+//             if (state is CheckoutLoded) {
+//               return ElevatedButton.icon(
+//                 style: ElevatedButton.styleFrom(backgroundColor: kwhite),
+//                 onPressed: () {
+//                   log('${state.total!} total amount');
+
+//                   Navigator.of(context).push(
+//                     MaterialPageRoute<dynamic>(
+//                       builder: (_) => RazorPay(
+//                         total: state.total!,
+//                         products: state.products!,
+//                       ),
+//                     ),
+//                   );
+//                 },
+//                 icon: const Icon(Icons.payment),
+//                 label: const Text(''),
+//               );
+//               // if (state.paymentMethodType == PaymentMethodType.razor_pay) {
+//               //   // return RazorPay(total: total, products: products)
+//               //   // return RazorPay(
+//               //   //   total: state.total!,
+//               //   //   products: state.products!,
+//               //   // );
+//               //   return ElevatedButton.icon(
+//               //     style: ElevatedButton.styleFrom(backgroundColor: kwhite),
+//               //     onPressed: () {
+//               //       log('${state.total!} total amount');
+
+//               //       Navigator.of(context).push(
+//               //         MaterialPageRoute<dynamic>(
+//               //           builder: (_) => RazorPay(
+//               //             total: state.total!,
+//               //             products: state.products!,
+//               //           ),
+//               //         ),
+//               //       );
+//               //     },
+//               //     icon: const Icon(Icons.payment),
+//               //     label: const Text(''),
+//               //   );
+//               //   // return RazorPay(
+//               //   //   total: state.total!,
+//               //   //   products: state.products!,
+//               //   // );
+
+//               //   // return Text(
+//               //   //   'Pay with Razorpay',
+//               //   //   style: Theme.of(context)
+//               //   //       .textTheme
+//               //   //       .headline4!
+//               //   //       .copyWith(color: Colors.white),
+//               //   // );
+//               // }
+//               // if (Platform.isAndroid &&
+//               //     state.paymentMethodType == PaymentMethodType.google_pay) {
+//               //   return GooglePay(
+//               //     products: state.products!,
+//               //     total: state.total!,
+//               //   );
+
+//               //   // default:
+//               //   //   return GooglePay(
+//               //   //     products: state.products!,
+//               //   //     total: state.total!,
+//               //   //   );
+
+//               // } else {
+//               //   return ElevatedButton(
+//               //     onPressed: () {
+//               //       Navigator.pushNamed(context, '/payment');
+//               //     },
+//               //     style: ElevatedButton.styleFrom(
+//               //       backgroundColor: Colors.black,
+//               //     ),
+//               //     child: Text(
+//               //       'CHOOSE PAYMENT',
+//               //       style: Theme.of(context)
+//               //           .textTheme
+//               //           .headline6!
+//               //           .copyWith(color: kwhite),
+//               //     ),
+//               //   );
+//               // }
+//             } else {
+//               return const Text('Something went wrong');
+//             }
+//           },
+//         ),
+//       ],
+//     );
+//   }
+// }

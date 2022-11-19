@@ -79,6 +79,7 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
           subTotal: event.cart?.subTotalString ?? state.subTotal,
           deliveryFee: event.cart?.deliveryFees ?? state.deliveryFee,
           total: event.cart?.totalPrices ?? state.total,
+          isAccepted: event.isAccepted ?? state.isAccepted,
           paymentMethodType: event.paymentMethod ?? state.paymentMethodType,
         ),
       );

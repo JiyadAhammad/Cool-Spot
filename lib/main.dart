@@ -17,6 +17,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'application/cart/cart_bloc.dart';
@@ -102,7 +103,7 @@ class MyApp extends StatelessWidget {
           create: (_) => PaymentMethodBloc()..add(LoadPayment()),
         ),
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Food Delivery',
         theme: ThemeData(primarySwatch: Colors.cyan),

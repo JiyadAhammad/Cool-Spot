@@ -1,8 +1,19 @@
 import 'dart:developer';
+import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:get/get_navigation/src/routes/default_transitions.dart';
+import 'package:pay/pay.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
+import '../../application/payment/payment_method_bloc.dart';
+import '../../domain/checkout/checkout_model.dart';
+import '../../domain/payment/payment.dart';
 import '../../domain/product_model/product_model.dart';
+import '../../infrastructure/checkout/checkout_repository.dart';
+import '../../infrastructure/checkout/icheckout_repo.dart';
 import '../constant/color/colors.dart';
 import '../widget/price_details_widget.dart';
 
@@ -22,6 +33,8 @@ class RazorPay extends StatefulWidget {
 class _RazorPayState extends State<RazorPay> {
   final Razorpay razorpay = Razorpay();
 
+  final CheckoutRepository iCheckoutRepo = CheckoutRepository();
+
   @override
   void initState() {
     razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, paymentSuccess);
@@ -32,7 +45,19 @@ class _RazorPayState extends State<RazorPay> {
 
   void paymentSuccess(PaymentSuccessResponse response) {
     log('Payment Success');
-    Navigator.pushNamed(context, '/confirm');
+    // addtoCheckout();
+    // iCheckoutRepo.addCheckout(Checkout(
+    //   location: location,
+    //   address: address,
+    //   city: city,
+    //   landMark: landMark,
+    //   products: products,
+    //   subTotal: subTotal,
+    //   deliveryFee: deliveryFee,
+    //   total: total,
+    //   isAccepted: isAccepted,
+    // ));
+    Navigator.pushNamed(context, '/checkout');
   }
 
   void paymentError(PaymentFailureResponse response) {
@@ -66,17 +91,81 @@ class _RazorPayState extends State<RazorPay> {
     return Scaffold(
       backgroundColor: bgColor,
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            PriceDetailsWidget(),
-            ElevatedButton(
-              onPressed: () {
-                razorpay.open(options);
-              },
-              child: const Text('Confirm Pay'),
-            ),
-          ],
+        child: BlocBuilder<PaymentMethodBloc, PaymentMethodState>(
+          builder: (BuildContext context, PaymentMethodState state) {
+            if (state is PaymentMethodLoding) {
+              return const Center(
+                child: CupertinoActivityIndicator(
+                  color: kwhiteIcon,
+                ),
+              );
+            }
+            if (state is PaymentMethodLoded) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const PriceDetailsWidget(),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: kblack,
+                    ),
+                    onPressed: () {
+                      razorpay.open(options);
+                    },
+                    child: const Text(
+                      'Pay With RazorPay',
+                      style: TextStyle(
+                        color: kwhiteText,
+                      ),
+                    ),
+                  ),
+                  if (Platform.isAndroid)
+                    RawGooglePayButton(
+                      onPressed: () {
+                        Get.snackbar(
+                          'Error',
+                          'Try RazorPay',
+                          dismissDirection: DismissDirection.horizontal,
+                          snackPosition: SnackPosition.BOTTOM,
+                          backgroundColor: kblack,
+                          titleText: const Text(
+                            'Error',
+                            style: TextStyle(
+                              color: kwhiteText,
+                            ),
+                          ),
+                          messageText: const Text(
+                            'Try RazorPay',
+                            style: TextStyle(
+                              color: kwhiteText,
+                            ),
+                          ),
+                        );
+                      },
+                    )
+                  else
+                    const SizedBox(),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: kblack,
+                    ),
+                    onPressed: () {
+                      // razorpay.open(options);
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      'Cash on Delivery',
+                      style: TextStyle(
+                        color: kwhiteText,
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            } else {
+              return const Text('data');
+            }
+          },
         ),
       ),
     );
