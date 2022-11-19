@@ -58,19 +58,7 @@ class Product extends Equatable {
     return product;
   }
 
-  static List<Product> products = <Product>[
-    const Product(
-      id: '1',
-      imageUrl:
-          'https://loveincorporated.blob.core.windows.net/contentimages/main/1249b51f-4258-44f6-8414-221954ae6a79-waterbottlefacts.jpg',
-      productName: 'Bisleri',
-      productPrice: 10.0,
-      category: 'Water',
-      isrecommended: false,
-      ispopular: false,
-      description: 'fgfhjkl',
-    ),
-  ];
+  //  
   //   const Product(
   //     imageUrl:
   //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrTpIC4f7ooBZV6-A_Cpslt9IRRpGbVdoV8A&usqp=CAU',

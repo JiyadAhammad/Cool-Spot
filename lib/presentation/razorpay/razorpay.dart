@@ -45,19 +45,8 @@ class _RazorPayState extends State<RazorPay> {
 
   void paymentSuccess(PaymentSuccessResponse response) {
     log('Payment Success');
-    // addtoCheckout();
-    // iCheckoutRepo.addCheckout(Checkout(
-    //   location: location,
-    //   address: address,
-    //   city: city,
-    //   landMark: landMark,
-    //   products: products,
-    //   subTotal: subTotal,
-    //   deliveryFee: deliveryFee,
-    //   total: total,
-    //   isAccepted: isAccepted,
-    // ));
-    Navigator.pushNamed(context, '/checkout');
+    Get.snackbar('title', 'message');
+    Navigator.pushReplacementNamed(context, '/checkout');
   }
 
   void paymentError(PaymentFailureResponse response) {
