@@ -10,7 +10,6 @@ import '../../application/checkout/checkout_bloc.dart';
 import '../../application/payment/payment_method_bloc.dart';
 import '../../domain/payment/payment.dart';
 import '../constant/color/colors.dart';
-import '../google_pay/google_pay.dart';
 import '../razorpay/razorpay.dart';
 import '../widget/custom_app_bar.dart';
 

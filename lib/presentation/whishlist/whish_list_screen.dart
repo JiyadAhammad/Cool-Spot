@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../application/whislist/whislist_bloc.dart';
-import '../../domain/product_model/product_model.dart';
 import '../constant/color/colors.dart';
 import '../constant/sizedbox/sizedbox.dart';
 import '../home/widget/custom_nav_bar.dart';

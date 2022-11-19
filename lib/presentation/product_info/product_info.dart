@@ -122,7 +122,7 @@ class ProductInformation extends StatelessWidget {
                       ),
                     );
                   } else {
-                    return Text('data');
+                    return const Text('data');
                   }
                 },
               ),

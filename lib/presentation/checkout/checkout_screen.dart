@@ -1,24 +1,15 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
-import 'package:razorpay_flutter/razorpay_flutter.dart';
 
-import '../../application/cart/cart_bloc.dart';
 import '../../application/checkout/checkout_bloc.dart';
-import '../../domain/payment/payment.dart';
 import '../constant/color/colors.dart';
 import '../constant/sizedbox/sizedbox.dart';
-import '../google_pay/google_pay.dart';
-import '../payment/payment_screen.dart';
 import '../razorpay/razorpay.dart';
 import '../widget/custom_app_bar.dart';
-import '../widget/custom_bootom_bar_widget.dart';
 import '../widget/price_details_widget.dart';
-import 'widget/container_widget.dart';
 import 'widget/customer_detail_widget.dart';
 import 'widget/text_field_widget.dart';
 

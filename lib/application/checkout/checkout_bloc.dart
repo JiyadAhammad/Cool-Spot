@@ -10,7 +10,6 @@ import '../../domain/payment/payment.dart';
 import '../../domain/product_model/product_model.dart';
 import '../../infrastructure/checkout/checkout_repository.dart';
 import '../cart/cart_bloc.dart';
-import '../payment/payment_method_bloc.dart';
 
 part 'checkout_event.dart';
 part 'checkout_state.dart';

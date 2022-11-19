@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/product_model/product_model.dart';
 import '../../constant/color/colors.dart';
 
 class ProductDetailsWidget extends StatelessWidget {
@@ -12,7 +11,7 @@ class ProductDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
+    return const ListTile(
       // leading: SizedBox(
       //   width: 100,
       //   child: Image.network(
@@ -21,7 +20,7 @@ class ProductDetailsWidget extends StatelessWidget {
       // ),
       title: Text(
         'Product.products[index].productName',
-        style: const TextStyle(
+        style: TextStyle(
           color: kblack,
           fontWeight: FontWeight.bold,
           fontSize: 22,
@@ -29,7 +28,7 @@ class ProductDetailsWidget extends StatelessWidget {
       ),
       subtitle: Text(
         'Product.products[index].productPrice.toString()',
-        style: const TextStyle(
+        style: TextStyle(
           color: kblack,
           fontSize: 20,
         ),

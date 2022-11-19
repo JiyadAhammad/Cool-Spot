@@ -1,6 +1,3 @@
-import 'dart:math';
-
-import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -37,9 +34,9 @@ class OrderConfirmationScreen extends StatelessWidget {
       body: SingleChildScrollView(
         // controller: controller,
         child: Column(
-          children: [
+          children: <Widget>[
             Stack(
-              children: [
+              children: <Widget> [
                 Container(
                   color: kblack,
                   width: double.infinity,
@@ -74,8 +71,8 @@ class OrderConfirmationScreen extends StatelessWidget {
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
+                children:<Widget>  [
+                  const Text(
                     'Hi Jiyad',
                     style: TextStyle(
                       color: kblackText,
@@ -84,7 +81,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                     ),
                   ),
                   kheight,
-                  Text(
+                  const Text(
                     'Thank you purchsing on Cool Spot ',
                     style: TextStyle(
                       color: kblackText,
@@ -93,7 +90,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                     ),
                   ),
                   kheight20,
-                  Text(
+                  const Text(
                     'ORDER CODE : 123456',
                     style: TextStyle(
                       color: kblackText,
@@ -102,14 +99,14 @@ class OrderConfirmationScreen extends StatelessWidget {
                     ),
                   ),
                   kheight50,
-                  PriceDetailsWidget(),
+                  const PriceDetailsWidget(),
                   kheight,
-                  Divider(
+                  const Divider(
                     thickness: 2,
                     color: kblack,
                   ),
                   kheight,
-                  Text(
+                  const Text(
                     'ORDER DETAILS',
                     style: TextStyle(
                       color: kblackText,
@@ -120,8 +117,8 @@ class OrderConfirmationScreen extends StatelessWidget {
                   ListView(
                     shrinkWrap: true,
                     padding: EdgeInsets.zero,
-                    physics: NeverScrollableScrollPhysics(),
-                    children: [],
+                    physics: const NeverScrollableScrollPhysics(),
+                    // children: const <Widget> [],
                   )
                 ],
               ),

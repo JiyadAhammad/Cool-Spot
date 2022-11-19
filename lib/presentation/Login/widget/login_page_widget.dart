@@ -56,7 +56,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    GoogleSignInAccount? user = currentUser;
+    final GoogleSignInAccount? user = currentUser;
     return Form(
       key: formKey,
       child: ListView(

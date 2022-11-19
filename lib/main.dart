@@ -23,6 +23,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'application/cart/cart_bloc.dart';
 import 'application/category/category_bloc.dart';
 import 'application/checkout/checkout_bloc.dart';
+import 'application/my_orders/my_orders_bloc.dart';
 import 'application/payment/payment_method_bloc.dart';
 import 'application/product/product_bloc.dart';
 import 'application/whislist/whislist_bloc.dart';
@@ -31,6 +32,7 @@ import 'domain/product_model/product_model.dart';
 import 'infrastructure/cart/whishlist/whish_list.dart';
 import 'infrastructure/category/category_repository.dart';
 import 'infrastructure/checkout/checkout_repository.dart';
+import 'infrastructure/myorders/my_order_repository.dart';
 import 'infrastructure/product/product_repository.dart';
 
 bool shouldUseFirestoreEmulator = false;
@@ -57,7 +59,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
+      providers: <BlocProvider<Bloc<dynamic, dynamic>>>[
         // BlocProvider(
         //   create: (context) => CheckoutBloc(
         //     cartBloc: context.read<CartBloc>(),
@@ -90,6 +92,13 @@ class MyApp extends StatelessWidget {
             productRepository: ProductRepository(),
           )..add(
               LoadProduct(),
+            ),
+        ),
+        BlocProvider<MyOrdersBloc>(
+          create: (_) => MyOrdersBloc(
+            myOrderRepository: MyOrderRepository(),
+          )..add(
+              LoadMyOrders(),
             ),
         ),
         BlocProvider<CheckoutBloc>(

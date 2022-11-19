@@ -4,16 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/routes/default_transitions.dart';
 import 'package:pay/pay.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 import '../../application/payment/payment_method_bloc.dart';
-import '../../domain/checkout/checkout_model.dart';
-import '../../domain/payment/payment.dart';
 import '../../domain/product_model/product_model.dart';
 import '../../infrastructure/checkout/checkout_repository.dart';
-import '../../infrastructure/checkout/icheckout_repo.dart';
 import '../constant/color/colors.dart';
 import '../widget/price_details_widget.dart';
 

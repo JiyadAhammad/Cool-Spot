@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../domain/product_model/product_model.dart';
+import '../../application/my_orders/my_orders_bloc.dart';
 import '../constant/color/colors.dart';
 import '../home/widget/custom_nav_bar.dart';
 import '../widget/custom_app_bar.dart';
@@ -27,12 +29,29 @@ class OrderHistory extends StatelessWidget {
         onPressed: () => Navigator.pushNamed(context, '/whish'),
         leadingOnPressed: () => Navigator.pop(context),
       ),
-      body: ListView.builder(
-        itemCount: 2,
-        itemBuilder: (BuildContext context, int index) {
-          return ProductDetailsWidget(
-            index: index,
-          );
+      body: BlocBuilder<MyOrdersBloc, MyOrdersState>(
+        builder: (BuildContext context, MyOrdersState state) {
+          if (state is MyOrdersLoding) {
+            return const Center(
+              child: CupertinoActivityIndicator(
+                color: kblackIcon,
+              ),
+            );
+          }
+          if (state is MyOrderLoded) {
+            return ListView.builder(
+              itemCount: state.myOrders.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ProductDetailsWidget(
+                  index: index,
+                );
+              },
+            );
+          } else {
+            return const Center(
+              child: Text('Something Went Wrong'),
+            );
+          }
         },
       ),
       bottomNavigationBar: const CustomNavBar(),
