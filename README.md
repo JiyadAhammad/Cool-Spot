@@ -1,16 +1,43 @@
-# food_delevery
+# Cool Spot
 
-A new Flutter project.
+FoodDelivey Application using Flutter.
 
-## Getting Started
+## Installation
 
-This project is a starting point for a Flutter application.
+ [Not Deployed](#) .
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+Buy Foods as you wish
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Features
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```python
+# Technology Used:-
+
+Flutter
+Dart
+Payment Gateway
+Firebase
+Hive
+
+# Packages:-
+
+Google Map
+Razorpay
+Google pay
+Bloc
+Equatable
+Build_Runner
+```
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+
+[Contact me](jiyadahammad74@gmail.com)
