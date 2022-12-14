@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../application/cart/cart_bloc.dart';
-import '../../application/product/product_bloc.dart';
+import '../../application/bloc/cart/cart_bloc.dart';
+import '../../application/bloc/product/product_bloc.dart';
 import '../constant/color/colors.dart';
 import '../constant/sizedbox/sizedbox.dart';
 import '../widget/custom_app_bar.dart';

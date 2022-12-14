@@ -20,19 +20,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'application/cart/cart_bloc.dart';
-import 'application/category/category_bloc.dart';
-import 'application/checkout/checkout_bloc.dart';
-import 'application/my_orders/my_orders_bloc.dart';
-import 'application/payment/payment_method_bloc.dart';
-import 'application/product/product_bloc.dart';
-import 'application/whislist/whislist_bloc.dart';
+import 'application/bloc/cart/cart_bloc.dart';
+import 'application/bloc/category/category_bloc.dart';
+import 'application/bloc/checkout/checkout_bloc.dart';
+import 'application/bloc/payment/payment_method_bloc.dart';
+import 'application/bloc/product/product_bloc.dart';
+import 'application/bloc/whislist/whislist_bloc.dart';
 import 'domain/config/app_router.dart';
 import 'domain/product_model/product_model.dart';
 import 'infrastructure/cart/whishlist/whish_list.dart';
 import 'infrastructure/category/category_repository.dart';
 import 'infrastructure/checkout/checkout_repository.dart';
-import 'infrastructure/myorders/my_order_repository.dart';
 import 'infrastructure/product/product_repository.dart';
 
 bool shouldUseFirestoreEmulator = false;
@@ -94,13 +92,7 @@ class MyApp extends StatelessWidget {
               LoadProduct(),
             ),
         ),
-        BlocProvider<MyOrdersBloc>(
-          create: (_) => MyOrdersBloc(
-            myOrderRepository: MyOrderRepository(),
-          )..add(
-              LoadMyOrders(),
-            ),
-        ),
+
         BlocProvider<CheckoutBloc>(
           create: (BuildContext context) => CheckoutBloc(
             cartBloc: context.read<CartBloc>(),

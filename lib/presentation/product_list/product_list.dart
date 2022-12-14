@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../application/product/product_bloc.dart';
+import '../../application/bloc/product/product_bloc.dart';
 import '../../domain/category_model/category_model.dart';
 import '../../domain/product_model/product_model.dart';
 import '../home/widget/custom_nav_bar.dart';

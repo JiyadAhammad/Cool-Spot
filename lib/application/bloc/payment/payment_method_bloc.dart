@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../domain/payment/payment.dart';
+import '../../../domain/payment/payment.dart';
+
 
 part 'payment_method_event.dart';
 part 'payment_method_state.dart';

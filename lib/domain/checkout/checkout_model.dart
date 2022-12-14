@@ -13,6 +13,8 @@ class Checkout extends Equatable {
     required this.deliveryFee,
     required this.total,
     required this.isAccepted,
+    required this.isDelivered,
+    required this.isCanceled,
   });
 
   final String? location;
@@ -24,6 +26,8 @@ class Checkout extends Equatable {
   final String? deliveryFee;
   final String? total;
   final bool? isAccepted;
+  final bool? isDelivered;
+  final bool? isCanceled;
 
   @override
   List<Object?> get props => <Object?>[
@@ -36,22 +40,29 @@ class Checkout extends Equatable {
         deliveryFee,
         total,
         isAccepted,
+        isDelivered,
+        isCanceled,
       ];
 
   Map<String, Object> toDocument() {
-    final Map<String, dynamic> customerAddress = <String, dynamic>{};
-    customerAddress['location'] = location;
-    customerAddress['address'] = address;
-    customerAddress['city'] = city;
-    customerAddress['landMark'] = landMark;
+    // final Map<String, dynamic> customerAddress = <String, dynamic>{};
+    // customerAddress['location'] = location;
+    // customerAddress['address'] = address;
+    // customerAddress['city'] = city;
+    // customerAddress['landMark'] = landMark;
 
     return <String, Object>{
-      'customerAddress': customerAddress,
+      'location': location!,
+      'address': address!,
+      'city': city!,
+      'landMark': landMark!,
       'Product': products!.map((Product item) => item.productName).toList(),
       'subTotal': subTotal!,
       'deliveryFee': deliveryFee!,
       'total': total!,
       'isAccepted': isAccepted!,
+      'isDelivered': isDelivered!,
+      'isCanceled': isCanceled!,
     };
   }
 }

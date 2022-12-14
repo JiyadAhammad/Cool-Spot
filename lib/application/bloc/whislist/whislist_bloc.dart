@@ -4,10 +4,9 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-
-import '../../domain/product_model/product_model.dart';
-import '../../domain/whishlist/whish_list.dart';
-import '../../infrastructure/cart/whishlist/whish_list.dart';
+import '../../../domain/product_model/product_model.dart';
+import '../../../domain/whishlist/whish_list.dart';
+import '../../../infrastructure/cart/whishlist/whish_list.dart';
 
 part 'whislist_event.dart';
 part 'whislist_state.dart';
@@ -60,9 +59,9 @@ class WhislistBloc extends Bloc<WhislistEvent, WhislistState> {
         emit(
           WhislistLoded(
             whishList: WhishList(
-              product: List<Product>.from(
-                  (state as WhislistLoded).whishList.product)
-                ..add(event.product),
+              product:
+                  List<Product>.from((state as WhislistLoded).whishList.product)
+                    ..add(event.product),
             ),
           ),
         );
@@ -86,9 +85,9 @@ class WhislistBloc extends Bloc<WhislistEvent, WhislistState> {
         emit(
           WhislistLoded(
             whishList: WhishList(
-              product: List<Product>.from(
-                  (state as WhislistLoded).whishList.product)
-                ..remove(event.product),
+              product:
+                  List<Product>.from((state as WhislistLoded).whishList.product)
+                    ..remove(event.product),
             ),
           ),
         );

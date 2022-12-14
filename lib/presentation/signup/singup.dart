@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +21,8 @@ class SignupScreen extends StatelessWidget {
     );
   }
 
+  final TextEditingController nameControll = TextEditingController();
+  final TextEditingController phoneControll = TextEditingController();
   final TextEditingController emailControll = TextEditingController();
   final TextEditingController paswordControll = TextEditingController();
   final TextEditingController confirmPswrdControll = TextEditingController();
@@ -38,16 +42,45 @@ class SignupScreen extends StatelessWidget {
           ),
           shrinkWrap: true,
           children: <Widget>[
-            Column(
-              children: <Widget>[
-                Image.asset('assets/images/login.png'),
-              ],
+            // Column(
+            //   children: <Widget>[
+            //     Image.asset('assets/images/login.png'),
+            //   ],
+            // ),
+            LoginTextFormField(
+              prefixIcon: Icons.person,
+              hintText: 'Enter your name',
+              controller: nameControll,
+              validator: (String? value) {
+                //^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$
+
+                if (value!.isEmpty) {
+                  return 'please Enter your Number';
+                }
+
+                return null;
+              },
+            ),
+            LoginTextFormField(
+              prefixIcon: Icons.phone_android_outlined,
+              hintText: 'Enter your Number',
+              controller: phoneControll,
+              keyboardType: TextInputType.number,
+              validator: (String? value) {
+                if (value!.isEmpty) {
+                  return 'please Enter your Number';
+                }
+                if (!RegExp(r'(^(?:[+0]9)?[0-9]{10}$)').hasMatch(value)) {
+                  return 'Number Must be 10 didgit';
+                }
+                return null;
+              },
             ),
             Column(
               children: <Widget>[
                 LoginTextFormField(
                   controller: emailControll,
-                  prefixIcon: Icons.person,
+                  prefixIcon: Icons.email,
                   hintText: 'Email',
                   validator: (String? value) {
                     if (value!.isEmpty) {
@@ -123,19 +156,6 @@ class SignupScreen extends StatelessWidget {
                   ),
                 ),
                 kheight20,
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //   children: <Widget>[
-                //     GestureDetector(
-                //       onTap: () {},
-                //       child: Image.asset('assets/images/facebook.png'),
-                //     ),
-                //     GestureDetector(
-                //       onTap: () {},
-                //       child: Image.asset('assets/images/google.png'),
-                //     ),
-                //   ],
-                // ),
                 kheight,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -170,11 +190,13 @@ class SignupScreen extends StatelessWidget {
       )
           .then((UserCredential value) {
         addCreditianlToFirebase(context);
-      }).catchError((dynamic onError) {
-        Fluttertoast.showToast(
-          msg: onError.toString(),
-        );
-      });
+      }).catchError(
+        (dynamic onError) {
+          Fluttertoast.showToast(
+            msg: onError.toString(),
+          );
+        },
+      );
     }
   }
 
@@ -185,7 +207,8 @@ class SignupScreen extends StatelessWidget {
     final UserModel userModel = UserModel();
     userModel.email = user!.email;
     userModel.uid = user.uid;
-
+    userModel.name = nameControll.text.trim();
+    userModel.pNumber = phoneControll.text.trim();
     await firebaseFirestore.collection('user').doc(user.uid).set(
           userModel.toDocumet(),
         );

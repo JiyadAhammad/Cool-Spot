@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pay/pay.dart';
 
-import '../../application/checkout/checkout_bloc.dart';
-import '../../application/payment/payment_method_bloc.dart';
+import '../../application/bloc/checkout/checkout_bloc.dart';
+import '../../application/bloc/payment/payment_method_bloc.dart';
 import '../../domain/payment/payment.dart';
 import '../constant/color/colors.dart';
 import '../razorpay/razorpay.dart';

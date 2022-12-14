@@ -12,12 +12,7 @@ class ProductDetailsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const ListTile(
-      // leading: SizedBox(
-      //   width: 100,
-      //   child: Image.network(
-      //     Product.products[index].imageUrl,
-      //   ),
-      // ),
+     
       title: Text(
         'Product.products[index].productName',
         style: TextStyle(

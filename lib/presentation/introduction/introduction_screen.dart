@@ -31,7 +31,7 @@ class IntroductionScreen extends StatelessWidget {
         fontSize: 22,
         fontWeight: FontWeight.w300,
       ),
-      imageUrl: 'assets/images/splashImage.png',
+      imageUrl: 'assets/images/splash.webp',
     ),
     Introduction(
       title: 'Delivery',
@@ -46,7 +46,7 @@ class IntroductionScreen extends StatelessWidget {
         fontSize: 22,
         fontWeight: FontWeight.w300,
       ),
-      imageUrl: 'assets/images/Smoothies1.webp',
+      imageUrl: 'assets/images/logo1.jpg',
     ),
     Introduction(
       title: 'Receive Money',
@@ -61,7 +61,7 @@ class IntroductionScreen extends StatelessWidget {
         fontSize: 22,
         fontWeight: FontWeight.w300,
       ),
-      imageUrl: 'assets/images/mountain dew.webp',
+      imageUrl: 'assets/images/logo2.webp',
     ),
     Introduction(
       title: 'Finish',
@@ -76,7 +76,7 @@ class IntroductionScreen extends StatelessWidget {
         fontSize: 22,
         fontWeight: FontWeight.w300,
       ),
-      imageUrl: 'assets/images/pepsi.jfif',
+      imageUrl: 'assets/images/logo3.webp',
     ),
   ];
 

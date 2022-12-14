@@ -20,6 +20,8 @@ class CheckoutLoded extends CheckoutState {
     this.deliveryFee,
     this.total,
     this.isAccepted = false,
+    this.isDelivered = false,
+    this.isCanceled = false,
     this.paymentMethodType = PaymentMethodType.razor_pay,
   }) : checkout = Checkout(
           location: location,
@@ -31,6 +33,8 @@ class CheckoutLoded extends CheckoutState {
           deliveryFee: deliveryFee,
           total: total,
           isAccepted: isAccepted,
+          isDelivered: isDelivered,
+          isCanceled: isCanceled,
         );
 
   final String? location;
@@ -42,6 +46,8 @@ class CheckoutLoded extends CheckoutState {
   final String? deliveryFee;
   final String? total;
   final bool? isAccepted;
+  final bool? isDelivered;
+  final bool? isCanceled;
   final Checkout checkout;
   final PaymentMethodType paymentMethodType;
 
@@ -57,5 +63,7 @@ class CheckoutLoded extends CheckoutState {
         total,
         paymentMethodType,
         isAccepted,
+        isDelivered,
+        isCanceled,
       ];
 }

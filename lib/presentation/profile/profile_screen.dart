@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../domain/profile/profile.dart';
+import '../../domain/usermodel/user_model.dart';
 import '../checkout/widget/container_widget.dart';
 import '../constant/color/colors.dart';
 import '../home/widget/custom_nav_bar.dart';

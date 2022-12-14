@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../application/cart/cart_bloc.dart';
-import '../../application/whislist/whislist_bloc.dart';
+import '../../application/bloc/cart/cart_bloc.dart';
+import '../../application/bloc/whislist/whislist_bloc.dart';
 import '../../domain/product_model/product_model.dart';
 import '../constant/color/colors.dart';
 import '../widget/custom_app_bar.dart';

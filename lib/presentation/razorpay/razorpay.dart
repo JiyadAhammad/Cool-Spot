@@ -7,11 +7,10 @@ import 'package:get/get.dart';
 import 'package:pay/pay.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
-import '../../application/payment/payment_method_bloc.dart';
+import '../../application/bloc/payment/payment_method_bloc.dart';
 import '../../domain/product_model/product_model.dart';
 import '../../infrastructure/checkout/checkout_repository.dart';
 import '../constant/color/colors.dart';
-import '../widget/price_details_widget.dart';
 
 class RazorPay extends StatefulWidget {
   const RazorPay({
@@ -70,7 +69,7 @@ class _RazorPayState extends State<RazorPay> {
       'timeout': 120, // in seconds
       'prefill': <String, String>{
         'contact': '6282615775',
-        'email': 'gaurav.kumar@example.com',
+        'email': 'jiyadahammad@gmail.com',
       }
     };
     return Scaffold(
@@ -86,66 +85,68 @@ class _RazorPayState extends State<RazorPay> {
               );
             }
             if (state is PaymentMethodLoded) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const PriceDetailsWidget(),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: kblack,
-                    ),
-                    onPressed: () {
-                      razorpay.open(options);
-                    },
-                    child: const Text(
-                      'Pay With RazorPay',
-                      style: TextStyle(
-                        color: kwhiteText,
-                      ),
-                    ),
-                  ),
-                  if (Platform.isAndroid)
-                    RawGooglePayButton(
-                      onPressed: () {
-                        Get.snackbar(
-                          'Error',
-                          'Try RazorPay',
-                          dismissDirection: DismissDirection.horizontal,
-                          snackPosition: SnackPosition.BOTTOM,
+              return Center(
+                child: Column(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    // const PriceDetailsWidget(),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
                           backgroundColor: kblack,
-                          titleText: const Text(
-                            'Error',
-                            style: TextStyle(
-                              color: kwhiteText,
-                            ),
-                          ),
-                          messageText: const Text(
-                            'Try RazorPay',
-                            style: TextStyle(
-                              color: kwhiteText,
-                            ),
-                          ),
-                        );
+                          maximumSize: Size.fromWidth(double.infinity)),
+                      onPressed: () {
+                        razorpay.open(options);
                       },
-                    )
-                  else
-                    const SizedBox(),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: kblack,
-                    ),
-                    onPressed: () {
-                      // razorpay.open(options);
-                      Navigator.pop(context);
-                    },
-                    child: const Text(
-                      'Cash on Delivery',
-                      style: TextStyle(
-                        color: kwhiteText,
+                      child: const Text(
+                        'Pay With RazorPay',
+                        style: TextStyle(
+                          color: kwhiteText,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                    if (Platform.isAndroid)
+                      RawGooglePayButton(
+                        onPressed: () {
+                          Get.snackbar(
+                            'Error',
+                            'Try RazorPay',
+                            dismissDirection: DismissDirection.horizontal,
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: kblack,
+                            titleText: const Text(
+                              'Error',
+                              style: TextStyle(
+                                color: kwhiteText,
+                              ),
+                            ),
+                            messageText: const Text(
+                              'Try RazorPay',
+                              style: TextStyle(
+                                color: kwhiteText,
+                              ),
+                            ),
+                          );
+                        },
+                      )
+                    else
+                      const SizedBox(),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: kblack,
+                      ),
+                      onPressed: () {
+                        // razorpay.open(options);
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        'Cash on Delivery',
+                        style: TextStyle(
+                          color: kwhiteText,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               );
             } else {
               return const Text('data');

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../application/cart/cart_bloc.dart';
+import '../../application/bloc/cart/cart_bloc.dart';
 import '../cart/widget/stack_price_container.dart';
 import '../constant/sizedbox/sizedbox.dart';
 

@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../domain/product_model/product_model.dart';
-import '../../infrastructure/product/product_repository.dart';
+import '../../../domain/product_model/product_model.dart';
+import '../../../infrastructure/product/product_repository.dart';
 
 part 'product_event.dart';
 part 'product_state.dart';

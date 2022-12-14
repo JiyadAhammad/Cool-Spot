@@ -49,8 +49,8 @@ class AppRouter {
         return CheckoutScreen.route();
       case PaymentScreen.routeName:
         return PaymentScreen.route();
-      case LocationScreen.routeName:
-        return LocationScreen.route();
+      // case MapLocationScreen.routeName:
+      //   return MapLocationScreen.route();
       case OrderConfirmationScreen.routeName:
         return OrderConfirmationScreen.route();
       case LoginScreen.routeName:

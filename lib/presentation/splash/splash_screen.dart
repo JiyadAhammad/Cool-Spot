@@ -23,30 +23,13 @@ class SplashScreen extends StatelessWidget {
       () => Navigator.pushReplacementNamed(context, '/intro'),
     );
     return Scaffold(
-      backgroundColor: bgColor,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const <Widget>[
-          Center(
-            child: Image(
-              image: AssetImage(
-                'assets/images/splashImage.png',
-              ),
-            ),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/splash.webp'),
+            fit: BoxFit.cover,
           ),
-          kheight,
-          Padding(
-            padding: EdgeInsets.all(10.0),
-            child: Text(
-              'Drink Socially',
-              style: TextStyle(
-                color: kblackText,
-                fontSize: 30,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

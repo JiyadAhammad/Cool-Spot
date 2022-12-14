@@ -3,15 +3,16 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
-import '../../application/checkout/checkout_bloc.dart';
+import '../../application/bloc/checkout/checkout_bloc.dart';
 import '../constant/color/colors.dart';
 import '../constant/sizedbox/sizedbox.dart';
+import '../map/map.dart';
 import '../razorpay/razorpay.dart';
 import '../widget/custom_app_bar.dart';
 import '../widget/price_details_widget.dart';
 import 'widget/customer_detail_widget.dart';
-import 'widget/text_field_widget.dart';
 
 class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({super.key});
@@ -33,7 +34,8 @@ class CheckoutScreen extends StatelessWidget {
         appBarTitle: 'Checkout',
         appBarIcon: Icons.map,
         onPressed: () {
-          Navigator.pushNamed(context, '/map');
+          // Navigator.pushNamed(context, '/map');
+          Get.off(() => const MapLocationScreen());
         },
       ),
       body: Padding(
@@ -49,124 +51,120 @@ class CheckoutScreen extends StatelessWidget {
               );
             }
             if (state is CheckoutLoded) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  TextFiledWidget(
-                      suffixIcon: Icons.my_location,
-                      hintText: 'click icon to search Location',
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/map');
-                      }),
-                  kheight20,
-                  const Text(
-                    'DELIVERY INFORMATION',
-                    style: TextStyle(
-                      color: kblackText,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w500,
+              return SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    // TextFiledWidget(
+                    //     suffixIcon: Icons.my_location,
+                    //     hintText: 'click icon to search Location',
+                    //     onPressed: () {
+                    //       Navigator.pushNamed(context, '/map');
+                    //     }),
+                    // kheight20,
+                    const Text(
+                      'DELIVERY INFORMATION',
+                      style: TextStyle(
+                        color: kblackText,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                  kheight,
-                  CustomTextFormField(
-                    title: 'Location',
-                    onChanged: (String value) {
-                      context.read<CheckoutBloc>().add(
-                            UpdateChekout(location: value),
-                          );
-                    },
-                  ),
-                  kheight,
-                  CustomTextFormField(
-                    title: 'Address',
-                    onChanged: (String value) {
-                      context.read<CheckoutBloc>().add(
-                            UpdateChekout(address: value),
-                          );
-                    },
-                  ),
-                  kheight,
-                  CustomTextFormField(
-                    title: 'City',
-                    onChanged: (String value) {
-                      context.read<CheckoutBloc>().add(
-                            UpdateChekout(city: value),
-                          );
-                    },
-                  ),
-                  kheight,
-                  CustomTextFormField(
-                    title: 'LandMark',
-                    onChanged: (String value) {
-                      context.read<CheckoutBloc>().add(
-                            UpdateChekout(landMark: value),
-                          );
-                    },
-                  ),
-                  kheight20,
-                  Container(
-                    height: 60,
-                    alignment: Alignment.bottomCenter,
-                    decoration: const BoxDecoration(color: Colors.black),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Center(
-                          child: TextButton(
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute<dynamic>(
-                                  builder: (_) => RazorPay(
-                                    total: state.total!,
-                                    products: state.products!,
+                    kheight,
+                    CustomTextFormField(
+                      title: 'Location',
+                      onChanged: (String value) {
+                        placeMark[0].subLocality ??
+                            context.read<CheckoutBloc>().add(
+                                  UpdateChekout(location: value),
+                                );
+                      },
+                    ),
+                    kheight,
+                    CustomTextFormField(
+                      title: 'Address',
+                      onChanged: (String value) {
+                        context.read<CheckoutBloc>().add(
+                              UpdateChekout(address: value),
+                            );
+                      },
+                    ),
+                    kheight,
+                    CustomTextFormField(
+                      title: 'City',
+                      onChanged: (String value) {
+                        context.read<CheckoutBloc>().add(
+                              UpdateChekout(city: value),
+                            );
+                      },
+                    ),
+                    kheight,
+                    CustomTextFormField(
+                      title: 'LandMark',
+                      onChanged: (String value) {
+                        context.read<CheckoutBloc>().add(
+                              UpdateChekout(landMark: value),
+                            );
+                      },
+                    ),
+                    kheight20,
+                    Container(
+                      height: 60,
+                      alignment: Alignment.bottomCenter,
+                      decoration: const BoxDecoration(color: Colors.black),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          Center(
+                            child: TextButton(
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute<dynamic>(
+                                    builder: (_) => RazorPay(
+                                      total: state.total!,
+                                      products: state.products!,
+                                    ),
                                   ),
+                                );
+                                // Navigator.pushNamed(
+                                //   context,
+                                //   '/payment',
+                                // );
+                              },
+                              child: const Text(
+                                'SELECT A PAYMENT METHOD',
+                                style: TextStyle(
+                                  color: kwhiteText,
+                                  fontSize: 16,
                                 ),
-                              );
-                              // Navigator.pushNamed(
-                              //   context,
-                              //   '/payment',
-                              // );
-                            },
-                            child: const Text(
-                              'SELECT A PAYMENT METHOD',
-                              style: TextStyle(
-                                color: kwhiteText,
-                                fontSize: 16,
                               ),
                             ),
                           ),
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.arrow_forward,
-                            color: Colors.white,
-                          ),
-                        )
-                      ],
+                          IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  // ContainerWidget(
-                  //   date: 'Select Payment Method',
-                  //   iconData: Icons.arrow_forward_ios,
-                  //   onPressed: () {
-                  //     Navigator.pushNamed(context, '/payment');
-                  //   },
-                  // ),
-                  kheight20,
-                  const Text(
-                    'Order Summary',
-                    style: TextStyle(
-                      color: kblackText,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w500,
+                    kheight20,
+                    const Text(
+                      'Order Summary',
+                      style: TextStyle(
+                        color: kblackText,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 25),
-                    child: PriceDetailsWidget(),
-                  )
-                ],
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 25),
+                      child: PriceDetailsWidget(),
+                    )
+                  ],
+                ),
               );
             } else {
               return const Text(

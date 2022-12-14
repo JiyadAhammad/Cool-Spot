@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../domain/cart/cart_model/cart_model.dart';
-import '../../domain/product_model/product_model.dart';
+import '../../../domain/cart/cart_model/cart_model.dart';
+import '../../../domain/product_model/product_model.dart';
+
 
 part 'cart_event.dart';
 part 'cart_state.dart';

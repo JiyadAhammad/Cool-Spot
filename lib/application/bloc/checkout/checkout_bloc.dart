@@ -4,11 +4,12 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../domain/cart/cart_model/cart_model.dart';
-import '../../domain/checkout/checkout_model.dart';
-import '../../domain/payment/payment.dart';
-import '../../domain/product_model/product_model.dart';
-import '../../infrastructure/checkout/checkout_repository.dart';
+import '../../../domain/cart/cart_model/cart_model.dart';
+import '../../../domain/checkout/checkout_model.dart';
+import '../../../domain/payment/payment.dart';
+import '../../../domain/product_model/product_model.dart';
+
+import '../../../infrastructure/checkout/checkout_repository.dart';
 import '../cart/cart_bloc.dart';
 
 part 'checkout_event.dart';

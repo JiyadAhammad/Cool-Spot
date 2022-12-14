@@ -11,6 +11,7 @@ class LoginTextFormField extends StatelessWidget {
     this.visble = false,
     required this.validator,
     this.onSaved,
+    this.keyboardType,
   });
   final IconData prefixIcon;
   final String hintText;
@@ -18,6 +19,7 @@ class LoginTextFormField extends StatelessWidget {
   final bool visble;
   final String? Function(String?) validator;
   final Function(String?)? onSaved;
+  final TextInputType? keyboardType;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,6 +32,7 @@ class LoginTextFormField extends StatelessWidget {
         validator: validator,
         controller: controller,
         obscureText: visble,
+        keyboardType: keyboardType,
         style: const TextStyle(
           fontSize: 24,
           color: kblack,

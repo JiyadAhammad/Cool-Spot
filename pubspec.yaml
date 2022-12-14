@@ -42,12 +42,15 @@ dependencies:
   flutter_bloc: ^8.1.1
   flutter_svg: ^1.1.6
   fluttertoast: ^8.1.1
+  geocoding: ^2.0.5
+  geolocator: ^9.0.2
   get: ^4.6.5
   google_maps_flutter: ^2.2.1
   google_sign_in: ^5.4.2
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   intro_screen_onboarding_flutter: ^1.0.0
+  loading_animation_widget: ^1.2.0+3
   lottie: ^1.4.3
   pay: ^1.0.11
   pinput: ^2.2.16

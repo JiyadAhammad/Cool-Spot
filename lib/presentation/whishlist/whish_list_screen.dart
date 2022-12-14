@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../application/whislist/whislist_bloc.dart';
+import '../../application/bloc/whislist/whislist_bloc.dart';
 import '../constant/color/colors.dart';
 import '../constant/sizedbox/sizedbox.dart';
 import '../home/widget/custom_nav_bar.dart';
